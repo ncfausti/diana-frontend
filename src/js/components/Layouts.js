@@ -3,19 +3,31 @@ import Footer from './Footer';
 import Header from './Header';
 
 export default class Layout extends React.Component {
-	getVal(val) {
-		return 7**val;
-	}
 	constructor() {
 		super()
-		this.blah = "BLAH";
+		this.state = { 
+					  title: "Project Diana",
+					  name: "ebert", 
+					  colorClass:'white',
+					 };
 	}
+
+	changeTitle(title) {
+		this.setState({title});
+	}
+
 	render() {
+		setTimeout(() => {
+			this.setState({colorClass:"blue"});
+		}, 1000)
 		const name = "nick"
 		return (
 			<div>
-			<Header />
-			<h1>webpack + babel { this.blah } + react!</h1>
+			<Header changeTitle={this.changeTitle.bind(this)} title={this.state.title} />
+			
+			<h1>webpack + babel <span class={this.state.colorClass}>
+			{ this.state.name }</span> + react!</h1>
+
 			<Footer />
 			</div>
 		);
