@@ -1,0 +1,27 @@
+mkdir <project_name> && cd <project_name>
+npm init
+npm install -S webpack
+sudo npm install -g webpack
+
+touch webpack.config.js
+
+echo 'var debug = process.env.NODE_ENV !== "production";
+var webpack = require('webpack');
+
+echo module.exports = {
+  context: __dirname,
+  devtool: debug ? "inline-sourcemap" : null,
+  entry: "./js/scripts.js",
+  output: {
+    path: __dirname + "/js",
+    filename: "scripts.min.js"
+  },
+  plugins: debug ? [] : [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+  ],
+};' > webpack.config.js
+
+webpack
+NODE_ENV=production webpack
