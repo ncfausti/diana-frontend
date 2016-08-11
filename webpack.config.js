@@ -16,7 +16,9 @@ module.exports = {
           presets: ['react', 'es2015', 'stage-0'],
           plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
         }
-      }
+      },
+      // => "style" and "css" loader is used for ".css" files
+      { test: /\.css$/, loader: "style!css" },
     ]
   },
   output: {
