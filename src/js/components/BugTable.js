@@ -4,11 +4,10 @@ import {AgGridReact} from 'ag-grid-react';
 import RefData from '../RefData';
 import RowDataFactory from '../RowDataFactory';
 import ColDefFactory from '../ColDefFactory';
-
 import 'ag-grid/dist/styles/ag-grid.css';
 import 'ag-grid/dist/styles/theme-fresh.css';
 
-export default class Header extends React.Component {
+export default class BugTable extends React.Component {
 	constructor() {
 		super()
 
@@ -28,6 +27,29 @@ export default class Header extends React.Component {
                 columnGroupClosed: '<i class="fa fa-plus-square-o"/>'
 			}
 		}	
+	}
+
+	componentDidMount() {
+		let reqHeaders = new Headers({'Authorization':'token 398f9af5cd69cfb9488bd8f1fcc456bbff08db25'});
+		let myInit = { method: 'GET',
+               		   headers: reqHeaders,
+               		   
+               		   cache: 'default' };
+        fetch('../../../data/status.json',myInit)
+		.then(function(response) {
+			return response;
+		})
+		.then(function(textResp) {
+			console.log(textResp);
+		})
+		.catch(function(error) {
+  			console.log('There has been a problem with your fetch operation: ' + error.message);
+		});
+
+  }
+
+	componentWillUnmout() {
+		;
 	}
 
 

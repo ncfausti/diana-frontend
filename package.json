@@ -12,7 +12,9 @@
   "dependencies": {
     "ag-grid": "5.0.x",
     "ag-grid-react": "5.0.x",
+    "fetch-jsonp": "^1.0.0",
     "material-ui": "^0.15.4",
+    "materialize-css": "^0.97.7",
     "react": "^15.3.0",
     "react-data-grid": "^1.0.32",
     "react-dom": "^15.3.0",

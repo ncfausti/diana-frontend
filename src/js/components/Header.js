@@ -1,5 +1,7 @@
 import React from 'react';
 import Title from './Header/Title';
+import TopNav from './Header/TopNav';
+import SubmissionInfoSection from './Header/SubmissionInfoSection';
 
 export default class Header extends React.Component {
 	handleChange(e) {
@@ -10,6 +12,8 @@ export default class Header extends React.Component {
 		return (
 			<header>
 			<Title title={this.props.title} />
+			<TopNav />
+			<SubmissionInfoSection />
 			</header>
 		);
 	}
