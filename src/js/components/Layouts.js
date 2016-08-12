@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
-import BugTable from './BugTable';
+import Container from './Container';
 import '../../css/app.css';
 
 export default class Layout extends React.Component {
@@ -24,7 +24,7 @@ export default class Layout extends React.Component {
 		return (
 			<div>
 			<Header />
-			<BugTable />
+			<Container />
 			<Footer />
 			</div>
 		);
