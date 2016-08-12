@@ -39,7 +39,17 @@ header li .selected {
 
 header h2 { 
     display: inline-block;
-    font-weight:100; }
+    font-weight:300;
+    padding:12px 0px; 
+}
+
+#infoSection { 
+    background-color: #fff;
+    color:#111;
+    padding-left:30px;
+    border-bottom:1px solid #DDD;
+ }
+ .light { color:#ccc; }
 
 /* Rules for sizing the icon. */
 .material-icons.md-12 { font-size: 12px; }
