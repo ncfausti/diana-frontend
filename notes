@@ -25,3 +25,65 @@ echo module.exports = {
 
 webpack
 NODE_ENV=production webpack
+
+
+-------------------------
+
+
+LOGIN/SIGNUP
+DASHBOARD
+SUBMISSIONS
+DETAILS
+
+SUBMISSIONS
+  Layout
+    Header
+    SubHeader
+    Container
+      1row:3cols
+      LeftColumn
+      Content
+        row1:1col (grid header)
+        row2:1col (table)
+        row3:1col (footer)
+          Pagination Component
+      RightColumn
+
+
+  COUNT: n bugs accepted (200 submissions)
+
+  ROWS
+  ---
+  ID
+  Status
+  Risk
+  Type
+  Age(days)
+  Confidence(%)
+  Bounty($)
+  Tags
+
+  onHover: Accept, Accept & Award $nnn, Reject
+    Dialog(are you sure?)
+
+
+  ## LEFT-COLUMN
+
+  FILTERS
+  ---
+  Status: Open, Accepted, Rejected, Awarded
+  Risk: Critical, High, Medium, Low, Info
+  Type: SQL Injection, Cross-site Scripting, TLS, Clickjacking, Open Direction, See all
+  Owner
+  DISTRIBUTION VISUALIZATIONS
+  ---
+  Age(days)
+  Bounty($)
+  Confidence(%)
+
+  ## RIGHT-COLUMN
+  Selected bug detail
+
+  ## PAGINATION
+
+DETAILS

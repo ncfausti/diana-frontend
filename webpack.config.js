@@ -18,7 +18,7 @@ module.exports = {
         }
       },
       // => "style" and "css" loader is used for ".css" files
-      { test: /\.css$/, loader: "style!css" },
+       { test: /\.css$/, loader: "style-loader!css-loader" },
     ]
   },
   output: {

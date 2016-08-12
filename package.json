@@ -10,13 +10,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ag-grid": "5.0.x",
+    "ag-grid-react": "5.0.x",
+    "material-ui": "^0.15.4",
     "react": "^15.3.0",
     "react-data-grid": "^1.0.32",
     "react-dom": "^15.3.0",
+    "react-tap-event-plugin": "^1.0.0",
     "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1",
-    "ag-grid": "5.0.x",
-    "ag-grid-react": "5.0.x"
+    "webpack-dev-server": "^1.14.1"
   },
   "devDependencies": {
     "babel-core": "^6.13.2",
