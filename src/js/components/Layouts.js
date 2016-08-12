@@ -2,12 +2,13 @@ import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
 import BugTable from './BugTable';
+import '../../css/app.css';
+
 export default class Layout extends React.Component {
 	constructor() {
 		super();
 				this.state = { 
 					  title: "Project Diana",
-					  name: "ebert", 
 					  colorClass:'white',
 					}
 	}
@@ -22,9 +23,7 @@ export default class Layout extends React.Component {
 		const name = "nick"
 		return (
 			<div>
-			<Header changeTitle={this.changeTitle.bind(this)} title={this.state.title} />
-			<h1>webpack + babel <span class={this.state.colorClass}>
-			{ this.state.name }</span> + react!</h1>
+			<Header />
 			<BugTable />
 			<Footer />
 			</div>
