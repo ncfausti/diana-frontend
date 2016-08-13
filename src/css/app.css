@@ -46,15 +46,35 @@ header h2 {
     font-weight:300;
     padding:6px 0px; 
 }
-
+.blue { color:rgb(40,118,210); }
+.float-left { float: left; }
+.float-right { float: right; }
 .filterColumnSection {
     padding: 24px;
     border-bottom: 1px solid #ddd;
 }
 #centerColumn { margin:0px;  }
-#filter-header, #detail-header { border-bottom: 1px solid #DDD; }
-#filter-header strong, #detail-header strong { font-size:.9em;padding:6px; }
 
+.sidebar-header strong { font-size:.9em;padding:12px; }
+
+.sidebar-header { 
+    min-height: 60px;
+    border-bottom: 1px solid #DDD; 
+}
+.sidebar-header div { padding:12px; }
+.detail-btn { font-family: 'Roboto', sans-serif !important;
+    padding:3px;
+    width: 100%;
+    border-radius: 0px;
+    margin-bottom: 12px;
+    font-weight:300;
+ }
+ .threat-description {
+    font-size: .9em;
+    padding: 18px 0px;
+    line-height: 1.5;
+
+ }
 label {
     color:333;
     font-size:.8em;
@@ -67,13 +87,23 @@ input+label+span {
 }
 .row {margin:0px;}
 
+#accept-icon {
+    float:left;
+}
+
 #detailColumn, #filterColumn {
+    min-height: 800px;
     background-color: rgb(245,245,245);
     padding:0px;
+
 }
 
 #filterColumn { border-right: 1px solid #ddd; }
 
+#detail-body {
+    padding:18px;
+    font-size:.8em;
+}
 #infoSection { 
     background-color: #fff;
     color:#111;
@@ -81,6 +111,11 @@ input+label+span {
     border-bottom:1px solid #DDD;
  }
  .light { color:#ccc; }
+
+.detail-risk-high{ border-left: 6px solid red;padding-left:6px;}
+.detail-risk-med{ border-left: 6px solid orange;padding-left:6px}
+.detail-risk-medlow{ border-left: 6px solid yellow;padding-left:6px}
+.detail-risk-low{ border-left: 6px solid green;padding-left:6px}
 
 /* Rules for sizing the icon. */
 .material-icons.md-12 { font-size: 12px; }
@@ -98,8 +133,9 @@ input+label+span {
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 
 .ag-cell {
-    padding-top: 2px !important;
+    padding-top: 18px !important;
     padding-bottom: 2px !important;
+    font-size: .8em;
 }
 
 .ag-row:hover { background-color:#AEDFFA !important;}

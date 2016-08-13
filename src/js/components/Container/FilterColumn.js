@@ -10,7 +10,12 @@ export default class FilterColumn extends React.Component {
 		}
 		return (
 			<div>
-			<div id="filter-header"><strong>Filters</strong></div>
+			<div id="filter-header" class="sidebar-header">
+				<div>
+				<strong class="float-left">Filters</strong>
+				<strong class="float-right">Columns</strong>
+				</div>
+			</div>
 			<div class="filterColumnSection">
 			<CheckFilter name="Open" />
 			<CheckFilter name="Accepted" />

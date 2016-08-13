@@ -4,6 +4,8 @@ import Header from './Header';
 import Container from './Container';
 import '../../css/bootstrap.css';
 import '../../css/app.css';
+import '../../css/roboto.css';
+import '../../css/material-icons.css';
 
 
 export default class Layout extends React.Component {
