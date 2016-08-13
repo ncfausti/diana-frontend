@@ -12,22 +12,22 @@ export default class FilterColumn extends React.Component {
 			<div>
 			<div id="filter-header"><strong>Filters</strong></div>
 			<div class="filterColumnSection">
-			<CheckFilter name="Open" checked="checked" />
-			<CheckFilter name="Accepted" checked=""/>
-			<CheckFilter name="Rejected" checked="checked"/>
-			<CheckFilter name="Awarded" checked="checked"/>
+			<CheckFilter name="Open" />
+			<CheckFilter name="Accepted" />
+			<CheckFilter name="Rejected" />
+			<CheckFilter name="Awarded" />
 			</div>
 			<div class="filterColumnSection">
-			<CheckFilter name="Open" checked="checked" />
+			<CheckFilter name="Open"  />
 			<CheckFilter name="Accepted" checked=""/>
-			<CheckFilter name="Rejected" checked="checked"/>
-			<CheckFilter name="Awarded" checked="checked"/>
+			<CheckFilter name="Rejected" />
+			<CheckFilter name="Awarded" />
 			</div>
 			<div class="filterColumnSection">
-			<CheckFilter name="Open" checked="checked" />
+			<CheckFilter name="Open"  />
 			<CheckFilter name="Accepted" checked=""/>
-			<CheckFilter name="Rejected" checked="checked"/>
-			<CheckFilter name="Awarded" checked="checked"/>
+			<CheckFilter name="Rejected" />
+			<CheckFilter name="Awarded" />
 			</div>
 			</div>
 		);

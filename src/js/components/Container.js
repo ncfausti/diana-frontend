@@ -11,9 +11,9 @@ export default class Container extends React.Component {
 	render() {
 		return (
 			<div class="row">
-			<div id="filterColumn" class="col s2"><FilterColumn /></div>
-			<div id="centerColumn" class="col s8"><Center /></div>
-			<div id="detailColumn" class="col s2"><DetailColumn /></div>
+			<div id="filterColumn" class="col-md-2"><FilterColumn /></div>
+			<div id="centerColumn" class="col-md-8"><Center /></div>
+			<div id="detailColumn" class="col-md-2"><DetailColumn /></div>
 			</div>
 		);
 	}
