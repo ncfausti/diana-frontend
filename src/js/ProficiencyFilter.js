@@ -3,6 +3,9 @@ import RefData from './RefData';
 
 var PROFICIENCY_NAMES = ['No Filter', 'Above 40%', 'Above 60%', 'Above 80%'];
 
+// maybe use for status, risk, and Type filters?
+
+
 // the proficiency filter component. this demonstrates how to integrate
 // a React filter component with ag-Grid.
 export default class ProficiencyFilter extends React.Component {

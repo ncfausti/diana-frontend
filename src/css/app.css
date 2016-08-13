@@ -1,15 +1,16 @@
-html {
-  font-family: 'Roboto', sans-serif;
-}
-
 body {
+    font-family: 'Roboto', sans-serif;
     font-size: 13px;
     line-height: 20px;
     margin:0px;
 }
 
 h2 { font-size:1.5em;  }
-
+h3+i {
+    position: relative;
+    top: 5px;
+    right: 10px;
+}
 header {
     background-color: rgb(3,23,43);
     color:#ddd;
@@ -50,7 +51,7 @@ header h2 {
     padding: 24px;
     border-bottom: 1px solid #ddd;
 }
-
+#centerColumn { margin:0px;  }
 #filter-header, #detail-header { border-bottom: 1px solid #DDD; }
 #filter-header strong, #detail-header strong { font-size:.9em;padding:6px; }
 
@@ -100,6 +101,19 @@ input+label+span {
     padding-top: 2px !important;
     padding-bottom: 2px !important;
 }
+
+.ag-row:hover { background-color:#AEDFFA !important;}
+.ag-row-selected { background-color:#AEDFFA !important;}
+.ag-cell-focus {     
+    border: none !important;
+    border-bottom: 1px solid #ccc !important; }
+.ag-material .ag-header {
+    border-bottom:1px solid #ccc !important;
+    font-size:.9em !important;
+    font-weight:500 !important;
+}
+
+
 
 label {
     font-weight: normal !important;

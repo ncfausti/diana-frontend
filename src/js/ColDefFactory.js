@@ -1,5 +1,4 @@
 import SkillsCellRenderer from './SkillsCellRenderer';
-import ProficiencyCellRenderer from './ProficiencyCellRenderer';
 import RefData from './RefData';
 import {reactCellRendererFactory} from 'ag-grid-react';
 import {reactFilterFactory} from 'ag-grid-react';
@@ -11,8 +10,25 @@ export default class ColDefFactory {
     createColDefs() {
 
         var columnDefs = [
-            {headerName: '#', width: 30, checkboxSelection: true, suppressSorting: true,
-                suppressMenu: true, pinned: true},
+            {headerName: "ID", field: "name", enableRowGroup: true, enablePivot: true,
+                        width: 80, pinned: true},
+            {headerName: "Status", field: "name", enableRowGroup: true, enablePivot: true,
+                        width: 80, pinned: true},
+            {headerName: "Risk", field: "name", enableRowGroup: true, enablePivot: true,
+                        width: 80, pinned: true},
+            {headerName: "Type", field: "name", enableRowGroup: true, enablePivot: true,
+                        width: 120, pinned: true},
+            {headerName: "Age(days)", field: "name", enableRowGroup: true, enablePivot: true,
+                        width: 90, pinned: true},
+            {headerName: "Confidence(%)", field: "name", enableRowGroup: true, enablePivot: true,
+                        width: 110, pinned: true},
+            {headerName: "Bounty($)", field: "name", enableRowGroup: true, enablePivot: true,
+                        width: 100, pinned: true},
+            {headerName: "Tags", field: "name", enableRowGroup: true, enablePivot: true,
+                        width: 80, pinned: true}
+            ];
+
+          /*  
             {
                 headerName: 'Employee',
                 children: [
@@ -48,20 +64,8 @@ export default class ColDefFactory {
                     {headerName: "Address", field: "address", width: 500, filter: 'text'}
                 ]
             }
-        ];
+        ]; 
+        */
         return columnDefs;
-    }
-}
-
-// this is a simple cell renderer, putting together static html, no
-// need to use React for it.
-function countryCellRenderer(params) {
-    if (params.value) {
-        var flag = "<img border='0' width='15' height='10' " +
-            "style='margin-bottom: 2px' src='http://flags.fmcdn.net/data/flags/mini/"
-            + RefData.COUNTRY_CODES[params.value] + ".png'>";
-        return flag + " " + params.value;
-    } else {
-        return null;
     }
 }

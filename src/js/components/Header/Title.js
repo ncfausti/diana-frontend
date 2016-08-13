@@ -4,8 +4,8 @@ export default class Title extends React.Component {
 	render() {
 		// override materialize.css style
 		var h3Style = {
-  			fontSize:'1.2em',
-  			fontWeight:100,
+  			fontSize:'1em',
+  			fontWeight:300,
   			display:'inline-block'
 		};
 		return (
