@@ -10,7 +10,7 @@ export default class ColDefFactory {
     createColDefs() {
 
         var columnDefs = [
-            {headerName: "ID", field: "name", enableRowGroup: true, enablePivot: true,
+            {headerName: "ID", field: "id", enableRowGroup: true, enablePivot: true,
                         width: 80, pinned: true},
             {headerName: "Status", field: "name", enableRowGroup: true, enablePivot: true,
                         width: 80, pinned: true},
