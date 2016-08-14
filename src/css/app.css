@@ -112,10 +112,9 @@ input+label+span {
  }
  .light { color:#ccc; }
 
-.detail-risk-high{ border-left: 6px solid red;padding-left:6px;}
-.detail-risk-med{ border-left: 6px solid orange;padding-left:6px}
-.detail-risk-medlow{ border-left: 6px solid yellow;padding-left:6px}
-.detail-risk-low{ border-left: 6px solid green;padding-left:6px}
+.detail-risk-Critical{ border-left: 6px solid red;padding-left:6px;}
+.detail-risk-High{ border-left: 6px solid orange;padding-left:6px}
+.detail-risk-Low{ border-left: 6px solid gold;padding-left:6px}
 
 /* Rules for sizing the icon. */
 .material-icons.md-12 { font-size: 12px; }

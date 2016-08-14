@@ -11,7 +11,9 @@ export default class Title extends React.Component {
 		};
 		return (
 			<div>
-			<BugTable />
+			<BugTable rowData={this.props.rowData} 
+			columnDefs={this.props.columnDefs} 
+			onRowSelected={this.props.onRowSelected} />
 			</div>
 		);
 	}

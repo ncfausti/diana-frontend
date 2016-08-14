@@ -1,5 +1,9 @@
 import React from 'react';
 export default class DetailColumn extends React.Component {
+	constructor() {
+		super();	
+	}
+
 	render() {
 		// override materialize.css style
 		var h3Style = {
@@ -11,22 +15,20 @@ export default class DetailColumn extends React.Component {
 		return (
 			<div>
 			<div class="detail-header sidebar-header">
-			
+			{console.log(this.props.selectedRows.status)}
 			<div>
 				<strong class="float-left">Details</strong>
 				<strong class="float-right">Activity</strong>
 			</div>
 			</div>
 			<div id="detail-body">
-			<div><h5>Bug ID: <span class="blue">{2010}</span></h5></div>
+			<div><h5>Bug ID: <span class="blue">{this.props.selectedRows.id}</span></h5></div>
 			<br></br>
-			<div class={"detail-risk-high"}>High Risk</div>
-			<div class="threat-description">Description of vulnerability
-			Description of vulnerability
-			Description of vulnerability
-			{this.props.details}
-			Description of vulnerability
-			Description of vulnerability
+			<div class={"detail-risk-"+this.props.selectedRows.risk_level}>{this.props.selectedRows.risk_level} Risk</div>
+			<div class="threat-description">
+				<strong>{this.props.selectedRows.vulnerability}</strong>
+				<br></br>
+				{this.props.selectedRows.vulnerability_desc}
 			</div>
 			
 			<div class="btn btn-primary detail-btn">Accept</div>
@@ -35,9 +37,9 @@ export default class DetailColumn extends React.Component {
 			<hr></hr>
 			<div><strong>References</strong></div>
 
-			<a href="http://wikipedia.org">Wikipedia</a>
+			<a href="http://wikipedia.org" target="_blank">Wikipedia</a>
 			<br></br>
-			<a href="http://owasp.org">OWASP</a>
+			<a href="http://owasp.org" target="_blank">OWASP</a>
 			</div>
 
 			</div>

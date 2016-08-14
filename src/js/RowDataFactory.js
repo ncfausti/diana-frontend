@@ -34,7 +34,10 @@ export default class RowDataFactory {
                 id:item.id,
                 status:item.status,
                 vulnerability:item.vulnerability['title'],
+                vulnerability_desc:item.vulnerability['description'],
                 risk_level:item.risk_level['title'],
+                risk_level_num:item.risk_level['number_level'],
+
                 age: this.daysSince(item.created),
                 confidence:item.confidence_score,
                 payout:item.calculated_payout,

@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {AgGridReact} from 'ag-grid-react';
-import RefData from '../RefData';
-import RowDataFactory from '../RowDataFactory';
-import ColDefFactory from '../ColDefFactory';
+
 import 'ag-grid/dist/styles/ag-grid.css';
 import 'ag-grid/dist/styles/theme-material.css';
 import DetailColumn from './Container/DetailColumn';
@@ -14,8 +12,7 @@ export default class BugTable extends React.Component {
         this.state = {
             showGrid: true,
             showToolPanel: false,
-            columnDefs: new ColDefFactory().createColDefs(),
-            rowData: new RowDataFactory().createRowData(),
+
             icons: {
                 columnRemoveFromGroup: '<i class="fa fa-remove"/>',
                 filter: '<i class="fa fa-filter"/>',
@@ -57,10 +54,14 @@ export default class BugTable extends React.Component {
 	onRowSelected(event) {
         console.log('onRowSelected: ' + event.node.selected);
         var rows = this.api.getSelectedRows();
-        console.log(rows[0]);
+        //for (var i in row[0]) console.log(i);
         console.log(DetailColumn);
 
+        // Call onRowSelected that has flowed down from Layouts.js
+        this.props.onRowSelected(rows[0]);
+
     }
+
 	onCellClicked(){ console.log('cell clicked'); }
 	
 	onGridReady(params) {
@@ -86,11 +87,11 @@ export default class BugTable extends React.Component {
 
 		    // column definitions and row data are immutable, the grid
 		    // will update when these lists change
-		    columnDefs={this.state.columnDefs}
-		    rowData={this.state.rowData}
+		    columnDefs={this.props.columnDefs}
+		    rowData={this.props.rowData}
 
 		    // or provide props the old way with no binding
-		    rowSelection="multiple"
+		    rowSelection="single"
 		    enableSorting="true"
 		    enableFilter="true"
 		    rowHeight="48"
