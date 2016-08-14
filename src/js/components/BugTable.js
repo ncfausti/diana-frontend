@@ -56,7 +56,7 @@ export default class BugTable extends React.Component {
 
 	onRowSelected(){ console.log('row selected'); }
 	onCellClicked(){ console.log('cell clicked'); }
-
+	onGridReady(){ console.log("we are all ready, to play, parchezi"); }
 	render() {
 		return (
 			<div ag-grid="gridOptions" class="ag-material">
@@ -64,6 +64,9 @@ export default class BugTable extends React.Component {
 		    // listen for events with React callbacks
 		    onRowSelected={this.onRowSelected.bind(this)}
 		    onCellClicked={this.onCellClicked.bind(this)}
+
+		    // grid is ready to use api now
+		    onGridReady={this.onGridReady.bind(this)}
 
 		    // binding to properties within React State or Props
 		    showToolPanel={this.state.showToolPanel}
