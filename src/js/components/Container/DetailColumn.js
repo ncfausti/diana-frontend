@@ -1,5 +1,4 @@
 import React from 'react';
-
 export default class DetailColumn extends React.Component {
 	render() {
 		// override materialize.css style
@@ -25,6 +24,7 @@ export default class DetailColumn extends React.Component {
 			<div class="threat-description">Description of vulnerability
 			Description of vulnerability
 			Description of vulnerability
+			{this.props.details}
 			Description of vulnerability
 			Description of vulnerability
 			</div>

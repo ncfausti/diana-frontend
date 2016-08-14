@@ -6,11 +6,11 @@ import RowDataFactory from '../RowDataFactory';
 import ColDefFactory from '../ColDefFactory';
 import 'ag-grid/dist/styles/ag-grid.css';
 import 'ag-grid/dist/styles/theme-material.css';
-
+import DetailColumn from './Container/DetailColumn';
 export default class BugTable extends React.Component {
 	constructor() {
 		super()
-
+		var gridOptions = {}
         this.state = {
             showGrid: true,
             showToolPanel: false,
@@ -54,13 +54,20 @@ export default class BugTable extends React.Component {
 	}
 
 
-	onRowSelected(e){ 
-		for (var item in e) {
-			console.log(item); 
-		}
-	}
+	onRowSelected(event) {
+        console.log('onRowSelected: ' + event.node.selected);
+        var rows = this.api.getSelectedRows();
+        console.log(rows[0]);
+        console.log(DetailColumn);
+
+    }
 	onCellClicked(){ console.log('cell clicked'); }
-	onGridReady(){ console.log("we are all ready, to play, parchezi"); }
+	
+	onGridReady(params) {
+        this.api = params.api;
+        this.columnApi = params.columnApi;
+    }
+
 	render() {
 		return (
 			<div ag-grid="gridOptions" class="ag-material">
