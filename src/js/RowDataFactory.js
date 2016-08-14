@@ -1,12 +1,15 @@
 import RefData from './RefData';
 
 export default class RowDataFactory {
-
     createRowData() {
         var rowData = [];
 
-        for (var i = 0; i < 20; i++) {
+        for (let i = 0; i < RefData.STATUS.length; i++) {
+            let item = RefData.STATUS[i];
+            /*
+            
             var countryData = RefData.COUNTRIES[i % RefData.COUNTRIES.length];
+
             rowData.push({
                 name: RefData.FIRST_NAMES[i % RefData.FIRST_NAMES.length] + ' ' + RefData.LAST_NAMES[i % RefData.LAST_NAMES.length],
                 skills: {
@@ -25,9 +28,28 @@ export default class RowDataFactory {
                 mobile: this.createRandomPhoneNumber(),
                 landline: this.createRandomPhoneNumber()
             });
+            */
+            console.log(item);
+            rowData.push({
+                id:item.id,
+                status:item.status,
+                vulnerability:item.vulnerability['title'],
+                risk_level:item.risk_level['title'],
+                age: this.daysSince(item.created),
+                confidence:item.confidence_score,
+                payout:item.calculated_payout,
+                tags:(function() { return item.tags.join(' ') })()
+            });
+
         }
 
         return rowData;
+    }
+    
+    daysSince(created) {
+        let x = new Date(created);
+        let now = new Date();
+        return Math.floor( (now - x) / 1000 / 60 / 60 / 24);
     }
 
     createRandomPhoneNumber() {

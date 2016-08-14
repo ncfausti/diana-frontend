@@ -12,19 +12,19 @@ export default class ColDefFactory {
         var columnDefs = [
             {headerName: "ID", field: "id", enableRowGroup: true, enablePivot: true,
                         width: 80, pinned: true},
-            {headerName: "Status", field: "name", enableRowGroup: true, enablePivot: true,
+            {headerName: "Status", field: "status", enableRowGroup: true, enablePivot: true,
                         width: 80, pinned: true},
-            {headerName: "Risk", field: "name", enableRowGroup: true, enablePivot: true,
+            {headerName: "Risk", field: "risk_level", enableRowGroup: true, enablePivot: true,
                         width: 80, pinned: true},
-            {headerName: "Type", field: "name", enableRowGroup: true, enablePivot: true,
+            {headerName: "Type", field: "vulnerability", enableRowGroup: true, enablePivot: true,
                         width: 120, pinned: true},
-            {headerName: "Age(days)", field: "name", enableRowGroup: true, enablePivot: true,
+            {headerName: "Age(days)", field: "age", enableRowGroup: true, enablePivot: true,
                         width: 90, pinned: true},
-            {headerName: "Confidence(%)", field: "name", enableRowGroup: true, enablePivot: true,
+            {headerName: "Confidence(%)", field: "confidence", enableRowGroup: true, enablePivot: true,
                         width: 110, pinned: true},
-            {headerName: "Bounty($)", field: "name", enableRowGroup: true, enablePivot: true,
+            {headerName: "Bounty($)", field: "payout", enableRowGroup: true, enablePivot: true,
                         width: 100, pinned: true},
-            {headerName: "Tags", field: "name", enableRowGroup: true, enablePivot: true,
+            {headerName: "Tags", field: "tags", enableRowGroup: true, enablePivot: true,
                         width: 80, pinned: true}
             ];
 

@@ -54,7 +54,11 @@ export default class BugTable extends React.Component {
 	}
 
 
-	onRowSelected(){ console.log('row selected'); }
+	onRowSelected(e){ 
+		for (var item in e) {
+			console.log(item); 
+		}
+	}
 	onCellClicked(){ console.log('cell clicked'); }
 	onGridReady(){ console.log("we are all ready, to play, parchezi"); }
 	render() {
