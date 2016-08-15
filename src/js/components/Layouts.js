@@ -39,7 +39,15 @@ export default class Layout extends React.Component {
 					      "",
 					      ""
 					    ]
-					  }]
+					  }],
+					  filters:{
+					  	"Critical":true,
+					  	"High":false,
+					  	"Medium":false,
+					  	"Low":false,
+					  	"Info":false,
+					  },
+					  setNewFilter:""
 				}
 	}
 
@@ -50,6 +58,14 @@ export default class Layout extends React.Component {
 
 	}
 
+	filterChecked(filterName) {
+		let items = this.state.filters;
+		items[filterName] = !items[filterName];
+		console.log(filterName + items[filterName]);
+		this.setState({filters:items});
+	}
+
+
 	render() {
 		return (
 			<div>
@@ -57,7 +73,10 @@ export default class Layout extends React.Component {
 			<Container  rowData={this.state.rowData} 
 						columnDefs={this.state.columnDefs} 
 						onRowSelected={this.rowSelected.bind(this)} 
-						selectedRows={this.state.selectedRows} />
+						selectedRows={this.state.selectedRows}
+						filters={this.state.filters}
+						setNewFilter={this.state.setNewFilter}
+						filterChecked={this.filterChecked.bind(this)} />
 			<Footer />
 			</div>
 		);

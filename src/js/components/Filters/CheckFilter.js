@@ -2,7 +2,7 @@ import React from 'react';
 
 export default class CheckFilter extends React.Component {
 	handleClick(e){
-		console.log("clicked");
+		this.props.filterChecked(e.target.name);
 	}
 	render() {
 		// override materialize.css style
@@ -15,7 +15,10 @@ export default class CheckFilter extends React.Component {
 		};
 		return (
 			<div>
-			<input type="checkbox" onClick={this.handleClick.bind(this)} name={this.props.name}></input> <label style={style} htmlFor={this.props.name}>{this.props.name}</label><span>{count}</span>
+			<input type="checkbox" 
+			checked={this.props.checked} 
+			onClick={this.handleClick.bind(this)} 
+			name={this.props.name}></input> <label style={style} htmlFor={this.props.name}>{this.props.name}</label><span>{count}</span>
 			</div>
 		);
 	}

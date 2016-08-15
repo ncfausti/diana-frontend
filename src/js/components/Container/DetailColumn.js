@@ -15,7 +15,6 @@ export default class DetailColumn extends React.Component {
 		return (
 			<div>
 			<div class="detail-header sidebar-header">
-			{console.log(this.props.selectedRows.status)}
 			<div>
 				<strong class="float-left">Details</strong>
 				<strong class="float-right">Activity</strong>

@@ -13,7 +13,8 @@ export default class Title extends React.Component {
 			<div>
 			<BugTable rowData={this.props.rowData} 
 			columnDefs={this.props.columnDefs} 
-			onRowSelected={this.props.onRowSelected} />
+			onRowSelected={this.props.onRowSelected}
+			filters={this.props.filters} />
 			</div>
 		);
 	}

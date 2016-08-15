@@ -17,22 +17,26 @@ export default class FilterColumn extends React.Component {
 				</div>
 			</div>
 			<div class="filterColumnSection">
-			<CheckFilter name="Open" />
-			<CheckFilter name="Accepted" />
-			<CheckFilter name="Rejected" />
-			<CheckFilter name="Awarded" />
+			<strong>Status</strong>
+			<CheckFilter name="Verified" filterChecked={this.props.filterChecked} />
+			<CheckFilter name="Not verified" filterChecked={this.props.filterChecked} />
+			<CheckFilter name="Duplicate" filterChecked={this.props.filterChecked} />
 			</div>
 			<div class="filterColumnSection">
-			<CheckFilter name="Open"  />
-			<CheckFilter name="Accepted" checked=""/>
-			<CheckFilter name="Rejected" />
-			<CheckFilter name="Awarded" />
+			<strong>Risk</strong>
+			<CheckFilter name="Critical" filterChecked={this.props.filterChecked}  />
+			<CheckFilter name="High" filterChecked={this.props.filterChecked} />
+			<CheckFilter name="Medium" filterChecked={this.props.filterChecked} />
+			<CheckFilter name="Low" filterChecked={this.props.filterChecked} />
+			<CheckFilter name="Info" filterChecked={this.props.filterChecked} />
 			</div>
 			<div class="filterColumnSection">
-			<CheckFilter name="Open"  />
-			<CheckFilter name="Accepted" checked=""/>
-			<CheckFilter name="Rejected" />
-			<CheckFilter name="Awarded" />
+			<strong>Type</strong>
+			<CheckFilter name="SQL Injection" filterChecked={this.props.filterChecked} />
+			<CheckFilter name="Cross-site Scripting" filterChecked={this.props.filterChecked} />
+			<CheckFilter name="TLS v1.0 Enables" filterChecked={this.props.filterChecked} />
+			<CheckFilter name="Clickjacking" filterChecked={this.props.filterChecked} />
+			<CheckFilter name="Open Direction" filterChecked={this.props.filterChecked} />
 			</div>
 			</div>
 		);

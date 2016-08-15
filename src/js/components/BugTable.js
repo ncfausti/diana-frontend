@@ -4,11 +4,10 @@ import {AgGridReact} from 'ag-grid-react';
 
 import 'ag-grid/dist/styles/ag-grid.css';
 import 'ag-grid/dist/styles/theme-material.css';
-import DetailColumn from './Container/DetailColumn';
+
 export default class BugTable extends React.Component {
 	constructor() {
 		super()
-		var gridOptions = {}
         this.state = {
             showGrid: true,
             showToolPanel: false,
@@ -54,8 +53,6 @@ export default class BugTable extends React.Component {
 	onRowSelected(event) {
         console.log('onRowSelected: ' + event.node.selected);
         var rows = this.api.getSelectedRows();
-        //for (var i in row[0]) console.log(i);
-        console.log(DetailColumn);
 
         // Call onRowSelected that has flowed down from Layouts.js
         this.props.onRowSelected(rows[0]);
@@ -64,14 +61,39 @@ export default class BugTable extends React.Component {
 
 	onCellClicked(){ console.log('cell clicked'); }
 	
+
 	onGridReady(params) {
         this.api = params.api;
         this.columnApi = params.columnApi;
+        console.log(this.props.filters.Critical)
+
+    }
+
+    checkFilterSaysHi() {
+    	this.api.onFilterChanged();
+    }
+
+    isExternalFilterPresent() {
+    	// If setNewFilter is at default string state, pass all
+    	return this.props.setNewFilter != "";
+    }
+
+   	doesExternalFilterPass(node) {
+   		switch(this.props.setNewFilter){
+   			case 'Critical': return node.data.risk_level === "Critical";
+   			case 'Verified': return node.data.status === "Verified";
+   			default: return true;
+   		}
+    }
+
+    filterChecked() {
+    	console.log('here');
     }
 
 	render() {
 		return (
-			<div ag-grid="gridOptions" class="ag-material">
+			//FilterColumn />
+			<div class="ag-material">
 				<AgGridReact
 		    // listen for events with React callbacks
 		    onRowSelected={this.onRowSelected.bind(this)}
@@ -79,6 +101,9 @@ export default class BugTable extends React.Component {
 
 		    // grid is ready to use api now
 		    onGridReady={this.onGridReady.bind(this)}
+
+		    isExternalFilterPresent={this.isExternalFilterPresent.bind(this)}
+		    doesExternalFilterPass={this.doesExternalFilterPass.bind(this)}
 
 		    // binding to properties within React State or Props
 		    showToolPanel={this.state.showToolPanel}
@@ -97,6 +122,7 @@ export default class BugTable extends React.Component {
 		    rowHeight="48"
 		    />
 			</div>
+			//Detail column />
 		);
 	}
 }
