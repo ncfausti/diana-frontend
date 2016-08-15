@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {AgGridReact} from 'ag-grid-react';
+import FilterColumn from './Container/FilterColumn';
+import DetailColumn from './Container/DetailColumn';
 
 import 'ag-grid/dist/styles/ag-grid.css';
 import 'ag-grid/dist/styles/theme-material.css';
@@ -92,35 +94,48 @@ export default class BugTable extends React.Component {
 
 	render() {
 		return (
-			//FilterColumn />
+			<div class="row">
+			
+			<div id="filterColumn" class="col-md-2">
+			 <FilterColumn filterChecked={this.props.filterChecked}/>
+			</div>
+			<div id="centerColumn" class="col-md-8">
 			<div class="ag-material">
 				<AgGridReact
-		    // listen for events with React callbacks
-		    onRowSelected={this.onRowSelected.bind(this)}
-		    onCellClicked={this.onCellClicked.bind(this)}
+			    // listen for events with React callbacks
+			    onRowSelected={this.onRowSelected.bind(this)}
+			    onCellClicked={this.onCellClicked.bind(this)}
 
-		    // grid is ready to use api now
-		    onGridReady={this.onGridReady.bind(this)}
+			    // grid is ready to use api now
+			    onGridReady={this.onGridReady.bind(this)}
 
-		    isExternalFilterPresent={this.isExternalFilterPresent.bind(this)}
-		    doesExternalFilterPass={this.doesExternalFilterPass.bind(this)}
+			    isExternalFilterPresent={this.isExternalFilterPresent.bind(this)}
+			    doesExternalFilterPass={this.doesExternalFilterPass.bind(this)}
 
-		    // binding to properties within React State or Props
-		    showToolPanel={this.state.showToolPanel}
-		    quickFilterText={this.state.quickFilterText}
-		    icons={this.state.icons}
+			    // binding to properties within React State or Props
+			    showToolPanel={this.state.showToolPanel}
+			    quickFilterText={this.state.quickFilterText}
+			    icons={this.state.icons}
 
-		    // column definitions and row data are immutable, the grid
-		    // will update when these lists change
-		    columnDefs={this.props.columnDefs}
-		    rowData={this.props.rowData}
+			    // column definitions and row data are immutable, the grid
+			    // will update when these lists change
+			    columnDefs={this.props.columnDefs}
+			    rowData={this.props.rowData}
 
-		    // or provide props the old way with no binding
-		    rowSelection="single"
-		    enableSorting="true"
-		    enableFilter="true"
-		    rowHeight="48"
-		    />
+			    // or provide props the old way with no binding
+			    rowSelection="single"
+			    enableSorting="true"
+			    enableFilter="true"
+			    rowHeight="48"
+			    enableColResize="true"
+			    />
+			</div>
+			</div>
+			
+			<div id="detailColumn" class="col-md-2">
+			 <DetailColumn selectedRows={this.props.selectedRows} />
+			</div>
+			
 			</div>
 			//Detail column />
 		);

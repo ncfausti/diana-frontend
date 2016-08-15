@@ -28,9 +28,9 @@ export default class RowDataFactory {
     }
     
     daysSince(created) {
-        let x = new Date(created);
+        let time_created = new Date(created);
         let now = new Date();
-        return Math.floor( (now - x) / 1000 / 60 / 60 / 24);
+        return Math.floor( (now - time_created) / 1000 / 60 / 60 / 24);
     }
 
 }

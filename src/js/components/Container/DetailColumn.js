@@ -16,7 +16,7 @@ export default class DetailColumn extends React.Component {
 			<div>
 			<div class="detail-header sidebar-header">
 			<div>
-				<strong class="float-left">Details</strong>
+				<strong class="float-left active-item">Details</strong>
 				<strong class="float-right">Activity</strong>
 			</div>
 			</div>

@@ -70,13 +70,14 @@ export default class Layout extends React.Component {
 		return (
 			<div>
 			<Header />
-			<Container  rowData={this.state.rowData} 
-						columnDefs={this.state.columnDefs} 
-						onRowSelected={this.rowSelected.bind(this)} 
-						selectedRows={this.state.selectedRows}
-						filters={this.state.filters}
-						setNewFilter={this.state.setNewFilter}
-						filterChecked={this.filterChecked.bind(this)} />
+			<Container  
+				rowData={this.state.rowData} 
+				columnDefs={this.state.columnDefs} 
+				onRowSelected={this.rowSelected.bind(this)} 
+				selectedRows={this.state.selectedRows}
+				filters={this.state.filters}
+				setNewFilter={this.state.setNewFilter}
+				filterChecked={this.filterChecked.bind(this)} />
 			<Footer />
 			</div>
 		);
