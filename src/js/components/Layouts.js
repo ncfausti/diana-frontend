@@ -1,7 +1,6 @@
 import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
-import Container from './Container';
 import RefData from '../RefData';
 import RowDataFactory from '../RowDataFactory';
 import ColDefFactory from '../ColDefFactory';

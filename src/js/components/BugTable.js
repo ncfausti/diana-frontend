@@ -31,7 +31,8 @@ export default class BugTable extends React.Component {
 			  	"Medium":false,
 			  	"Low":false,
 			  	"Info":false,
-			}
+			},
+			filterText: ""
 		}	
 	}
 
@@ -74,17 +75,18 @@ export default class BugTable extends React.Component {
 	onGridReady(params) {
         this.api = params.api;
         this.columnApi = params.columnApi;
-        console.log(this.props.filters.Critical)
-
     }
 
 
     isExternalFilterPresent() {
     	// If setNewFilter is at default string state, pass all
-    	return this.props.setNewFilter != "";
+
+    	return this.state.setNewFilter != "";
     }
 
    	doesExternalFilterPass(node) {
+    	console.log('getting called ext filter present')
+
    		switch(this.props.setNewFilter){
    			case 'Critical': return node.data.risk_level === "Critical";
    			case 'Verified': return node.data.status === "Verified";
@@ -93,12 +95,18 @@ export default class BugTable extends React.Component {
     }
 	
 	setFilter(filterName) {
-		let items = this.state.filters;
-		items[filterName] = !items[filterName];
-		console.log(filterName + items[filterName]);
-		this.setState({filters:items});
+	//	let items = this.state.filters;
+	//	items[filterName] = !items[filterName];
+	//	console.log(filterName + items[filterName]);
+	//	this.setState({filters:items});
+		this.setState({filterText});
+		this.api.gridOptionsWrapper.gridOptions.onFilterChanged();
 	}
 
+	onFilterChanged(filterText) { 
+		this.doesExternalFilterPass();
+		this.isExternalFilterPresent();
+	 }
 
 	render() {
 		return (
@@ -113,7 +121,7 @@ export default class BugTable extends React.Component {
 			    // listen for events with React callbacks
 			    onRowSelected={this.onRowSelected.bind(this)}
 			    onCellClicked={this.onCellClicked.bind(this)}
-
+			    onFilterChanged={this.onFilterChanged.bind(this)}
 			    // grid is ready to use api now
 			    onGridReady={this.onGridReady.bind(this)}
 
@@ -135,6 +143,7 @@ export default class BugTable extends React.Component {
 			    enableFilter="true"
 			    rowHeight="48"
 			    enableColResize="true"
+
 			    />
 			</div>
 			</div>
