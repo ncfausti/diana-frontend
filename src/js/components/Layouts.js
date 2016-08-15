@@ -5,6 +5,7 @@ import Container from './Container';
 import RefData from '../RefData';
 import RowDataFactory from '../RowDataFactory';
 import ColDefFactory from '../ColDefFactory';
+import BugTable from './BugTable';
 import '../../css/bootstrap.css';
 import '../../css/app.css';
 import '../../css/roboto.css';
@@ -40,14 +41,6 @@ export default class Layout extends React.Component {
 					      ""
 					    ]
 					  }],
-					  filters:{
-					  	"Critical":true,
-					  	"High":false,
-					  	"Medium":false,
-					  	"Low":false,
-					  	"Info":false,
-					  },
-					  setNewFilter:""
 				}
 	}
 
@@ -58,26 +51,17 @@ export default class Layout extends React.Component {
 
 	}
 
-	filterChecked(filterName) {
-		let items = this.state.filters;
-		items[filterName] = !items[filterName];
-		console.log(filterName + items[filterName]);
-		this.setState({filters:items});
-	}
-
-
 	render() {
 		return (
 			<div>
 			<Header />
-			<Container  
+			<BugTable  
 				rowData={this.state.rowData} 
 				columnDefs={this.state.columnDefs} 
 				onRowSelected={this.rowSelected.bind(this)} 
 				selectedRows={this.state.selectedRows}
 				filters={this.state.filters}
-				setNewFilter={this.state.setNewFilter}
-				filterChecked={this.filterChecked.bind(this)} />
+			 />
 			<Footer />
 			</div>
 		);

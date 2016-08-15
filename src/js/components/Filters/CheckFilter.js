@@ -2,7 +2,8 @@ import React from 'react';
 
 export default class CheckFilter extends React.Component {
 	handleClick(e){
-		this.props.filterChecked(e.target.name);
+		console.log('handling click from checkFilter');
+		this.props.setFilter(e.target.name);
 	}
 	render() {
 		// override materialize.css style
@@ -16,7 +17,6 @@ export default class CheckFilter extends React.Component {
 		return (
 			<div>
 			<input type="checkbox" 
-			checked={this.props.checked} 
 			onClick={this.handleClick.bind(this)} 
 			name={this.props.name}></input> <label style={style} htmlFor={this.props.name}>{this.props.name}</label><span>{count}</span>
 			</div>
