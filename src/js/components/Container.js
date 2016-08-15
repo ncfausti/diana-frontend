@@ -1,12 +1,10 @@
 import React from 'react';
-import DetailColumn from './Container/DetailColumn';
-import BugTable from './BugTable';
+import BugTable from './Container/BugTable';
 
 
 export default class Container extends React.Component {
 	render() {
 		return (
-			<div class="row">
 			<BugTable 
 				rowData={this.props.rowData} 
 				columnDefs={this.props.columnDefs} 
@@ -14,7 +12,6 @@ export default class Container extends React.Component {
 				selectedRows={this.props.selectedRows}
 				filters={this.props.filters} 
 			/>
-			</div>
 		);
 	}
 }

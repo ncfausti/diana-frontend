@@ -1,5 +1,5 @@
 import React from 'react';
-import CheckFilter from '../Filters/CheckFilter';
+import CheckFilter from '../../Filters/CheckFilter';
 export default class FilterColumn extends React.Component {
 	render() {
 		return (

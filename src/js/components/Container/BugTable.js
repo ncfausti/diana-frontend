@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {AgGridReact} from 'ag-grid-react';
-import FilterColumn from './Container/FilterColumn';
-import DetailColumn from './Container/DetailColumn';
+import FilterColumn from './BugTable/FilterColumn';
+import DetailColumn from './BugTable/DetailColumn';
 
 import 'ag-grid/dist/styles/ag-grid.css';
 import 'ag-grid/dist/styles/theme-material.css';
