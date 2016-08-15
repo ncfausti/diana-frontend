@@ -6,29 +6,7 @@ export default class RowDataFactory {
 
         for (let i = 0; i < RefData.STATUS.length; i++) {
             let item = RefData.STATUS[i];
-            /*
-            
-            var countryData = RefData.COUNTRIES[i % RefData.COUNTRIES.length];
 
-            rowData.push({
-                name: RefData.FIRST_NAMES[i % RefData.FIRST_NAMES.length] + ' ' + RefData.LAST_NAMES[i % RefData.LAST_NAMES.length],
-                skills: {
-                    android: Math.random() < 0.4,
-                    html5: Math.random() < 0.4,
-                    mac: Math.random() < 0.4,
-                    windows: Math.random() < 0.4,
-                    css: Math.random() < 0.4
-                },
-                address: RefData.ADDRESSES[i % RefData.ADDRESSES.length],
-                years: Math.round(Math.random() * 100),
-                proficiency: Math.round(Math.random() * 100),
-                country: countryData.country,
-                continent: countryData.continent,
-                language: countryData.language,
-                mobile: this.createRandomPhoneNumber(),
-                landline: this.createRandomPhoneNumber()
-            });
-            */
             console.log(item);
             rowData.push({
                 id:item.id,
@@ -53,17 +31,6 @@ export default class RowDataFactory {
         let x = new Date(created);
         let now = new Date();
         return Math.floor( (now - x) / 1000 / 60 / 60 / 24);
-    }
-
-    createRandomPhoneNumber() {
-        var result = '+';
-        for (var i = 0; i < 12; i++) {
-            result += Math.round(Math.random() * 10);
-            if (i === 2 || i === 5 || i === 8) {
-                result += ' ';
-            }
-        }
-        return result;
     }
 
 }

@@ -12,7 +12,7 @@ export default class FilterColumn extends React.Component {
 			<div>
 			<div id="filter-header" class="sidebar-header">
 				<div>
-				<strong class="float-left">Filters</strong>
+				<strong class="active float-left">Filters</strong>
 				<strong class="float-right">Columns</strong>
 				</div>
 			</div>

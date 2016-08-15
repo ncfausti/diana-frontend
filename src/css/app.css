@@ -53,9 +53,13 @@ header h2 {
     padding: 24px;
     border-bottom: 1px solid #ddd;
 }
-#centerColumn { margin:0px;  }
+#centerColumn { margin:0px;padding:0px;  }
 
-.sidebar-header strong { font-size:.9em;padding:12px; }
+.sidebar-header strong .active  { 
+    font-size: .9em;
+    padding: 12px 0px;
+    /* padding-bottom: 0px; */
+    border-bottom: 3px solid rgb(40,118,210); }
 
 .sidebar-header { 
     min-height: 60px;
