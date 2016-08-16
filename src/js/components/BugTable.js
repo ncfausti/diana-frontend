@@ -68,6 +68,7 @@ export default class BugTable extends React.Component {
 	onGridReady(params) {
         this.api = params.api;
         this.state.columnApi = params.columnApi;
+        console.log(this.api)
     }
 
 
@@ -157,7 +158,7 @@ export default class BugTable extends React.Component {
 			    enableFilter="true"
 			    rowHeight="48"
 			    enableColResize="true"
-
+			    sizeColumnsToFit="true"
 			    />
 			</div>
 			</div>

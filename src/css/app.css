@@ -122,6 +122,10 @@ input+label+span {
 .detail-risk-High{ border-left: 6px solid orange;padding-left:6px}
 .detail-risk-Low{ border-left: 6px solid gold;padding-left:6px}
 
+.row-risk-Critical{ border-left: 3px solid red;padding-left:6px;}
+.row-risk-High{ border-left: 6px solid orange;padding-left:6px}
+.row-risk-Low{ border-left: 3px solid gold;padding-left:6px}
+
 /* Rules for sizing the icon. */
 .material-icons.md-12 { font-size: 12px; }
 .material-icons.md-18 { font-size: 18px; }

@@ -9,7 +9,15 @@ export default class ColDefFactory {
 
         var columnDefs = [
             {headerName: "ID", field: "id", enableRowGroup: true, enablePivot: true,
-                        width: 80, pinned: true},
+                        width: 80, pinned: true,
+                        cellStyle: function(params) {
+                            if (params.data.risk_level_num === 5) return {borderLeft:'3px solid red'};
+                            if (params.data.risk_level_num === 3) return {borderLeft:'3px solid orange'};
+                            if (params.data.risk_level_num === 1) return {borderLeft:'3px solid gold'};
+                            return {borderLeft:'3px solid red'};
+                        }
+
+            },
             {headerName: "Status", field: "status", enableRowGroup: true, enablePivot: true,
                         width: 80, pinned: true},
             {headerName: "Risk", field: "risk_level", enableRowGroup: true, enablePivot: true,
