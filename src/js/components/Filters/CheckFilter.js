@@ -2,8 +2,7 @@ import React from 'react';
 
 export default class CheckFilter extends React.Component {
 	handleClick(e){
-		console.log('handling click from checkFilter');
-		this.props.setFilter(e.target.name);
+		this.props.changeFilter(e.target.name);
 	}
 	render() {
 		// override materialize.css style

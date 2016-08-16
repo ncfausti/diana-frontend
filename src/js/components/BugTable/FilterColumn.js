@@ -12,25 +12,25 @@ export default class FilterColumn extends React.Component {
 			</div>
 			<div class="filterColumnSection">
 			<strong>Status</strong>
-			<CheckFilter name="Verified" setFilter={this.props.setFilter} />
-			<CheckFilter name="Not verified" setFilter={this.props.setFilter} />
-			<CheckFilter name="Duplicate" setFilter={this.props.setFilter} />
+			<CheckFilter name="Verified" changeFilter={this.props.changeFilter} />
+			<CheckFilter name="Not verified" changeFilter={this.props.changeFilter} />
+			<CheckFilter name="Duplicate" changeFilter={this.props.changeFilter} />
 			</div>
 			<div class="filterColumnSection">
 			<strong>Risk</strong>
-			<CheckFilter name="Critical" setFilter={this.props.setFilter}  />
-			<CheckFilter name="High" setFilter={this.props.setFilter} />
-			<CheckFilter name="Medium" setFilter={this.props.setFilter} />
-			<CheckFilter name="Low" setFilter={this.props.setFilter} />
-			<CheckFilter name="Info" setFilter={this.props.setFilter} />
+			<CheckFilter name="Critical" changeFilter={this.props.changeFilter}  />
+			<CheckFilter name="High" changeFilter={this.props.changeFilter} />
+			<CheckFilter name="Medium" changeFilter={this.props.changeFilter} />
+			<CheckFilter name="Low" changeFilter={this.props.changeFilter} />
+			<CheckFilter name="Info" changeFilter={this.props.changeFilter} />
 			</div>
 			<div class="filterColumnSection">
 			<strong>Type</strong>
-			<CheckFilter name="SQL Injection" setFilter={this.props.setFilter} />
-			<CheckFilter name="Cross-site Scripting" setFilter={this.props.setFilter} />
-			<CheckFilter name="TLS v1.0 Enables" setFilter={this.props.setFilter} />
-			<CheckFilter name="Clickjacking" setFilter={this.props.setFilter} />
-			<CheckFilter name="Open Direction" setFilter={this.props.setFilter} />
+			<CheckFilter name="SQL Injection" changeFilter={this.props.changeFilter} />
+			<CheckFilter name="Cross-site Scripting" changeFilter={this.props.changeFilter} />
+			<CheckFilter name="TLS v1.0 Enables" changeFilter={this.props.changeFilter} />
+			<CheckFilter name="Clickjacking" changeFilter={this.props.changeFilter} />
+			<CheckFilter name="Open Direction" changeFilter={this.props.changeFilter} />
 			</div>
 			</div>
 		);
