@@ -15,6 +15,9 @@ export default class ColDefFactory {
                             if (params.data.risk_level_num === 3) return {borderLeft:'3px solid orange'};
                             if (params.data.risk_level_num === 1) return {borderLeft:'3px solid gold'};
                             return {borderLeft:'3px solid red'};
+                        },
+                        cellRenderer: function(params) {
+                           return  '<a href=details/' + params.value + '>' + params.value + '</a>';
                         }
 
             },

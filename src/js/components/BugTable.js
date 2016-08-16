@@ -159,6 +159,7 @@ export default class BugTable extends React.Component {
 			    rowHeight="48"
 			    enableColResize="true"
 			    sizeColumnsToFit="true"
+
 			    />
 			</div>
 			</div>
