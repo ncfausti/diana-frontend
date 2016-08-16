@@ -1,14 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default class TopNav extends React.Component {
 	render() {
 		return (
 			<span>
 			<ul>
-				<li>Dashboard</li>
-				<li class="active-item">Submissions</li>
-				<li>Awards</li>
-				<li>Hackers</li>
+				<li><Link to="/dashboard">Dashboard</Link></li>
+				<li><Link to="/" class="active-item">Submissions</Link></li>
+				<li><Link to="/awards">Awards</Link></li>
+				<li><Link to="/hackers">Hackers</Link></li>
 			</ul>
 			</span>
 		);

@@ -4,7 +4,11 @@ body {
     line-height: 20px;
     margin:0px;
 }
+a { color:#F5F5F5;
+    padding-bottom: 6px; 
+}
 
+a:hover { text-decoration: none; }
 h2 { font-size:1.5em;  }
 h3+i {
     position: relative;
