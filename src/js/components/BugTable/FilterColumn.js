@@ -27,7 +27,7 @@ export default class FilterColumn extends React.Component {
 			<div class="filterColumnSection">
 			<strong>Type</strong>
 			<CheckFilter name="SQL Injection" changeFilter={this.props.changeFilter} />
-			<CheckFilter name="Cross-site Scripting" changeFilter={this.props.changeFilter} />
+			<CheckFilter name="Cross Site Scripting" changeFilter={this.props.changeFilter} />
 			<CheckFilter name="TLS v1.0 Enables" changeFilter={this.props.changeFilter} />
 			<CheckFilter name="Clickjacking" changeFilter={this.props.changeFilter} />
 			<CheckFilter name="Open Direction" changeFilter={this.props.changeFilter} />
