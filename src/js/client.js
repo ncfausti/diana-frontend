@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Layout from './components/Layouts.js';
+import Login from './components/Login.js';
+import Dashboard from './components/Dashboard.js';
+import Details from './components/Details.js';
 //import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
@@ -16,9 +19,10 @@ const App = () => (
 	);
 */
 
-
-ReactDOM.render(<Router history={hashHistory}>
-	<Route path="/" component={Layout}>
-
-	</Route>
-</Router>, document.getElementById('app'));
+ReactDOM.render(
+	<Router history={hashHistory}>
+		<Route path="/" component={Layout} />
+		<Route path="/login" component={Login}/>
+		<Route path="/dashboard" component={Dashboard} />
+		<Route path="/details" component={Details} />
+	</Router>, document.getElementById('app'));
