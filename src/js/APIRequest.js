@@ -25,7 +25,7 @@ export default class APIRequest {
 
 
         // Make the actual CORS request.
-        makeCorsRequest(callback, bugTableGrid) {
+        makeCorsRequest(callback) {
           // This is a sample server that supports CORS.
           var url = 'http://104.197.191.63/api/status/?format=json';
           var xhr = this.createCORSRequest('GET', url);
@@ -36,32 +36,7 @@ export default class APIRequest {
           }
           xhr.addEventListener("readystatechange", function () {
                 if (this.readyState === 4) {
-                  let rowData = [];
-                  let items = this.responseText;
-                  for (let i = 0; i < items.length; i++) {
-                      let item = items[i];
-
-                      rowData.push({
-                          id:item.id,
-                          status:item.status,
-                          vulnerability:'xss',//item.vulnerability['title'],
-                          vulnerability_desc:'xss desc',//item.vulnerability['description'],
-                          risk_level:'high',//item.risk_level['title'],
-                          risk_level_num:'2',//item.risk_level['number_level'],
-                          age: (function() {
-                                  let created = item.created;
-                                  let time_created = new Date(created);
-                                  let now = new Date();
-                                  return Math.floor( (now - time_created) / 1000 / 60 / 60 / 24);})(),
-                          confidence:item.confidence_score,
-                          payout:item.calculated_payout,
-                          tags:''//(function() { return item.tags.join(' ') })()
-                      });
-                  }
-                  console.log(rowData);
-
-                  callback(rowData).apply(bugTableGrid);
-
+                  callback(this.responseText);
                 }
           });
 
