@@ -21,8 +21,9 @@ const App = () => (
 
 ReactDOM.render(
 	<Router history={hashHistory}>
-		<Route path="/" component={Layout} />
-		<Route path="/login" component={Login}/>
-		<Route path="/dashboard" component={Dashboard} />
-		<Route path="/details" component={Details} />
+		<Route path="/" component={Layout}>
+			<Route path="/login" component={Login}/>
+			<Route path="/dashboard" component={Dashboard} />
+			<Route path="/details/" component={Details} />\
+		</Route>
 	</Router>, document.getElementById('app'));

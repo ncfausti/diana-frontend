@@ -4,6 +4,9 @@ export default class RowDataFactory {
     createRowData() {
         var rowData = [];
 
+        // 104.197.191.63/api/status
+
+
         for (let i = 0; i < RefData.STATUS.length; i++) {
             let item = RefData.STATUS[i];
 
