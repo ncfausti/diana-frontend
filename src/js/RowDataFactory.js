@@ -1,5 +1,4 @@
 import RefData from './RefData';
-import APIRequest from './APIRequest';
 
 export default class RowDataFactory {
     createRowData() {

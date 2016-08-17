@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {AgGridReact} from 'ag-grid-react';
-import RowDataFactory from '../RowDataFactory';
+import APIRequest from '../APIRequest';
 import FilterColumn from './BugTable/FilterColumn';
 import DetailColumn from './BugTable/DetailColumn';
 
@@ -55,8 +55,8 @@ export default class BugTable extends React.Component {
         this.api = params.api;
         this.state.columnApi = params.columnApi;
         console.log("API");
-        
-        new RowDataFactory().createRowData(
+
+        new APIRequest().makeCorsRequest(
         	function(data) {
     			this.api.setRowData(data);
     		}
