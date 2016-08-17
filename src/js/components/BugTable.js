@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {AgGridReact} from 'ag-grid-react';
+import RowDataFactory from '../RowDataFactory';
 import FilterColumn from './BugTable/FilterColumn';
 import DetailColumn from './BugTable/DetailColumn';
 
@@ -30,23 +31,8 @@ export default class BugTable extends React.Component {
 	}
 
 	componentDidMount() {
-		let reqHeaders = new Headers({'Authorization':'token 398f9af5cd69cfb9488bd8f1fcc456bbff08db25'});
-		let myInit = { method: 'GET',
-               		   headers: reqHeaders,
-               		   
-               		   cache: 'default' };
-        fetch('../../../data/status.json',myInit)
-		.then(function(response) {
-			return response;
-		})
-		.then(function(textResp) {
-			console.log(textResp);
-		})
-		.catch(function(error) {
-  			console.log('There has been a problem with your fetch operation: ' + error.message);
-		});
 
-  }
+	}
 
 	componentWillUnmout() {
 		;
@@ -68,7 +54,14 @@ export default class BugTable extends React.Component {
 	onGridReady(params) {
         this.api = params.api;
         this.state.columnApi = params.columnApi;
-        console.log(this.api)
+        console.log("API");
+        
+        new RowDataFactory().createRowData(
+        	function(data) {
+    			this.api.setRowData(data);
+    		}
+        )
+        
     }
 
 

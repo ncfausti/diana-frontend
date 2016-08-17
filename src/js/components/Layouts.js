@@ -16,7 +16,7 @@ export default class Layout extends React.Component {
 		super();
 				this.state = { 
 					  columnDefs: new ColDefFactory().createColDefs(),
-            		  rowData: new RowDataFactory().createRowData(),
+            		  rowData: [],
             		  selectedRows:[
             		  {
 					    "id": "",
