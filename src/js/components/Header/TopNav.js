@@ -7,7 +7,7 @@ export default class TopNav extends React.Component {
 			<span>
 			<ul>
 				<li><Link to="/dashboard">Dashboard</Link></li>
-				<li><Link to="/" class="active-item">Submissions</Link></li>
+				<li><Link to="/submissions" class="active-item">Submissions</Link></li>
 				<li><Link to="/awards">Awards</Link></li>
 				<li><Link to="/hackers">Hackers</Link></li>
 			</ul>
