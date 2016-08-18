@@ -44,7 +44,7 @@ export default class APIRequest {
             console.log(e);
             alert('Woops, there was an error making the request.');
           };
-          xhr.setRequestHeader('authorization', 'token 5e8e47cd94c9a982ce57b64b8df0fff6eac54c87');
+          xhr.setRequestHeader('authorization', 'token 4fb146b3cc2ac38bdbc76ecd98e931864e5390b6');
 
         //  xhr.setRequestHeader("Cache-Control", "no-cache");
           xhr.send();

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {AgGridReact} from 'ag-grid-react';
 import APIRequest from '../APIRequest';
+import ColDefFactory from '../ColDefFactory';
 import FilterColumn from './BugTable/FilterColumn';
 import DetailColumn from './BugTable/DetailColumn';
 
@@ -26,6 +27,32 @@ export default class BugTable extends React.Component {
                 columnGroupClosed: '<i class="fa fa-plus-square-o"/>',
                 checkboxChecked: '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoxMTQzMkY1NDIyMjhFNjExQkVGOEFCQUI5MzdBNjFEMSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoyMzBBQkU2ODI4MjQxMUU2QjlDRUZCNUFDREJGRTVDMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoyMzBBQkU2NzI4MjQxMUU2QjlDRUZCNUFDREJGRTVDMCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjE0NDMyRjU0MjIyOEU2MTFCRUY4QUJBQjkzN0E2MUQxIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjExNDMyRjU0MjIyOEU2MTFCRUY4QUJBQjkzN0E2MUQxIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+O+zv0gAAAQ1JREFUeNpilJvw35OBgWEuEEsyEAeeA3EyI1DjMxI0wTUzkaEJBCSZiFVpJcvAsDqEgUFVCMInSqOeOAPDLG8GBjNpBoZCCyI1KggwMCzwZ2DgZWdgOPWUgaF4F5pGDxWgqT4MDPzsSB7hYWBYHMDAIMzJwHDjDQND0mYGhu9/0DT6qTEwuCszMOyIZmAwkoTYALJJjp+B4cEHBoaEjQwMn38iDAVFx38wA4gzTBgYSiwhEi++MDDI8DEwvP3OwBC0CqIZGcBtBOmefoaBIXQNA8PvfxBNf4B03AZMTVgD5xwwXcQDFX/8wcAw+RQDw5VX2AMN7lRSARM07ZEKXoA0poAYJGh6CkrkAAEGAKNeQxaS7i+xAAAAAElFTkSuQmCC"/>'
 			},
+      columnDefs: new ColDefFactory().createColDefs(),
+      rowData:[],
+      selectedRows:[
+                  {
+              "id": "",
+              "status": "",
+              "creator": "",
+              "vulnerability": "",
+              "vulnerability_desc":"",
+              "client": "",
+              "risk_level": "",
+              "risk_level_num":"",
+              "created": "",
+              "modified": "",
+              "payout": "",
+              "confidence_score": "",
+              "calculated_payout": "",
+              "client_decision": "",
+              "triage_decision": "",
+              "tags": [
+                "",
+                "",
+                ""
+              ]
+            }],
+            api:{},
 			filters:new Set([]),
 		}	
 	}
@@ -38,13 +65,19 @@ export default class BugTable extends React.Component {
 		;
 	}
 
+  rowSelected(rows) {
+    //for (var i in rows) console.log(i);
+    this.setState({selectedRows:rows});
+  //  for (var i in this.state.selectedRows) console.log(i);
+
+  }
 
 	onRowSelected(event) {
-        console.log('onRowSelected: ' + event.node.selected);
-        var rows = this.api.getSelectedRows();
+  //      console.log('onRowSelected: ' + event.node.selected);
+        var rows = this.state.api.getSelectedRows();
 
         // Call onRowSelected that has flowed down from Layouts.js
-        this.props.onRowSelected(rows[0]);
+        this.rowSelected(rows[0]);
 
     }
 
@@ -52,10 +85,10 @@ export default class BugTable extends React.Component {
 	
 
 	onGridReady(params) {
-        this.api = params.api;
+        this.state.api = params.api;
         this.state.columnApi = params.columnApi;
         console.log("API");
-        let gridApi = this.api;
+        let gridApi = this.state.api;
         new APIRequest().makeCorsRequest(
         	function(data) {
     			let rowData = [];
@@ -136,7 +169,7 @@ export default class BugTable extends React.Component {
 		else tempFilters.add(filterName);
 		
 		this.setState({filters:tempFilters});	    
-	    this.api.onFilterChanged();
+	    this.state.api.onFilterChanged();
 	}
 
 	render() {
@@ -165,8 +198,7 @@ export default class BugTable extends React.Component {
 
 			    // column definitions and row data are immutable, the grid
 			    // will update when these lists change
-			    columnDefs={this.props.columnDefs}
-			    rowData={this.props.rowData}
+			    columnDefs={this.state.columnDefs}
 
 			    // or provide props the old way with no binding
 			    rowSelection="single"
@@ -181,7 +213,7 @@ export default class BugTable extends React.Component {
 			</div>
 			
 			<div id="detailColumn" class="col-md-2">
-			 <DetailColumn selectedRows={this.props.selectedRows} />
+			 <DetailColumn selectedRows={this.state.selectedRows} />
 			</div>
 			
 			</div>
