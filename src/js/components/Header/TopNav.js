@@ -11,6 +11,7 @@ export default class TopNav extends React.Component {
 				<li><Link to="/awards">Awards</Link></li>
 				<li><Link to="/hackers">Hackers</Link></li>
 			</ul>
+			<span class="float-right"><Link to="/logout">Log out</Link></span>
 			</span>
 		);
 	}
