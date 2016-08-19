@@ -2,6 +2,7 @@
 import React from 'react'
 //import {BarChart} from 'react-d3'
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts'
+import DashboardList from './DashboardList'
 export default class Dashboard extends React.Component{
 	constructor() {
 		super()
@@ -25,7 +26,10 @@ export default class Dashboard extends React.Component{
 														  {"count":100,"vulnerability__taxonomies__name":"S1","month":"2016-08-01T00:00:00Z"},
 														  {"count":112,"vulnerability__taxonomies__name":"S12","month":"2016-08-01T00:00:00Z"},
 														  {"count":104,"vulnerability__taxonomies__name":"S4","month":"2016-08-01T00:00:00Z"},
-														  {"count":0,"vulnerability__taxonomies__name":null,"month":"2016-08-01T00:00:00Z"}]
+														  {"count":0,"vulnerability__taxonomies__name":null,"month":"2016-08-01T00:00:00Z"}],
+						colOneData:[],
+						colTwoData:[],
+						colThreeData:[],
 		/*
 		  barData:[
 		  			{ "name":"Series A",
@@ -86,8 +90,10 @@ export default class Dashboard extends React.Component{
   	}
 
   render() {
-    return (<div>
-
+    return (
+    	<div>
+    	<div class="row">
+    	<div class="col-md-12">
 		<BarChart width={1000} height={300} data={this.state.data}
             margin={{top: 20, right: 0, left: 0, bottom: 5}}>
        <Legend />
@@ -99,6 +105,30 @@ export default class Dashboard extends React.Component{
        <Bar dataKey="Critical" stackId="a" fill="#CB181D" />
        <Bar dataKey="High" stackId="a" fill="#FCAE91" />
       </BarChart>
+      </div>
+      </div>
+      <div class="row">
+      <div class="col-md-4">
+       <h5>SANS Top 25</h5>
+       <div class="simple-list-div">
+       	<DashboardList list={this.state.colOneData} />
+       </div>
+      </div>
+      <div class="col-md-4">
+       <h5>Categories</h5>
+       <div class="simple-list-div">
+       	<DashboardList list={this.state.colTwoData} />
+       </div>
+      </div>
+      <div class="col-md-4">
+       <h5>OWASP Top 10</h5>
+       <div class="simple-list-div">
+       	<DashboardList list={this.state.colThreeData} />
+       </div>
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
+      </div>
     </div>);
   }
 
