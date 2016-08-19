@@ -23,8 +23,9 @@ const App = () => (
 
 ReactDOM.render(
 	<Router history={hashHistory}>
+		<Route path="/login" component={Login} />
+
 		<Route path="/" component={Layout}>
-			<Route path="/login" component={Login}/>
 			<Route path="/dashboard" component={Dashboard} />
 			<Route path="/submissions" component={BugTable} />
 			<Route path="/details/" component={Details} />\

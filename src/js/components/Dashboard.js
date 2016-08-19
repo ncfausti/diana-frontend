@@ -43,8 +43,8 @@ export default class Dashboard extends React.Component{
             margin={{top: 20, right: 0, left: 0, bottom: 5}}>
        <Legend />
 
-       <XAxis dataKey="name"/>
-       <YAxis />
+       <XAxis dataKey="name" tickLine={false} padding={{ bottom: 10 }}/>
+       <YAxis tickLine={false} padding={{ left: 10 }}/>
        <CartesianGrid strokeDasharray="1  1"/>
        <Tooltip/>
        <Bar dataKey="Critical" stackId="a" fill="#CB181D" />
@@ -57,7 +57,7 @@ export default class Dashboard extends React.Component{
       <div class="col-md-4">
        
        <div class="simple-list-div">
-       <h5>SANS Top 25</h5>
+       <h5>Risk Levels</h5>
        	<DashboardList list={this.state.submission_risk_by_month} />
        </div>
       </div>
