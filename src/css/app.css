@@ -191,3 +191,11 @@ label {
     height: 100%;
     width: 100%;
 }
+
+.recharts-default-legend {
+    position: fixed;
+    top: 120px;
+    left: 60px;
+}
+
+.recharts-wrapper { margin-top: 42px; }
