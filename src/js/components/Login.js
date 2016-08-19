@@ -6,7 +6,7 @@ export default class Login extends React.Component{
     return (
     <div class="container">
 	    <div class="row login">
-		    <div class="col-md-4">
+		    <div class="col-md-4 login-box">
 		      <form class="form-signin" onSubmit={this.handleSubmit}>
 		        <h2 class="form-signin-heading">Please sign in</h2>
 		        <label for="inputEmail" class="sr-only">Email address</label>

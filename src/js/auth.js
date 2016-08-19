@@ -60,7 +60,7 @@ function loginRequest(email, pass, cb) {
       console.log(response.token);
         cb({
           authenticated: true,
-          token: response.token
+          token: token
         })
       } else {
         cb({ authenticated: false })

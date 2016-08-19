@@ -217,3 +217,42 @@ label {
     color:#333; }
 
 .row .login {text-align:center;}
+
+header a:focus { text-decoration: none; color:#FFF; }
+
+.btn-sign-in { background-color: #00BCD4;
+    border-radius: 0;
+    border: none; }
+
+.btn-sign-in:hover { background-color: #00CCD4;
+    border-radius: 0;
+    border: none; }
+.form-signin { font-weight: 300; }
+#inputEmail {
+    box-shadow:none;
+    border-radius: 0;
+    border-top:none;
+    border-right:none;
+    border-left:none;
+    border-bottom:1px solid #ddd;
+    
+}
+#inputPassword{
+box-shadow:none;
+    border-radius: 0;
+    border-top:none;
+    border-right:none;
+    border-left:none;
+    border-bottom:1px solid #ddd;
+    
+
+}
+
+#inputEmail:focus { border-bottom: 2px solid #777 }
+#inputPassword:focus { border-bottom: 2px solid #777 }
+
+.form-signin h2 { font-weight:300 !important; }
+
+.login { margin-top: 200px; }
+
+.login-box { padding:36px; background-color:#FDFDFD;border:1px solid #BBB; }
