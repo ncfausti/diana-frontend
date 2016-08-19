@@ -1,3 +1,5 @@
+import APIRequest from './APIRequest';
+
 module.exports = {
   login(email, pass, cb) {
     cb = arguments[arguments.length - 1]
@@ -6,7 +8,7 @@ module.exports = {
       this.onChange(true)
       return
     }
-    pretendRequest(email, pass, (res) => {
+    loginRequest(email, pass, (res) => {
       if (res.authenticated) {
         localStorage.token = res.token
         if (cb) cb(true)
@@ -47,3 +49,41 @@ function pretendRequest(email, pass, cb) {
     }
   }, 0)
 }
+
+function loginRequest(email, pass, cb) {
+ new APIRequest().makeCorsRequest(email, pass,'POST','api/auth/obtaintoken/', function(response){
+//    if (email === 'joe@example.com' && pass === 'password1') {
+  console.log('in callback')
+  console.log("RESPONSE: "+  JSON.parse(response)["token"])
+  let token = JSON.parse(response)["token"]
+  if(token){
+      console.log(response.token);
+        cb({
+          authenticated: true,
+          token: response.token
+        })
+      } else {
+        cb({ authenticated: false })
+      }
+    })
+}
+/*
+var data = new FormData();
+data.append("email", "jacob.kyle+clientuser@gmail.com");
+data.append("password", "temp1234");
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "http://104.197.191.63/api/auth/obtaintoken/");
+xhr.setRequestHeader("cache-control", "no-cache");
+xhr.setRequestHeader("postman-token", "8da5aee0-866c-8fef-6ca0-4667429969bd");
+
+xhr.send(data);
+*/

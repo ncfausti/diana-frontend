@@ -17,7 +17,7 @@ export default class ColDefFactory {
                             return {borderLeft:'3px solid red'};
                         },
                         cellRenderer: function(params) {
-                           return  '<a href=/#details/' + params.value + '>' + params.value + '</a>';
+                           return  '<a href=/#/submissions/' + params.value + '>' + params.value + '</a>';
                         }
 
             },

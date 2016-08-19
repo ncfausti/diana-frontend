@@ -132,6 +132,7 @@ ReactDOM.render(
 				<IndexRoute component={Dashboard} onEnter={requireAuth} />
 				<Route path="/dashboard" component={Dashboard} onEnter={requireAuth} />
 				<Route path="/submissions" component={BugTable} onEnter={requireAuth} />
+				<Route path="/submissions/**" component={Details} onEnter={requireAuth} />
 				<Route path="/details" component={Details} onEnter={requireAuth}/>\
 			</Route>
 	</Router>, document.getElementById('app'));

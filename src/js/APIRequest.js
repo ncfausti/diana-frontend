@@ -1,5 +1,5 @@
 //import RefData from './RefData';
-
+import auth from './auth';
 export default class APIRequest {
         // Authorization token a0f4544b9c2d086b6fcaf1274842c601bcc37c3b
         // 104.197.191.63/api/status
@@ -25,10 +25,12 @@ export default class APIRequest {
 
 
         // Make the actual CORS request.
-        makeCorsRequest(callback) {
+        makeCorsRequest(email="", pass="",method="GET", path, callback) {
           // This is a sample server that supports CORS.
-          var url = 'http://104.197.191.63/api/status/?format=json';
-          var xhr = this.createCORSRequest('GET', url);
+          var url = 'http://104.197.191.63/' + path;// + '?format=json';
+
+          var xhr = this.createCORSRequest(method, url);
+
    //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
           if (!xhr) {
             alert('CORS not supported');
@@ -44,10 +46,19 @@ export default class APIRequest {
             console.log(e);
             alert('Woops, there was an error making the request.');
           };
-          xhr.setRequestHeader('authorization', 'token a583930a44095622d9287304852022ef68b963ca');
-
+          if (auth.getToken())
+            xhr.setRequestHeader('authorization', 'token ' + auth.getToken());
+          
+          var data = new FormData();
+          console.log('EMAIL: ' + email)
+          console.log('PWD: ' + pass)
+          if (email && pass) {
+            data.append("email", email );
+            data.append("password", pass );
+          }
+          console.log('sending')
         //  xhr.setRequestHeader("Cache-Control", "no-cache");
-          xhr.send();
+          xhr.send(data);
         }
 
 }

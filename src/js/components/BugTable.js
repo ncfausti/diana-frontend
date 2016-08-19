@@ -89,7 +89,7 @@ export default class BugTable extends React.Component {
         this.state.columnApi = params.columnApi;
         console.log("API");
         let gridApi = this.state.api;
-        new APIRequest().makeCorsRequest(
+        new APIRequest().makeCorsRequest('api/status/',
         	function(data) {
     			let rowData = [];
                 let items = JSON.parse(data);
