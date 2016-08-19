@@ -70,7 +70,7 @@ header h2 {
     border-bottom: 1px solid #DDD; 
 }
 
-.active-item { border-bottom: 5px solid #1976D2; }
+.active-item { border-bottom: 6px solid #1976D2; }
 .sidebar-header div { padding:12px; }
 .detail-btn { font-family: 'Roboto', sans-serif !important;
     padding:3px;
@@ -199,3 +199,19 @@ label {
 }
 
 .recharts-wrapper { margin-top: 42px; }
+.simple-list-div ul { 
+    list-style: none;
+    text-transform:capitalize; 
+    padding: 0px;
+}
+.margin-left-60{margin-left:60px;}
+
+.simple-list-div { 
+    color:#999;
+    font-weight:500;
+    border: 1px solid #DDD;
+    padding:12px 6px 6px 12px;
+ }
+
+ .simple-list-div h5 { 
+    color:#333; }
