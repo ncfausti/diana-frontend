@@ -2,6 +2,7 @@ import RefData from './RefData';
 
 export default class RowDataFactory {
     createRowData() {
+        /*
         var rowData = new APIRequest().makeCorsRequest( '','','GET','api/status/', function(response){
             let rowData = [];
             let items = JSON.parse(response);
@@ -28,5 +29,6 @@ export default class RowDataFactory {
             console.log(rowData);
             return rowData;
         });
+        */
     }
 }

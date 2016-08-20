@@ -89,7 +89,7 @@ export default class BugTable extends React.Component {
         this.state.columnApi = params.columnApi;
         console.log("API");
         let gridApi = this.state.api;
-        new APIRequest().makeCorsRequest("","",'GET','api/status/',
+        new APIRequest().makeCorsRequest("","",'GET','api/submission/table/',
         	function(data) {
     			let rowData = [];
                 let items = JSON.parse(data);
@@ -99,11 +99,10 @@ export default class BugTable extends React.Component {
                       let item = items[i];
                       rowData.push({
                           id:item.id,
-                          status:item.status,
-                          vulnerability:item.vulnerability['title'],
+                          status:item.client_decision,
+                          vulnerability:item.vulnerability,
                           vulnerability_desc:item.vulnerability['description'],
-                          risk_level:item.risk_level['title'],
-                          risk_level_num:item.risk_level['number_level'],
+                          risk_level:item.risk_level,
                           age: (function() {
                                   let created = item.created;
                                   let time_created = new Date(created);
@@ -111,7 +110,7 @@ export default class BugTable extends React.Component {
                                   return Math.floor( (now - time_created) / 1000 / 60 / 60 / 24);})(),
                           confidence:item.confidence_score,
                           payout:item.calculated_payout,
-                          tags:''//(function() { return item.tags.join(' ') })()
+                          tags:item.tags
                       });
                   }
                   gridApi.setRowData(rowData);

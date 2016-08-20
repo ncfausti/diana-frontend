@@ -256,3 +256,12 @@ box-shadow:none;
 .login { margin-top: 200px; }
 
 .login-box { padding:36px; background-color:#FDFDFD;border:1px solid #BBB; }
+.tag-span { 
+    border: 1px solid #1976D2;
+    border-radius: 6px;
+    margin:3px;
+    padding:3px;
+ }
+
+
+
