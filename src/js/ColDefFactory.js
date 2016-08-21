@@ -24,7 +24,8 @@ export default class ColDefFactory {
 
             },
             {headerName: "Status", field: "status", enableRowGroup: true, enablePivot: true,
-                        pinned: true},
+                        pinned: true, cellStyle: {textTransform:'capitalize'}
+            },
             {headerName: "Risk", field: "risk_level", enableRowGroup: true, enablePivot: true,
                          pinned: true},
             {headerName: "Type", field: "vulnerability", enableRowGroup: true, enablePivot: true,

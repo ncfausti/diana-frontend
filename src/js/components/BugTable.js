@@ -53,7 +53,9 @@ export default class BugTable extends React.Component {
                 ""
               ]
             }],
-            api:{},
+      rowDetailCache: {},
+      selectedRowDetails:{},
+      api:{},
 
 			filters:new Set([]),
   }
@@ -63,14 +65,82 @@ export default class BugTable extends React.Component {
 componentWillUpdate() {
 }
 componentDidUpdate() {
-  console.log('hi')
 }
 
-  rowSelected(rows) {
-    //for (var i in rows) console.log(i);
-    this.setState({selectedRows:rows});
-  //  for (var i in this.state.selectedRows) console.log(i);
+rowSelected(row) {
+    this.setState({selectedRows:row});
+    
+  // if id in rowDetailCache, set selectedRowDetails to rowDetailCache[id]
+  // else make api call to /api/status/<id> and set selectedRowDetails[<id> 
+  // and rowDetailCache[<id>] = obj
+    if (row.id in this.state.rowDetailCache) {
+      console.log('FROM CACHE');
+      let id = row.id;
+      this.setState({selectedRowDetails:this.state.rowDetailCache[id]});
 
+    }
+    else {
+      console.log('not in cache');
+      let tempRowDetailCache = this.state.rowDetailCache;
+      let tempDetailData = {};
+      
+      // make api call here then this.setState({objReturenedFromApiCall} and) add objReturnedFromApiCall to tempRowDetailCache to 
+      
+      new APIRequest().makeCorsRequest("","",'GET','api/status/' + row.id +'/',
+          function(data) {
+                let detailsResponse = JSON.parse(data);
+                  console.log("RESPONSE TEXT")
+                 // if (items[0].detail == "Invalid token.") {
+                    // TODO
+                    // Get new token and resend request
+                  //}
+                  tempRowDetailCache[detailsResponse.id] = detailsResponse;
+                  console.log(data);
+                  for (var key in detailsResponse) {
+                    tempDetailData[key] = detailsResponse[key];
+                  }
+
+                  /*
+                  detailData['id'] = detailsResponse.id;
+                  detailData['status'] = detailsResponse.status;
+                  detailData['creator'] = detailsResponse.creator
+                  detailData['vulnerability'] = detailsResponse.vulnerability;
+                  detailData['client'] = detailsResponse.client;
+                  detailData['created'] = detailsResponse.created;
+                  detailData['modified'] = detailsResponse.modified;
+                  detailData['payout'] = detailsResponse.payout;
+                  detailData['comment'] = detailsResponse.comment;
+                  detailData['created'] = detailsResponse.created;
+
+  */
+
+                  /*
+                  for (let i = 0; i < items.length; i++) {
+                      let item = items[i];
+                      rowData.push({
+                          id:item.id,
+                          status:item.client_decision,
+                          vulnerability:item.vulnerability,
+                          vulnerability_desc:item.vulnerability['description'],
+                          risk_level:item.risk_level,
+                          age: (function() {
+                                  let created = item.created;
+                                  let time_created = new Date(created);
+                                  let now = new Date();
+                                  return Math.floor( (now - time_created) / 1000 / 60 / 60 / 24);})(),
+                          confidence:item.confidence_score,
+                          payout:item.calculated_payout,
+                          tags:item.tags
+                      });
+                  }
+                  */
+
+        }
+        );
+      this.setState({selectedRowDetails:tempDetailData});
+      this.setState({rowDetailCache:tempRowDetailCache});
+
+    }
   }
 
 	onRowSelected(event) {
@@ -82,7 +152,7 @@ componentDidUpdate() {
 
     }
 
-	onCellClicked(){ console.log('cell clicked'); }
+	onCellClicked(){  }
 	
 
 	onGridReady(params) {
@@ -95,6 +165,12 @@ componentDidUpdate() {
     			let rowData = [];
                 let items = JSON.parse(data);
                   console.log("RESPONSE TEXT")
+                  
+                  if (items[0].detail == "Invalid token.") {
+                    // TODO
+                    // Get new token and resend request
+                  }
+
                   console.log(data);
                   for (let i = 0; i < items.length; i++) {
                       let item = items[i];
@@ -214,7 +290,7 @@ componentDidUpdate() {
 			</div>
 			
 			<div id="detailColumn" class="col-md-2">
-			 <DetailColumn selectedRows={this.state.selectedRows} />
+			 <DetailColumn details={this.state.selectedRowDetails} />
 			</div>
 			
 			</div>

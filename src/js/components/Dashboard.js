@@ -53,21 +53,21 @@ export default class Dashboard extends React.Component{
       </BarChart>
       </div>
       </div>
-      <div class="row margin-left-60">
-      <div class="col-md-4">
+      <div class="row margin-left-90">
+      <div class="col-md-3">
        
        <div class="simple-list-div">
        <h5>Risk Levels</h5>
        	<DashboardList list={this.state.submission_risk_by_month} />
        </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4" >
        <div class="simple-list-div">
        <h5>Categories</h5>
        	<DashboardList list={this.state.submission_categories_by_month} />
        </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
        <div class="simple-list-div">
        <h5>OWASP Top 10</h5>
        	<DashboardList list={this.state.submission_taxonomies_by_month} />
