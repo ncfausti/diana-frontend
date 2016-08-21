@@ -1,7 +1,7 @@
 import RefData from './RefData';
 import {reactCellRendererFactory} from 'ag-grid-react';
 import {reactFilterFactory} from 'ag-grid-react';
-import Tag from './components/BugTable/Tag'
+import Tags from './components/BugTable/Tags'
 import React from 'react';
 
 
@@ -13,8 +13,8 @@ export default class ColDefFactory {
             {headerName: "ID", field: "id", enableRowGroup: true, enablePivot: true,
                         width: 80, pinned: true,
                         cellStyle: function(params) {
-                            if (params.data.risk_level === 'Critical') return {borderLeft:'3px solid red'};
-                            if (params.data.risk_level === 'Medium') return {borderLeft:'3px solid orange'};
+                            if (params.data.risk_level === 'Critical') return {borderLeft:'3px solid #CB000F'};
+                            if (params.data.risk_level === 'Medium') return {borderLeft:'3px solid #FB6545'};
                             if (params.data.risk_level === 'Low') return {borderLeft:'3px solid gold'};
                             return {borderLeft:'3px solid red'};
                         },
@@ -24,20 +24,20 @@ export default class ColDefFactory {
 
             },
             {headerName: "Status", field: "status", enableRowGroup: true, enablePivot: true,
-                        width: 80, pinned: true},
+                        pinned: true},
             {headerName: "Risk", field: "risk_level", enableRowGroup: true, enablePivot: true,
-                        width: 80, pinned: true},
+                         pinned: true},
             {headerName: "Type", field: "vulnerability", enableRowGroup: true, enablePivot: true,
-                        width: 120, pinned: true},
+                         pinned: true},
             {headerName: "Age(days)", field: "age", enableRowGroup: true, enablePivot: true,
-                        width: 90, pinned: true},
+                        pinned: true},
             {headerName: "Confidence(%)", field: "confidence", enableRowGroup: true, enablePivot: true,
-                        width: 110, pinned: true},
+                         pinned: true},
             {headerName: "Bounty($)", field: "payout", enableRowGroup: true, enablePivot: true,
-                        width: 100, pinned: true},
-            {headerName: "Tags", field: "tags", enableRowGroup: true, enablePivot: true,
-                        width: 120, pinned: true,
-                        cellRenderer:reactCellRendererFactory(Tag)}
+                         pinned: true},
+            {headerName: "Tags", field: "tags", enableRowGroup: true, enablePivot: true,width:500,
+                         pinned: true,
+                        cellRenderer:reactCellRendererFactory(Tags)}
                         
                         ];  // end columnDefs
 

@@ -257,11 +257,17 @@ box-shadow:none;
 
 .login-box { padding:36px; background-color:#FDFDFD;border:1px solid #BBB; }
 .tag-span { 
-    border: 1px solid #1976D2;
     border-radius: 6px;
     margin:3px;
-    padding:3px;
+    padding:6px;
+    background-color: #1976D2;
+    color: #fff;
+    font-size:.95em;
  }
 
-
-
+ .tag-span.critical { background-color:#CB000F; }
+ .tag-span.important { background-color:#EF6042; }
+.full-width-col {width:100%;}
+.ag-pinned-left-cols-viewport { width: 100% !important; }
+.ag-pinned-left-cols-container { width: 100% !important; }
+.ag-cell-last-left-pinned { width:100% !important; }

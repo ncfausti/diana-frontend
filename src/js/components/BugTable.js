@@ -13,6 +13,7 @@ export default class BugTable extends React.Component {
 	constructor() {
 		super()
         this.state = {
+
             showGrid: true,
             showToolPanel: false,
 
@@ -53,17 +54,17 @@ export default class BugTable extends React.Component {
               ]
             }],
             api:{},
+
 			filters:new Set([]),
-		}	
-	}
+  }
 
-	componentDidMount() {
+}
 
-	}
-
-	componentWillUnmout() {
-		;
-	}
+componentWillUpdate() {
+}
+componentDidUpdate() {
+  console.log('hi')
+}
 
   rowSelected(rows) {
     //for (var i in rows) console.log(i);
@@ -116,7 +117,8 @@ export default class BugTable extends React.Component {
                   gridApi.setRowData(rowData);
     		}
         )
-        
+        this.state.api.sizeColumnsToFit();
+
     }
 
 
