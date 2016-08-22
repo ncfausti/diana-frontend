@@ -2,12 +2,10 @@ import React from 'react';
 export default class DetailColumn extends React.Component {
 	constructor() {
 		super();
-
 	}
 
 	render() {
 		return (
-
 			<div>
 			<div class="detail-header sidebar-header">
 			<div>
@@ -18,11 +16,11 @@ export default class DetailColumn extends React.Component {
 			<div id="detail-body">
 			<div><h5>Bug ID: <span class="blue">{this.props.details['id']}</span></h5></div>
 			<br></br>
-			<div class={"detail-risk-"+this.props.details.id}>{this.props.details.id} Risk</div>
+			<div class={"detail-risk-"+this.props.risk_level.title}>{this.props.risk_level.title} Risk</div>
 			<div class="threat-description">
-				<strong>{this.props.details.id}</strong>
+				<strong>{this.props.vulnerability.title}</strong>
 				<br></br>
-				{this.props.details.id}
+				{this.props.vulnerability.description}
 			</div>
 			
 			<div class="btn btn-primary detail-btn">Accept</div>

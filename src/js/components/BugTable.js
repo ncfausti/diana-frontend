@@ -55,6 +55,12 @@ export default class BugTable extends React.Component {
             }],
       rowDetailCache: {},
       selectedRowDetails:{},
+      selectedRowVulnerability:{},
+      selectedRowRiskLevel:{},
+      selectedRowTags:[],
+      selectedRowComments:{},
+      selectedRowRequests:{},
+      selectedRowScreenShots:{},
       api:{},
 
 			filters:new Set([]),
@@ -65,6 +71,10 @@ export default class BugTable extends React.Component {
 componentWillUpdate() {
 }
 componentDidUpdate() {
+}
+
+setDetails(val) {
+  this.setState({selectedRowDetails:val});
 }
 
 rowSelected(row) {
@@ -79,67 +89,48 @@ rowSelected(row) {
       this.setState({selectedRowDetails:this.state.rowDetailCache[id]});
 
     }
-    else {
-      console.log('not in cache');
-      let tempRowDetailCache = this.state.rowDetailCache;
-      let tempDetailData = {};
-      
-      // make api call here then this.setState({objReturenedFromApiCall} and) add objReturnedFromApiCall to tempRowDetailCache to 
-      
-      new APIRequest().makeCorsRequest("","",'GET','api/status/' + row.id +'/',
-          function(data) {
-                let detailsResponse = JSON.parse(data);
-                  console.log("RESPONSE TEXT")
-                 // if (items[0].detail == "Invalid token.") {
-                    // TODO
-                    // Get new token and resend request
-                  //}
-                  tempRowDetailCache[detailsResponse.id] = detailsResponse;
-                  console.log(data);
-                  for (var key in detailsResponse) {
-                    tempDetailData[key] = detailsResponse[key];
-                  }
-
-                  /*
-                  detailData['id'] = detailsResponse.id;
-                  detailData['status'] = detailsResponse.status;
-                  detailData['creator'] = detailsResponse.creator
-                  detailData['vulnerability'] = detailsResponse.vulnerability;
-                  detailData['client'] = detailsResponse.client;
-                  detailData['created'] = detailsResponse.created;
-                  detailData['modified'] = detailsResponse.modified;
-                  detailData['payout'] = detailsResponse.payout;
-                  detailData['comment'] = detailsResponse.comment;
-                  detailData['created'] = detailsResponse.created;
-
-  */
-
-                  /*
-                  for (let i = 0; i < items.length; i++) {
-                      let item = items[i];
-                      rowData.push({
-                          id:item.id,
-                          status:item.client_decision,
-                          vulnerability:item.vulnerability,
-                          vulnerability_desc:item.vulnerability['description'],
-                          risk_level:item.risk_level,
-                          age: (function() {
-                                  let created = item.created;
-                                  let time_created = new Date(created);
-                                  let now = new Date();
-                                  return Math.floor( (now - time_created) / 1000 / 60 / 60 / 24);})(),
-                          confidence:item.confidence_score,
-                          payout:item.calculated_payout,
-                          tags:item.tags
+    else 
+    {
+          console.log('not in cache');
+          let tempRowDetailCache = this.state.rowDetailCache;
+          let tempDetailData = {};
+          
+          // make api call here then this.setState({objReturenedFromApiCall} and) add objReturnedFromApiCall to tempRowDetailCache to 
+          let details = {};
+        var p1 = new Promise(
+          function(resolve, reject)
+              {
+                new APIRequest().makeCorsRequest("","",'GET','api/status/' + row.id +'/',
+                      function(data) {
+                            let detailsResponse = JSON.parse(data);
+                            tempRowDetailCache[detailsResponse.id] = detailsResponse;
+                  
+                            for (var key in detailsResponse) {
+                              tempDetailData[key] = detailsResponse[key];
+                            }
+                            resolve(detailsResponse );
                       });
-                  }
-                  */
+                
+              }
+        )
 
-        }
-        );
-      this.setState({selectedRowDetails:tempDetailData});
-      this.setState({rowDetailCache:tempRowDetailCache});
+        let self = this;
 
+        p1.then(
+          function(val) {
+            console.log("PROMISE")
+            console.log(val)
+           self.setState({selectedRowDetails:val});
+           self.setState({selectedRowVulnerability:val.vulnerability});
+           self.setState({selectedRowRiskLevel:val.risk_level});
+          }
+        )
+        .catch(function(reason) {
+          //this.setState({selectedRowDetails:tempDetailData});
+          console.log("REASON")
+          console.log(reason)
+        });
+          this.setState({rowDetailCache:tempRowDetailCache});
     }
   }
 
@@ -238,6 +229,7 @@ rowSelected(row) {
    		*/
     }
 	
+
 	changeFilter(filterName) {
 		var tempFilters = this.state.filters;
 		
@@ -290,7 +282,15 @@ rowSelected(row) {
 			</div>
 			
 			<div id="detailColumn" class="col-md-2">
-			 <DetailColumn details={this.state.selectedRowDetails} />
+			 <DetailColumn 
+          details={this.state.selectedRowDetails} 
+          vulnerability={this.state.selectedRowVulnerability}
+          risk_level = {this.state.selectedRowRiskLevel}
+          tags = {this.state.selectedRowTags}
+          comments = {this.state.selectedRowComments}
+          requests = {this.state.selectedRowRequests}
+          screenshots = {this.state.selectedRowScreenShots}
+       />
 			</div>
 			
 			</div>
