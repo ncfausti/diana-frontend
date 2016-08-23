@@ -169,7 +169,7 @@ rowSelected(row) {
                           id:item.id,
                           status:item.client_decision,
                           vulnerability:item.vulnerability,
-                          vulnerability_desc:item.vulnerability['description'],
+                         // vulnerability_desc:item.vulnerability['description'],
                           risk_level:item.risk_level,
                           age: (function() {
                                   let created = item.created;
