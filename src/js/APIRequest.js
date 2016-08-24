@@ -43,20 +43,20 @@ export default class APIRequest {
           });
 
           xhr.onerror = function(e) {
-            console.log(e);
+      //      console.log(e);
             alert('Woops, there was an error making the request.');
           };
           if (auth.getToken())
             xhr.setRequestHeader('authorization', 'token ' + auth.getToken());
             
           var data = new FormData();
-          console.log('EMAIL: ' + email)
-          console.log('PWD: ' + pass)
+    //      console.log('EMAIL: ' + email)
+    //      console.log('PWD: ' + pass)
           if (email && pass) {
             data.append("email", email );
             data.append("password", pass );
           }
-          console.log('sending')
+       //   console.log('sending')
         //  xhr.setRequestHeader("Cache-Control", "no-cache");
           xhr.send(data);
         }

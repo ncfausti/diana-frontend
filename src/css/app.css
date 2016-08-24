@@ -123,9 +123,12 @@ input+label+span {
  }
  .light { color:#ccc; }
 
-.detail-risk-Critical{ border-left: 6px solid red;padding-left:6px;}
-.detail-risk-High{ border-left: 6px solid orange;padding-left:6px}
-.detail-risk-Low{ border-left: 6px solid gold;padding-left:6px}
+.detail-risk-15{ border-left: 6px solid red;padding-left:6px;}
+.detail-risk-14{ border-left: 6px solid red;padding-left:6px;}
+.detail-risk-13{ border-left: 6px solid orange;padding-left:6px}
+.detail-risk-12{ border-left: 6px solid orange;padding-left:6px}
+.detail-risk-11{ border-left: 6px solid gold;padding-left:6px}
+.detail-risk-10{ border-left: 6px solid gold;padding-left:6px}
 
 .row-risk-Critical{ border-left: 3px solid red;padding-left:6px;}
 .row-risk-High{ border-left: 6px solid orange;padding-left:6px}

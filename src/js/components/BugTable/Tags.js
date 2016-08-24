@@ -21,6 +21,10 @@ export default class Tags extends React.Component {
 		let tags = this.state.tags;
 		tags.splice(i, 1);
 		this.setState({tags: tags});
+
+		// DELETE /api/tags/<id>
+		// headers auth token
+		// body {submission:id, name:<tagText>}
 	}
 
 	handleAddition(tag) {
@@ -29,6 +33,10 @@ export default class Tags extends React.Component {
 		text: tag
 		});
 		this.setState({tags:tags});
+
+		// POST /api/tags/
+		// headers auth token
+		// body {submission:id, name:<tagText>}
 	}
 
 	handleDrag(tag, currPos, newPos) {
@@ -44,13 +52,15 @@ export default class Tags extends React.Component {
 
 		return (
 			<div>
-				<ReactTags tags={this.state.tags}
+				<ReactTags tags={this.state.tags}  //.map(span id=id name=tag )
 					handleDelete={this.handleDelete.bind(this)}
 					handleAddition={this.handleAddition.bind(this)}
-					handleDrag={this.handleDrag.bind(this)} />
+					handleDrag={this.handleDrag.bind(this)}
+					classNames={{tag: 'tag-span',}} />
 			</div>
 			)
 	}
+
 /* old render
 	render() {
 		console.log(this.props);
@@ -66,5 +76,6 @@ export default class Tags extends React.Component {
 			   )
 	}
 */
+
 }
 

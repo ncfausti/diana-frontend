@@ -16,7 +16,7 @@ export default class DetailColumn extends React.Component {
 			<div id="detail-body">
 			<div><h5>Bug ID: <span class="blue">{this.props.details['id']}</span></h5></div>
 			<br></br>
-			<div class={"detail-risk-"+this.props.risk_level.title}>{this.props.risk_level.title} Risk</div>
+			<div class={"detail-risk-"+this.props.vulnerability.risk_level}>Risk level: {this.props.vulnerability.risk_level} </div>
 			<div class="threat-description">
 				<strong>{this.props.vulnerability.title}</strong>
 				<br></br>

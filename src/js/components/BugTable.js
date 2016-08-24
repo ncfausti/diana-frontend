@@ -61,6 +61,7 @@ export default class BugTable extends React.Component {
       selectedRowComments:{},
       selectedRowRequests:{},
       selectedRowScreenShots:{},
+      selectedRowVuln:{},
       api:{},
 
 			filters:new Set([]),
@@ -79,19 +80,16 @@ setDetails(val) {
 
 rowSelected(row) {
     this.setState({selectedRows:row});
-    
-  // if id in rowDetailCache, set selectedRowDetails to rowDetailCache[id]
-  // else make api call to /api/status/<id> and set selectedRowDetails[<id> 
-  // and rowDetailCache[<id>] = obj
+
     if (row.id in this.state.rowDetailCache) {
-      console.log('FROM CACHE');
+      //console.log('FROM CACHE');
       let id = row.id;
       this.setState({selectedRowDetails:this.state.rowDetailCache[id]});
 
     }
     else 
     {
-          console.log('not in cache');
+         // console.log('not in cache');
           let tempRowDetailCache = this.state.rowDetailCache;
           let tempDetailData = {};
           
@@ -118,17 +116,14 @@ rowSelected(row) {
 
         p1.then(
           function(val) {
-            console.log("PROMISE")
-            console.log(val)
+         //   console.log(val)
            self.setState({selectedRowDetails:val});
-           self.setState({selectedRowVulnerability:val.vulnerability});
+           self.setState({selectedRowVulnerability:val.vuln_info});
            self.setState({selectedRowRiskLevel:val.risk_level});
           }
         )
         .catch(function(reason) {
-          //this.setState({selectedRowDetails:tempDetailData});
-          console.log("REASON")
-          console.log(reason)
+        //  console.log(reason)
         });
           this.setState({rowDetailCache:tempRowDetailCache});
     }
@@ -149,27 +144,26 @@ rowSelected(row) {
 	onGridReady(params) {
         this.state.api = params.api;
         this.state.columnApi = params.columnApi;
-        console.log("API");
+   //     console.log("API");
         let gridApi = this.state.api;
         new APIRequest().makeCorsRequest("","",'GET','api/submission/table/',
         	function(data) {
     			let rowData = [];
                 let items = JSON.parse(data);
-                  console.log("RESPONSE TEXT")
+             //     console.log("RESPONSE TEXT")
                   
                   if (items[0].detail == "Invalid token.") {
                     // TODO
                     // Get new token and resend request
                   }
 
-                  console.log(data);
+           //       console.log(data);
                   for (let i = 0; i < items.length; i++) {
                       let item = items[i];
                       rowData.push({
                           id:item.id,
                           status:item.client_decision,
-                          vulnerability:item.vulnerability,
-                         // vulnerability_desc:item.vulnerability['description'],
+                          vulnerability:item.vuln_info,
                           risk_level:item.risk_level,
                           age: (function() {
                                   let created = item.created;
@@ -190,12 +184,12 @@ rowSelected(row) {
 
 
     isExternalFilterPresent() {
-    	console.log('isExtFilterPresent')
+    //	console.log('isExtFilterPresent')
     	return this.state.filters.size > 0;
     }
 
    	doesExternalFilterPass(node) {
-    	console.log('doesExtFilterPass')
+  //  	console.log('doesExtFilterPass')
     	
     	const risks = new Set(['Critical','High','Medium','Low','Info']);
     	const statuses = new Set(['Verified','Not verified', 'Duplicate']);
@@ -210,7 +204,7 @@ rowSelected(row) {
     //		if (types.has(item)) return node.data.vulnerability === item;
     //	}
     	let filters = this.state.filters;
-    	console.log('FILTERS:' + filters);
+    //	console.log('FILTERS:' + filters);
     	if (filters.has(node.data.risk_level) || filters.has(node.data.status) || 
     		filters.has(node.data.vulnerability)) {
     		return true;
