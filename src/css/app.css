@@ -278,5 +278,13 @@ box-shadow:none;
 .ag-cell-last-left-pinned { width:100% !important; }
 .ReactTags__remove {color:#fff;margin-left:3px;}
 .ag-cell-focus {
-    border:none !important;
+    border: none !important;
+    border-bottom:1px solid #d3d3d3 !important;
+}
+
+.null-detail { 
+    text-align:center;
+    padding-top:180px;
+    color:#999;
+
 }

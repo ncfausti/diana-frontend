@@ -11,13 +11,23 @@ export default class DetailColumn extends React.Component {
 	   return tmp.textContent || tmp.innerText || "";
 	}
 
+	decisionClicked(e) {
+		const decision = e.target.value
+		this.props.handleSubmission(decision);
+	}
+
 	render() {
+		let displayNone = {display:'none'};
+		// if no details set, display some message
+		if (!this.props.details.id)
+			return(<div class="null-detail">No details to display</div>);
+
 		return (
 			<div>
 			<div class="detail-header sidebar-header">
 			<div>
 				<strong class="float-left active-item">Details</strong>
-				<strong class="float-right">Activity</strong>
+				<strong class="float-right" style={displayNone}>Activity</strong>
 			</div>
 			</div>
 			<div id="detail-body">
@@ -31,8 +41,8 @@ export default class DetailColumn extends React.Component {
 				{this.strip(this.props.vulnerability.description)}
 			</div>
 			
-			<div class="btn btn-primary detail-btn">Accept</div>
-			<div class="btn btn-danger detail-btn">Reject</div>
+			<button class="btn btn-primary detail-btn" value="accept" onClick={this.decisionClicked.bind(this)}>Accept</button>
+			<button class="btn btn-danger detail-btn" value="reject" onClick={this.decisionClicked.bind(this)}>Reject</button>
 
 			<hr></hr>
 			<div><strong>References</strong></div>

@@ -141,25 +141,23 @@ rowSelected(row) {
     }
 
 	onCellClicked(){  }
-	
+
 
 	onGridReady(params) {
         this.state.api = params.api;
         this.state.columnApi = params.columnApi;
    //     console.log("API");
         let gridApi = this.state.api;
+        let self = this;
         new APIRequest().makeCorsRequest("","",'GET','api/submission/table/',
         	function(data) {
     			let rowData = [];
                 let items = JSON.parse(data);
-             //     console.log("RESPONSE TEXT")
-                  
                   if (items[0].detail == "Invalid token.") {
                     // TODO
                     // Get new token and resend request
                   }
 
-           //       console.log(data);
                   for (let i = 0; i < items.length; i++) {
                       let item = items[i];
                       rowData.push({
@@ -178,6 +176,8 @@ rowSelected(row) {
                       });
                   }
                   gridApi.setRowData(rowData);
+                  self.setState({rowData:rowData});
+
     		}
         )
         this.state.api.sizeColumnsToFit();
@@ -237,6 +237,29 @@ rowSelected(row) {
 	    this.state.api.onFilterChanged();
 	}
 
+  handleSubmission(decision) {
+    let submissionRowIndex = -1;
+
+    for(var i in this.state.rowData){
+      if (this.state.rowData[i].id === this.state.selectedRows.id)
+        submissionRowIndex = i;
+      }
+
+    let tempRowData = this.state.rowData;
+    
+    if (submissionRowIndex > -1) { tempRowData.splice(submissionRowIndex, 1); }
+
+    this.setState({"selectedRowDetails":[]})
+    this.state.api.setRowData(tempRowData);
+
+    if (decision === "accept") {
+      // accept api call
+    }
+    else {
+      //reject api call
+    }
+  }
+
 	render() {
 		return (
 			<div class="row">
@@ -286,6 +309,7 @@ rowSelected(row) {
           comments = {this.state.selectedRowComments}
           requests = {this.state.selectedRowRequests}
           screenshots = {this.state.selectedRowScreenShots}
+          handleSubmission = {this.handleSubmission.bind(this)}
        />
 			</div>
 			
