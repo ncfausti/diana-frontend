@@ -14,10 +14,13 @@ export default class CheckFilter extends React.Component {
 			color:'#333',
 		};
 		return (
-			<div>
+			<div class="checkbox">
+			<label>
 			<input type="checkbox" 
 			onClick={this.handleClick.bind(this)} 
-			name={this.props.name}></input> <label style={style} htmlFor={this.props.name}>{this.props.name}</label><span>{count}</span>
+			name={this.props.name}></input><span class="checkbox-material"><span class="check"></span></span> {this.props.name}
+			</label>
+			<span class="filter-count-span"> {count} </span>
 			</div>
 		);
 	}
