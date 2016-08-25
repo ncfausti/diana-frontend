@@ -91,16 +91,16 @@ rowSelected(row) {
     }
     else 
     {
-         // console.log('not in cache');
-          let tempRowDetailCache = this.state.rowDetailCache;
-          let tempDetailData = {};
+        // console.log('not in cache');
+        let tempRowDetailCache = this.state.rowDetailCache;
+        let tempDetailData = {};
           
-          // make api call here then this.setState({objReturenedFromApiCall} and) add objReturnedFromApiCall to tempRowDetailCache to 
-          let details = {};
+        // make api call here then this.setState({objReturenedFromApiCall} and) add objReturnedFromApiCall to tempRowDetailCache to 
+        let details = {};
         var p1 = new Promise(
           function(resolve, reject)
               {
-                new APIRequest().makeCorsRequest("","",'GET','api/status/' + row.id +'/',
+                new APIRequest().makeCorsRequest({},'GET','api/status/' + row.id +'/',
                       function(data) {
                             let detailsResponse = JSON.parse(data);
                             tempRowDetailCache[detailsResponse.id] = detailsResponse;
@@ -149,7 +149,7 @@ rowSelected(row) {
    //     console.log("API");
         let gridApi = this.state.api;
         let self = this;
-        new APIRequest().makeCorsRequest("","",'GET','api/submission/table/',
+        new APIRequest().makeCorsRequest({},'GET','api/submission/table/',
         	function(data) {
     			let rowData = [];
                 let items = JSON.parse(data);
@@ -245,19 +245,42 @@ rowSelected(row) {
         submissionRowIndex = i;
       }
 
-    let tempRowData = this.state.rowData;
-    
+    let tempRowData  = this.state.rowData;
+    let submissionID = this.state.selectedRows.id;
+
     if (submissionRowIndex > -1) { tempRowData.splice(submissionRowIndex, 1); }
 
     this.setState({"selectedRowDetails":[]})
     this.state.api.setRowData(tempRowData);
 
-    if (decision === "accept") {
-      // accept api call
-    }
-    else {
-      //reject api call
-    }
+    ///////// api call here ///////////////
+
+    let tempRowDetailCache = this.state.rowDetailCache;
+    let tempDetailData = {};
+      
+    var p1 = new Promise(
+      function(resolve, reject)
+          {
+            new APIRequest().makeCorsRequest({decision:decision, submission:submissionID},'POST','api/user_submission_decisions/',
+                  function(data) {
+                        let detailsResponse = JSON.parse(data);
+                        resolve(detailsResponse);
+                  });
+            
+          }
+    )
+
+    let self = this;
+
+    p1.then(
+      function(val) {
+       console.log(val)
+      }
+    )
+    .catch(function(reason) {
+    //  console.log(reason)
+    });
+
   }
 
 	render() {

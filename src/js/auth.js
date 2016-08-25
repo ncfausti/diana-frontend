@@ -51,7 +51,7 @@ function pretendRequest(email, pass, cb) {
 }
 
 function loginRequest(email, pass, cb) {
- new APIRequest().makeCorsRequest(email, pass,'POST','api/auth/obtaintoken/', function(response){
+ new APIRequest().makeCorsRequest({email:email, pass:pass},'POST','api/auth/obtaintoken/', function(response){
 //    if (email === 'joe@example.com' && pass === 'password1') {
 
   let token = JSON.parse(response)["token"]

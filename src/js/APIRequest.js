@@ -25,7 +25,7 @@ export default class APIRequest {
 
 
         // Make the actual CORS request.
-        makeCorsRequest(email="", pass="",method="GET", path, callback) {
+        makeCorsRequest(formData={},method="GET", path, callback) {
           // This is a sample server that supports CORS.
           var url = 'http://104.197.191.63/' + path + '?format=json';
 
@@ -52,12 +52,18 @@ export default class APIRequest {
           var data = new FormData();
     //      console.log('EMAIL: ' + email)
     //      console.log('PWD: ' + pass)
-          if (email && pass) {
-            data.append("email", email );
-            data.append("password", pass );
+          if (formData.email && formData.pass) {
+            data.append("email", formData.email );
+            data.append("password", formData.pass );
           }
+
+          if (formData.decision && formData.submission) {
+            data.append("decision", formData.decision);
+            data.append("submission", formData.submission);
+          }
+
        //   console.log('sending')
-        //  xhr.setRequestHeader("Cache-Control", "no-cache");
+       //   xhr.setRequestHeader("Cache-Control", "no-cache");
           xhr.send(data);
         }
 

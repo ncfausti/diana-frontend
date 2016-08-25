@@ -41,8 +41,8 @@ export default class DetailColumn extends React.Component {
 				{this.strip(this.props.vulnerability.description)}
 			</div>
 			
-			<button class="btn btn-primary detail-btn" value="accept" onClick={this.decisionClicked.bind(this)}>Accept</button>
-			<button class="btn btn-danger detail-btn" value="reject" onClick={this.decisionClicked.bind(this)}>Reject</button>
+			<button class="btn btn-primary detail-btn" value="approved" onClick={this.decisionClicked.bind(this)}>Accept</button>
+			<button class="btn btn-danger detail-btn" value="rejected" onClick={this.decisionClicked.bind(this)}>Reject</button>
 
 			<hr></hr>
 			<div><strong>References</strong></div>
