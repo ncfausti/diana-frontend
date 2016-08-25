@@ -106,7 +106,7 @@ input+label+span {
     min-height: 800px;
     background-color: rgb(245,245,245);
     padding:0px;
-
+    border-left: 1px solid #ddd;
 }
 
 #filterColumn { border-right: 1px solid #ddd; }
@@ -297,7 +297,8 @@ box-shadow:none;
 .ReactTags__tagInput input {
     border:none;
     width:24px;
-
+    border-radius: 3px;
+    cursor: pointer;
 }
 /*
 * {
@@ -355,8 +356,8 @@ box-shadow:none;
   display: inline-block;
   width: 18px;
   height: 18px;
-  border: 2px solid;
-  border-radius: 2px;
+  border: 1px solid #333;
+  border-radius: 1px;
   overflow: hidden;
   z-index: 1;
   color: #1976D2;
