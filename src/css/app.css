@@ -154,24 +154,24 @@ input+label+span {
     padding-bottom: 2px !important;
     font-size: .8em;
 }
+.ag-cell:focus {outline:none;}
 
 .ag-row:hover { background-color:#AEDFFA !important;}
 .ag-row-selected { 
     background-color:#AEDFFA !important;
 }
-.ag-cell-focus {     
-    border: none !important;
-    border-bottom: 1px solid #d3d3d3 !important; 
-    border-top: 1px solid #d3d3d3 !important;
-    border-right:0px;
-}
+
+
+
 .ag-material .ag-header {
     border-bottom:1px solid #ccc !important;
     font-size:.9em !important;
     font-weight:500 !important;
 }
 
-
+-moz-user-focus: ignore;
+-webkit-user-select: none;
+-moz-user-select:none;
 
 label {
     font-weight: normal !important;
@@ -276,3 +276,7 @@ box-shadow:none;
 .ag-pinned-left-cols-viewport { width: 100% !important; }
 .ag-pinned-left-cols-container { width: 100% !important; }
 .ag-cell-last-left-pinned { width:100% !important; }
+.ReactTags__remove {color:#fff;margin-left:3px;}
+.ag-cell-focus {
+    border:none !important;
+}

@@ -54,7 +54,7 @@ export default class BugTable extends React.Component {
               ]
             }],
       rowDetailCache: {},
-      selectedRowDetails:{},
+      selectedRowDetails:{},  // sent to DetailColumn
       selectedRowVulnerability:{},
       selectedRowRiskLevel:{},
       selectedRowTags:[],
@@ -84,7 +84,9 @@ rowSelected(row) {
     if (row.id in this.state.rowDetailCache) {
       //console.log('FROM CACHE');
       let id = row.id;
-      this.setState({selectedRowDetails:this.state.rowDetailCache[id]});
+      this.setState( { selectedRowDetails:this.state.rowDetailCache[id] } );
+      this.setState( { selectedRowVulnerability:this.state.rowDetailCache[id].vuln_info } );
+   //   console.log(this.state.selectedRowDetails)
 
     }
     else 

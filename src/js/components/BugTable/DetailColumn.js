@@ -4,6 +4,13 @@ export default class DetailColumn extends React.Component {
 		super();
 	}
 
+	strip(html)
+	{
+	   var tmp = document.createElement("DIV");
+	   tmp.innerHTML = html;
+	   return tmp.textContent || tmp.innerText || "";
+	}
+
 	render() {
 		return (
 			<div>
@@ -16,11 +23,12 @@ export default class DetailColumn extends React.Component {
 			<div id="detail-body">
 			<div><h5>Bug ID: <span class="blue">{this.props.details['id']}</span></h5></div>
 			<br></br>
-			<div class={"detail-risk-"+this.props.vulnerability.risk_level}>Risk level: {this.props.vulnerability.risk_level} </div>
+			<div class={"detail-risk-"+this.props.vulnerability.risk_level}>Risk level: 
+			{this.props.vulnerability.risk_level} </div>
 			<div class="threat-description">
 				<strong>{this.props.vulnerability.title}</strong>
 				<br></br>
-				{this.props.vulnerability.description}
+				{this.strip(this.props.vulnerability.description)}
 			</div>
 			
 			<div class="btn btn-primary detail-btn">Accept</div>
