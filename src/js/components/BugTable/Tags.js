@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Tag from './Tags'
 import { WithContext as ReactTags } from 'react-tag-input';
+import APIRequest from '../../APIRequest';
 
 export default class Tags extends React.Component {
 	constructor() {
@@ -10,21 +10,48 @@ export default class Tags extends React.Component {
 	}
 	
 	componentWillMount() {
-		let tagID = 0;
 		let tags = this.props.params.data.tags.map(function(tag,){
-		             return {id:tagID++, text:tag}
+		             return {id:tag.id, name:tag.name, text:tag}
 		             });
 		this.setState({tags});
 	}
 
 	handleDelete(i) {
 		let tags = this.state.tags;
+		console.log(tags);
 		tags.splice(i, 1);
 		this.setState({tags: tags});
 
-		// DELETE /api/tags/<id>
+		// DELETE /api/tags/<tagid>
+		// DELETE 104.197.191.63/api/tags/79/?submission=02e349b0-0751-4693-8e7e-45a255dc96ef
 		// headers auth token
 		// body {submission:id, name:<tagText>}
+
+      /*	
+
+		var p1 = new Promise(
+      	function(resolve, reject) {
+            new APIRequest().makeCorsRequest({submission:decision, name:submissionID},'DELETE','api/tags/' +  + '/',
+                  function(data) {
+                        let detailsResponse = JSON.parse(data);
+                        resolve(detailsResponse);
+                  });
+          		}
+         	);
+
+	    let self = this;
+
+	    p1.then(
+	      function(val) {
+	       console.log(val)
+	      }
+	    )
+	    .catch(function(reason) {
+	    //  console.log(reason)
+	    });
+
+*/
+
 	}
 
 	handleAddition(tag) {
@@ -33,12 +60,34 @@ export default class Tags extends React.Component {
 		text: tag
 		});
 		this.setState({tags:tags});
-
+		//console.log(this.props.params.data)
 		// POST /api/tags/
 		// headers auth token
 		// body {submission:id, name:<tagText>}
-	}
+		// POST 104.197.191.63/api/tags/?submission=02e349b0-0751-4693-8e7e-45a255dc96ef
 
+	    let self = this;
+		var p1 = new Promise(
+      	function(resolve, reject) {
+            new APIRequest().makeCorsRequest({submission:self.props.params.data.id, name:tag},'POST','api/tags/?submission='+self.props.params.data.id,
+                  function(data) {
+                        let detailsResponse = JSON.parse(data);
+                        resolve(detailsResponse);
+                  });
+          		}
+         	);
+
+	    p1.then(
+	      function(val) {
+	       console.log(val)
+	      }
+	    )
+	    .catch(function(reason) {
+	      console.log(reason)
+	    });
+
+
+	}
 	handleDrag(tag, currPos, newPos) {
 		let tags = this.state.tags;
 
@@ -56,7 +105,8 @@ export default class Tags extends React.Component {
 					handleDelete={this.handleDelete.bind(this)}
 					handleAddition={this.handleAddition.bind(this)}
 					handleDrag={this.handleDrag.bind(this)}
-					classNames={{tag: 'tag-span',}} />
+					classNames={{tag: 'tag-span'}}
+					placeholder={'Add'} />
 			</div>
 			)
 	}

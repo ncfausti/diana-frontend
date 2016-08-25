@@ -1,3 +1,8 @@
+need more rows returned from /api/submission/tabl/ for pagination, right now only 10
+need tags for /api/submission/table to be like those from /api/status/
+/api/tags/ POST doesn't seem to be working unexpected token '<'
+
+
 mkdir <project_name> && cd <project_name>
 npm init
 npm install -S webpack

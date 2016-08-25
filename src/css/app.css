@@ -286,5 +286,18 @@ box-shadow:none;
     text-align:center;
     padding-top:180px;
     color:#999;
-
 }
+
+.ReactTags__tagInput {
+    display:inline;
+    border:none;
+    width: 42px;
+}
+
+.ReactTags__tagInput input {
+    border:none;
+    width:24px;
+}
+
+
+

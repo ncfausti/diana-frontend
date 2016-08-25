@@ -27,7 +27,11 @@ export default class APIRequest {
         // Make the actual CORS request.
         makeCorsRequest(formData={},method="GET", path, callback) {
           // This is a sample server that supports CORS.
-          var url = 'http://104.197.191.63/' + path + '?format=json';
+          let jsonFormat = '?format=json';
+          if (formData.name && formData.submission)
+            jsonFormat = '';
+
+          var url = 'http://104.197.191.63/' + path + jsonFormat;
 
           var xhr = this.createCORSRequest(method, url);
 
@@ -50,15 +54,22 @@ export default class APIRequest {
             xhr.setRequestHeader('authorization', 'token ' + auth.getToken());
             
           var data = new FormData();
-    //      console.log('EMAIL: ' + email)
-    //      console.log('PWD: ' + pass)
+
+          // POST login
           if (formData.email && formData.pass) {
             data.append("email", formData.email );
             data.append("password", formData.pass );
           }
 
+          // POST submission decision
           if (formData.decision && formData.submission) {
             data.append("decision", formData.decision);
+            data.append("submission", formData.submission);
+          }
+
+          //  POST tag
+           if (formData.name && formData.submission) {
+            data.append("name", formData.name);
             data.append("submission", formData.submission);
           }
 

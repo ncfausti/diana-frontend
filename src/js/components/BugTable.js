@@ -255,9 +255,6 @@ rowSelected(row) {
 
     ///////// api call here ///////////////
 
-    let tempRowDetailCache = this.state.rowDetailCache;
-    let tempDetailData = {};
-      
     var p1 = new Promise(
       function(resolve, reject)
           {

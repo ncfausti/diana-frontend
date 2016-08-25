@@ -10,7 +10,7 @@ export default class Tag extends React.Component {
 	render() {
 
 		return (
-				<span class="tag-span">{this.props.tagText.tag}</span>
+	//			<span class="tag-span">{this.props.tagText.tag}</span>
             //	return React.createElement("span",{className:'tag-span ' + tag}, null, tag);
              )
 	
