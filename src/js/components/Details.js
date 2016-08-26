@@ -160,7 +160,7 @@ export default class Details extends React.Component{
     	<div class="row">
     	<div class="col-lg-2"></div>
     	<div class="col-lg-5">
-    	<div>{this.state.details.id.substr(this.state.details.id.length - 4)}</div>
+    	<div>Bug ID: {this.state.details.id.substr(this.state.details.id.length - 4)}</div>
     	<div class="inline-block">{this.state.details.status}</div>
     	<div class="inline-block">{this.state.details.vulnerability.category}</div>
     	<div class="inline-block">{this.state.details.vulnerability.title}</div>

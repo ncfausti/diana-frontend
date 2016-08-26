@@ -10,28 +10,25 @@ export default class Tags extends React.Component {
 	}
 	
 	componentWillMount() {
-		let tags = this.props.params.data.tags.map(function(tag,){
-		             return {id:tag.id, name:tag.name, text:tag}
+		let tags = this.props.params.data.tags.map(function(tag){
+		             return {id:tag.id, name:tag.name, text:tag.name}
 		             });
 		this.setState({tags});
 	}
 
 	handleDelete(i) {
 		let tags = this.state.tags;
-		console.log(tags);
+		let tag = tags[i];
 		tags.splice(i, 1);
 		this.setState({tags: tags});
 
-		// DELETE /api/tags/<tagid>
-		// DELETE 104.197.191.63/api/tags/79/?submission=02e349b0-0751-4693-8e7e-45a255dc96ef
-		// headers auth token
-		// body {submission:id, name:<tagText>}
-
-      /*	
+		let self = this;
 
 		var p1 = new Promise(
       	function(resolve, reject) {
-            new APIRequest().makeCorsRequest({submission:decision, name:submissionID},'DELETE','api/tags/' +  + '/',
+      		let path = 'api/tags/' + tag.id + '/?submission=' + self.props.params.data.id;
+
+            new APIRequest().makeCorsRequest({submission:self.props.params.data.id, name:tag.name},'DELETE',path,
                   function(data) {
                         let detailsResponse = JSON.parse(data);
                         resolve(detailsResponse);
@@ -39,18 +36,14 @@ export default class Tags extends React.Component {
           		}
          	);
 
-	    let self = this;
-
 	    p1.then(
 	      function(val) {
-	       console.log(val)
+	    //   console.log(val)
 	      }
 	    )
 	    .catch(function(reason) {
 	    //  console.log(reason)
 	    });
-
-*/
 
 	}
 
