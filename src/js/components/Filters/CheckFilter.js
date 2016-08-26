@@ -16,7 +16,10 @@ export default class CheckFilter extends React.Component {
 	}
 
 	handleClick(e){
-		this.props.changeFilter(this.state.filterDict[e.target.name]);
+		if (e.target.name in this.state.filterDict)
+			this.props.changeFilter(this.state.filterDict[e.target.name]);
+		else
+			this.props.changeFilter(e.target.name);
 	}
 	render() {
 		// override materialize.css style
