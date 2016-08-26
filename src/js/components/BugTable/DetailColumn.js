@@ -66,14 +66,14 @@ export default class DetailColumn extends React.Component {
 			<button class="btn btn-primary detail-btn" value="approved" onClick={this.decisionClicked.bind(this)}>Accept</button>
 			<button class="btn btn-danger detail-btn" value="rejected" onClick={this.decisionClicked.bind(this)}>Reject</button>
 			<hr></hr>
-			<div><strong>References</strong></div>
-			<div class="text-align-center">
+			<div><strong>Screenshots</strong></div>
+			<div class="text-align-center screenshot-section">
 
-			<img onClick={this.open} src="http://usabilitygeek.com/wp-content/uploads/2013/06/recommended-wordpress-security.jpg" height="150" width="150" class="details-screenshot"></img>
+			<a onClick={this.open.bind(this)}><img src="http://usabilitygeek.com/wp-content/uploads/2013/06/recommended-wordpress-security.jpg" height="150" width="150" class="details-screenshot"></img></a>
 			{this.props.screenshots}
 			</div>
 			<hr></hr>
-			<div><strong>Screenshots</strong></div>
+			<div><strong>References</strong></div>
 			<br></br>
 
 			<a href="http://wikipedia.org" target="_blank">Wikipedia</a>
@@ -81,33 +81,15 @@ export default class DetailColumn extends React.Component {
 			<a href="http://owasp.org" target="_blank">OWASP</a>
 			</div>
 
-
-
-
-
-
 			<Modal show={this.state.showModal} onHide={this.close}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h4>Text in a modal</h4>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-
-            <h4>Popover in a modal</h4>
-            <p>there is a <OverlayTrigger overlay={popover}><a href="#">popover</a></OverlayTrigger> here</p>
-
-            <h4>Tooltips in a modal</h4>
-            <p>there is a <OverlayTrigger overlay={tooltip}><a href="#">tooltip</a></OverlayTrigger> here</p>
-
-            <hr />
-			<img src="http://usabilitygeek.com/wp-content/uploads/2013/06/recommended-wordpress-security.jpg"></img>
-
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.close}>Close</Button>
-          </Modal.Footer>
-        </Modal>
+	          <Modal.Body>
+	            <hr />
+				<img src="http://usabilitygeek.com/wp-content/uploads/2013/06/recommended-wordpress-security.jpg"></img>
+	          </Modal.Body>
+	          <Modal.Footer>
+	            <Button onClick={this.close.bind(this)}>Close</Button>
+	          </Modal.Footer>
+        	</Modal>
 
 
 
