@@ -42,7 +42,7 @@ export default class DetailColumn extends React.Component {
 		let displayNone = {display:'none'};
 		// if no details set, display some message
 		if (!this.props.id)
-			return(<div class="null-detail">No details to display</div>);
+			return(<div class="null-detail">No Details</div>);
 
 		return (
 			<div>
@@ -53,7 +53,7 @@ export default class DetailColumn extends React.Component {
 			</div>
 			</div>
 			<div id="detail-body">
-			<div><h5>Bug ID: <span class="blue">{this.props.id}</span></h5></div>
+			<div><h5>Bug ID: <span class="blue">{this.props.id.substr(this.props.id.length - 4)}</span></h5></div>
 			<br></br>
 			<div class={"detail-risk-"+this.props.risk_level}>{this.props.risk_level} Risk Level</div>
 			

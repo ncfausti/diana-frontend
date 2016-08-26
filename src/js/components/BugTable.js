@@ -234,7 +234,7 @@ rowSelected(row) {
                       rowData.push({
                           id:item.id,
                           status:item.client_decision,
-                          vulnerability:item.vuln_info,
+                          vulnerability:item.vulnerability,
                           risk_level:item.risk_level,
                           age: (function() {
                                   let created = item.created;

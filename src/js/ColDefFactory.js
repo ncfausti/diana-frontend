@@ -24,7 +24,7 @@ export default class ColDefFactory {
                         }
 
             },
-            {headerName: "Status", field: "status", enableRowGroup: true, enablePivot: true,
+            {headerName: "Status", field: "status",width:120, enableRowGroup: true, enablePivot: true,
                         pinned: true, cellStyle: {textTransform:'capitalize'}, cellRenderer: function(params) {
                             if(params.value === "auto_rejected" || params.value === "rejected")
                                 return "rejected";
@@ -33,10 +33,10 @@ export default class ColDefFactory {
                         }
             },
             {headerName: "Risk", field: "risk_level", enableRowGroup: true, enablePivot: true,
+                         pinned: true, width:90},
+            {headerName: "Type", field: "vulnerability",width:240, enableRowGroup: true, enablePivot: true,
                          pinned: true},
-            {headerName: "Type", field: "vulnerability", enableRowGroup: true, enablePivot: true,
-                         pinned: true},
-            {headerName: "Age(days)", field: "age", enableRowGroup: true, enablePivot: true,
+            {headerName: "Age(days)", field: "age",width:120, enableRowGroup: true, enablePivot: true,
                         pinned: true},
             {headerName: "Confidence(%)", field: "confidence", enableRowGroup: true, enablePivot: true,
                          pinned: true},
