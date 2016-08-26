@@ -3,7 +3,7 @@ body {
     font-size: 13px;
     line-height: 20px;
     margin:0px;
-    width: 1440px;
+    width: 100%;
 }
 li a { color:#F5F5F5;
     padding-bottom: 6px; 
