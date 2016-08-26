@@ -187,7 +187,7 @@ input+label+span {
 
 .ag-row { border-bottom: 1px solid #eee !important; }
 
-
+.inline-block {display:inline-block;}
 
 .ag-material .ag-header {
     border-bottom:1px solid #ccc !important;

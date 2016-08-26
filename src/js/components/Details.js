@@ -2,6 +2,7 @@
 import React from 'react'
 import Router from 'react-router'
 import APIRequest from '../APIRequest'
+import Header from '../APIRequest'
 
 export default class Details extends React.Component{
   constructor() {
@@ -159,19 +160,28 @@ export default class Details extends React.Component{
     	<div class="row">
     	<div class="col-lg-2"></div>
     	<div class="col-lg-5">
-    	{this.state.details.id}
-    	{this.state.details.status}
-    	{this.state.details.client}
-    	{this.state.details.risk_level.title}
-    	{this.state.details.risk_level.number_level}
-    	{this.state.details.vulnerability.impact}
-    	{this.state.details.vulnerability.category}
-    	{this.state.details.vulnerability.risk_level}
-    	{this.state.details.vulnerability.description}
-    	{this.state.details.vulnerability.title}
-    	{this.state.details.vulnerability.references}
-    	{this.state.details.vulnerability.recommendation}
-    	{this.state.details.vulnerability.taxonomies}
+    	<div>{this.state.details.id.substr(this.state.details.id.length - 4)}</div>
+    	<div class="inline-block">{this.state.details.status}</div>
+    	<div class="inline-block">{this.state.details.vulnerability.category}</div>
+    	<div class="inline-block">{this.state.details.vulnerability.title}</div>
+    	<div class="inline-block">{this.state.details.confidence_score}%</div>
+
+    	<div>{this.state.details.client}</div>
+    	<div >{this.state.details.vulnerability.title}</div>
+    	<div>{this.state.details.risk_level.title}</div>
+    	<div class={"detail-risk-"+this.state.details.risk_level.title}>{this.state.details.risk_level.title} Risk Level</div>
+    	<div>{this.state.details.risk_level.number_level}</div>
+    	<div>{this.state.details.vulnerability.impact}</div>
+    	<div>{this.state.details.vulnerability.risk_level}</div>
+    	<div>{this.state.details.vulnerability.description}</div>
+    	<hr></hr>
+
+    	<div>{this.state.details.vulnerability.references}</div>
+    	<hr></hr>
+    	<div>{this.state.details.vulnerability.recommendation}</div>
+    	<hr></hr>
+
+    	<div>{this.state.details.vulnerability.taxonomies}</div>
     	</div>
     	<div class="col-lg-3">
     	<span>Bounty: </span><span class="details-bounty-input">{this.state.details.calculated_payout}</span>
