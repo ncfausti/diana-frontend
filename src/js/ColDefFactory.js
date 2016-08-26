@@ -13,22 +13,28 @@ export default class ColDefFactory {
             {headerName: "ID", field: "id", enableRowGroup: true, enablePivot: true,
                         width: 140, pinned: true,
                         cellStyle: function(params) {
-                            if (params.data.risk_level === 'Critical') return {borderLeft:'3px solid #CB000F'};
-                            if (params.data.risk_level === 'Medium') return {borderLeft:'3px solid #FB6545'};
-                            if (params.data.risk_level === 'Low') return {borderLeft:'3px solid gold'};
-                            return {borderLeft:'3px solid red'};
+                            let style = {borderLeft:'3px solid #0a5', textAlign: 'center', textTransform:'uppercase' };
+                            if (params.data.risk_level === 'Critical') { style['borderLeft'] = '3px solid #CB000F'  };
+                            if (params.data.risk_level === 'High') {style['borderLeft'] = '3px solid #FB6545' };
+                            if (params.data.risk_level === 'Low') {style['borderLeft'] = '3px solid #FA3' };
+                            return style;
                         },
                         cellRenderer: function(params) {
-                           return  '<a href=/#/submissions/' + params.value + '>' + params.value + '</a>';
+                           return  '<a href=/#/submissions/' + params.value + '>' + params.value.substr(params.value.length - 4) + '</a>';
                         }
 
             },
             {headerName: "Status", field: "status", enableRowGroup: true, enablePivot: true,
-                        pinned: true, cellStyle: {textTransform:'capitalize'}
+                        pinned: true, cellStyle: {textTransform:'capitalize'}, cellRenderer: function(params) {
+                            if(params.value === "auto_rejected" || params.value === "rejected")
+                                return "rejected";
+                            else
+                                return params.value;
+                        }
             },
-            {headerName: "Risk", field: "risk_level","hide":true, enableRowGroup: true, enablePivot: true,
+            {headerName: "Risk", field: "risk_level", enableRowGroup: true, enablePivot: true,
                          pinned: true},
-            {headerName: "Type", field: "vulnerability","hide":true, enableRowGroup: true, enablePivot: true,
+            {headerName: "Type", field: "vulnerability", enableRowGroup: true, enablePivot: true,
                          pinned: true},
             {headerName: "Age(days)", field: "age", enableRowGroup: true, enablePivot: true,
                         pinned: true},

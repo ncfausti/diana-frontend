@@ -1,7 +1,10 @@
 import React from 'react';
+import {Modal, Popover, Tooltip, OverlayTrigger, Button} from 'react-bootstrap';
+
 export default class DetailColumn extends React.Component {
 	constructor() {
 		super();
+		this.state = {showModal: false}
 	}
 
 	strip(html)
@@ -16,10 +19,29 @@ export default class DetailColumn extends React.Component {
 		this.props.handleSubmission(decision);
 	}
 
+	 close() {
+    	this.setState({ showModal: false });
+	 }
+
+	 open() {
+	    this.setState({ showModal: true });
+	  }
+
+
 	render() {
+		const popover = (
+      <Popover id="modal-popover" title="popover">
+        very popover. such engagement
+      </Popover>
+    );
+    const tooltip = (
+      <Tooltip id="modal-tooltip">
+        wow.
+      </Tooltip>
+    );
 		let displayNone = {display:'none'};
 		// if no details set, display some message
-		if (!this.props.details.id)
+		if (!this.props.id)
 			return(<div class="null-detail">No details to display</div>);
 
 		return (
@@ -31,25 +53,63 @@ export default class DetailColumn extends React.Component {
 			</div>
 			</div>
 			<div id="detail-body">
-			<div><h5>Bug ID: <span class="blue">{this.props.details['id']}</span></h5></div>
+			<div><h5>Bug ID: <span class="blue">{this.props.id}</span></h5></div>
 			<br></br>
-			<div class={"detail-risk-"+this.props.vulnerability.risk_level}>Risk level: {this.props.vulnerability.risk_level} </div>
+			<div class={"detail-risk-"+this.props.risk_level}>{this.props.risk_level} Risk Level</div>
+			
 			<div class="threat-description">
-				<strong>{this.props.vulnerability.title}</strong>
+				<strong>{this.props.vuln_title}</strong>
 				<br></br>
-				{this.strip(this.props.vulnerability.description)}
+				{this.strip(this.props.vuln_desc)}
 			</div>
 			
 			<button class="btn btn-primary detail-btn" value="approved" onClick={this.decisionClicked.bind(this)}>Accept</button>
 			<button class="btn btn-danger detail-btn" value="rejected" onClick={this.decisionClicked.bind(this)}>Reject</button>
-
 			<hr></hr>
 			<div><strong>References</strong></div>
+			<div class="text-align-center">
+
+			<img onClick={this.open} src="http://usabilitygeek.com/wp-content/uploads/2013/06/recommended-wordpress-security.jpg" height="150" width="150" class="details-screenshot"></img>
+			{this.props.screenshots}
+			</div>
+			<hr></hr>
+			<div><strong>Screenshots</strong></div>
+			<br></br>
 
 			<a href="http://wikipedia.org" target="_blank">Wikipedia</a>
 			<br></br>
 			<a href="http://owasp.org" target="_blank">OWASP</a>
 			</div>
+
+
+
+
+
+
+			<Modal show={this.state.showModal} onHide={this.close}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>Text in a modal</h4>
+            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+
+            <h4>Popover in a modal</h4>
+            <p>there is a <OverlayTrigger overlay={popover}><a href="#">popover</a></OverlayTrigger> here</p>
+
+            <h4>Tooltips in a modal</h4>
+            <p>there is a <OverlayTrigger overlay={tooltip}><a href="#">tooltip</a></OverlayTrigger> here</p>
+
+            <hr />
+			<img src="http://usabilitygeek.com/wp-content/uploads/2013/06/recommended-wordpress-security.jpg"></img>
+
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.close}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+
+
 
 			</div>
 		);

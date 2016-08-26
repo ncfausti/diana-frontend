@@ -3,9 +3,19 @@ body {
     font-size: 13px;
     line-height: 20px;
     margin:0px;
+    width: 1440px;
 }
 li a { color:#F5F5F5;
     padding-bottom: 6px; 
+}
+.navHeaderSpan{
+    display: block;
+    filtbox-shadow: 0 0 5px rgba(57,70,78,1.2);
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    top: 38px;
+    background-color: #fff;
 }
 
 a:hover { text-decoration: none; }
@@ -19,6 +29,8 @@ header {
     background-color: rgb(3,23,43);
     color:#ddd;
 }
+
+/*     box-shadow: 0 0 6px rgba(57,70,78,.5); */
 
 header h3 { 
             margin-top:0px;
@@ -130,9 +142,16 @@ input+label+span {
 .detail-risk-11{ border-left: 6px solid gold;padding-left:6px}
 .detail-risk-10{ border-left: 6px solid gold;padding-left:6px}
 
+.detail-risk-Critical{ border-left: 6px solid #CB0;padding-left:6px}
+.detail-risk-High{ border-left: 6px solid #FB6545;padding-left:6px}
+.detail-risk-Low{ border-left: 6px solid #FA3;padding-left:6px}
+.detail-risk-Info{ border-left: 6px solid #0A5;padding-left:6px}
+
+
 .row-risk-Critical{ border-left: 3px solid red;padding-left:6px;}
 .row-risk-High{ border-left: 6px solid orange;padding-left:6px}
 .row-risk-Low{ border-left: 3px solid gold;padding-left:6px}
+
 
 /* Rules for sizing the icon. */
 .material-icons.md-12 { font-size: 12px; }
@@ -153,13 +172,18 @@ input+label+span {
     padding-top: 18px !important;
     padding-bottom: 2px !important;
     font-size: .8em;
+    border: none !important;
 }
 .ag-cell:focus {outline:none;}
 
-.ag-row:hover { background-color:#AEDFFA !important;}
+.ag-row:hover { background-color:#ebebeb !important;}
 .ag-row-selected { 
-    background-color:#AEDFFA !important;
+    /*color: rgb(40,118,210);*/
+    font-weight:bold;
+    background-color: #EEE !important;
 }
+
+.ag-row { border-bottom: 1px solid #eee !important; }
 
 
 
@@ -202,6 +226,13 @@ label {
     left: 60px;
 }
 
+.modal-container {
+  position: relative;
+}
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: absolute;
+}
+
 .recharts-wrapper { margin-top: 42px; }
 .simple-list-div ul { 
     list-style: none;
@@ -210,6 +241,13 @@ label {
 }
 .margin-left-90{margin-left:90px;}
 
+.details-screenshot {
+    border: 3px solid white;
+    box-shadow: 0 0 6px rgba(0,0,0,.5);
+    border-radius: 3px;
+    margin-top:18px;
+}
+.text-align-center { text-align:center; }
 .simple-list-div { 
     color:#999;
     font-weight:500;
@@ -277,10 +315,7 @@ box-shadow:none;
 .ag-pinned-left-cols-container { width: 100% !important; }
 .ag-cell-last-left-pinned { width:100% !important; }
 .ReactTags__remove {color:#fff;margin-left:3px;}
-.ag-cell-focus {
-    border: none !important;
-    border-bottom:1px solid #d3d3d3 !important;
-}
+
 
 .null-detail { 
     text-align:center;
@@ -557,5 +592,8 @@ box-shadow:none;
 
 .filter-count-span {    
     float: right;
-    padding-right: 12px;
+}
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }

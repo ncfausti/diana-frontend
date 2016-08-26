@@ -1,5 +1,6 @@
 filter counts
-details column
+details column additions, bounty/ screenshots, 
+logout/profile dropdown icon
 
 need more rows returned from /api/submission/tabl/ for pagination, right now only 10
 need tags for /api/submission/table to be like those from /api/status/

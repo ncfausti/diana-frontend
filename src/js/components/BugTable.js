@@ -54,16 +54,7 @@ export default class BugTable extends React.Component {
               ]
             }],
       rowDetailCache: {},
-      selectedRowDetails:{},  // sent to DetailColumn
-      selectedRowVulnerability:{},
-      selectedRowRiskLevel:{},
-      selectedRowTags:[],
-      selectedRowComments:{},
-      selectedRowRequests:{},
-      selectedRowScreenShots:{},
-      selectedRowVuln:{},
       api:{},
-
 			filters:new Set([]),
   }
 
@@ -74,9 +65,91 @@ componentWillUpdate() {
 componentDidUpdate() {
 }
 
-setDetails(val) {
-  this.setState({selectedRowDetails:val});
+componentWillMount() {
+      this.setState({details:{
+            "id":"",
+            "status": "",
+            "creator": "",
+            "client": "",
+            "risk_level": {
+              /*
+              "title": "Low",
+              "number_level": 12
+              */
+            },
+            "created": "",
+            "modified": "",
+            "payout": "",
+            "comment":"",
+            "confidence_score":"",
+            "payload": "",
+            "calculated_payout": "0.00",
+            "client_decision": "open",
+            "triage_decision": "open",
+            "tags": [
+              /*
+              {
+                "id": 319,
+                "name": "critical"
+              },
+              */
+            ],
+            "comments": [
+              /*
+              {
+                "id": "796f34d6-deb4-4b35-b408-551682cdd5b0",
+                "author": "jacob.kyle+bughunter@gmail.com",
+                "text": "sample comment 0",
+                "created": "2016-08-26T00:27:26.192000Z",
+                "modified": "2016-08-26T00:27:26.192000Z"
+              } 
+              */
+            ],
+            "requests": [],
+            "screenshots": [],
+            "vulnerability": {
+              "impact": "",
+              "category": "",
+              "risk_level": "",
+              "description": "",
+              "title": "",
+              "references": [],
+              "recommendation": "",
+              "taxonomies": "",
+            }
+}});
 }
+
+setDetails(val) {
+  this.setState({details:val});
+}
+
+/*
+dive(currentKey, into, target) {
+      for (var i in into) {
+          if (into.hasOwnProperty(i)) {
+              var newKey = i;
+              var newVal = into[i];
+              
+              if (currentKey.length > 0) {
+                  newKey = currentKey + '.' + i;
+              }
+              
+              if (typeof newVal === "object") {
+                  this.dive(newKey, newVal, target);
+              } else {
+                  target[newKey] = newVal;
+              }
+          }
+      }
+  }
+
+flatten(arr) {
+      var newObj = {};
+      this.dive("", arr, newObj);
+      return newObj;
+  }
+*/
 
 rowSelected(row) {
     this.setState({selectedRows:row});
@@ -84,9 +157,9 @@ rowSelected(row) {
     if (row.id in this.state.rowDetailCache) {
       //console.log('FROM CACHE');
       let id = row.id;
-      this.setState( { selectedRowDetails:this.state.rowDetailCache[id] } );
+      this.setState( { details:this.state.rowDetailCache[id] } );
       this.setState( { selectedRowVulnerability:this.state.rowDetailCache[id].vuln_info } );
-   //   console.log(this.state.selectedRowDetails)
+   //   console.log(this.state.details)
 
     }
     else 
@@ -118,21 +191,19 @@ rowSelected(row) {
 
         p1.then(
           function(val) {
-         //   console.log(val)
-           self.setState({selectedRowDetails:val});
-           self.setState({selectedRowVulnerability:val.vuln_info});
-           self.setState({selectedRowRiskLevel:val.risk_level});
+           self.setState({details:val});
+           console.log('this.state')
+           console.log(self.state.details);
           }
         )
         .catch(function(reason) {
-        //  console.log(reason)
+          console.log(reason)
         });
           this.setState({rowDetailCache:tempRowDetailCache});
     }
   }
 
 	onRowSelected(event) {
-  //      console.log('onRowSelected: ' + event.node.selected);
         var rows = this.state.api.getSelectedRows();
 
         // Call onRowSelected that has flowed down from Layouts.js
@@ -191,38 +262,19 @@ rowSelected(row) {
     }
 
    	doesExternalFilterPass(node) {
-  //  	console.log('doesExtFilterPass')
     	
     	const risks = new Set(['Critical','High','Medium','Low','Info']);
     	const statuses = new Set(['Verified','Not verified', 'Duplicate']);
     	const types = new Set(['SQL Injection','Cross-site Scripting','TLS v1.0 Enables','Clickjacking','Open Direction']);
 
-    //	for (var i in this.state.filters) {
-    //		let item = this.state.filters[i];
-    //		console.log('ITEMS:' + item)
-
-    //		if (risks.has(item)) return node.data.risk_level === item;
-    //		if (statuses.has(item)) return node.data.status === item;
-    //		if (types.has(item)) return node.data.vulnerability === item;
-    //	}
     	let filters = this.state.filters;
-    //	console.log('FILTERS:' + filters);
+
     	if (filters.has(node.data.risk_level) || filters.has(node.data.status) || 
     		filters.has(node.data.vulnerability)) {
     		return true;
     	}
 
     	return false;
-
-    	/*node.data.risk_level
-    	node.data.status
-    	node.data.vulnerability
-   		switch(this.state.currentFilter){
-   			case 'Critical': return node.data.risk_level === "Critical";
-   			case 'Verified': return node.data.status === "Verified";
-   			default: return true;
-   		}
-   		*/
     }
 	
 
@@ -250,7 +302,7 @@ rowSelected(row) {
 
     if (submissionRowIndex > -1) { tempRowData.splice(submissionRowIndex, 1); }
 
-    this.setState({"selectedRowDetails":[]})
+    this.setState({"details":[]})
     this.state.api.setRowData(tempRowData);
 
     ///////// api call here ///////////////
@@ -321,16 +373,19 @@ rowSelected(row) {
 			</div>
 			
 			<div id="detailColumn" class="col-md-2">
+
 			 <DetailColumn 
-          details={this.state.selectedRowDetails} 
-          vulnerability={this.state.selectedRowVulnerability}
-          risk_level = {this.state.selectedRowRiskLevel}
-          tags = {this.state.selectedRowTags}
-          comments = {this.state.selectedRowComments}
-          requests = {this.state.selectedRowRequests}
-          screenshots = {this.state.selectedRowScreenShots}
+          id={this.state.details.id}
+          risk_number={this.state.details.risk_level.number_level}
+          risk_level = {this.state.details.risk_level.title}
+          vuln_title={this.state.details.vulnerability.category}
+          vuln_desc={this.state.details.vulnerability.description}
+          tags = {this.state.details.tags}
+          comments = {this.state.details.comments}  //array
+          requests = {this.state.details.requests}  //array
+          screenshots = {this.state.selectedRowScreenShots}  //array
           handleSubmission = {this.handleSubmission.bind(this)}
-       />
+      />
 			</div>
 			
 			</div>

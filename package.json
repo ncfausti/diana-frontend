@@ -15,6 +15,7 @@
     "fetch-jsonp": "^1.0.0",
     "materialize-css": "^0.97.7",
     "react": "^15.3.0",
+    "react-bootstrap": "^0.30.3",
     "react-data-grid": "^1.0.32",
     "react-dom": "^15.3.0",
     "react-router": "^2.6.1",

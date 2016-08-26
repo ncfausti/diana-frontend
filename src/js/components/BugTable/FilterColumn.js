@@ -15,7 +15,6 @@ export default class FilterColumn extends React.Component {
 			<CheckFilter name="approved" changeFilter={this.props.changeFilter} />
 			<CheckFilter name="rejected" changeFilter={this.props.changeFilter} />
 			<CheckFilter name="open" changeFilter={this.props.changeFilter} />
-			<CheckFilter name="Out of scope" changeFilter={this.props.changeFilter} />
 			</div>
 			<div class="filterColumnSection">
 			<strong>Risk</strong>

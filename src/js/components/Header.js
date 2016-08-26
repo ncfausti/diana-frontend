@@ -11,6 +11,7 @@ export default class Header extends React.Component {
 	render() {
 		return (
 			<header>
+			<span class="navHeaderSpan"></span>
 			<Title title={this.props.title} />
 			<TopNav />
 			<SubmissionInfoSection />
