@@ -4,7 +4,14 @@ import {Modal, Popover, Tooltip, OverlayTrigger, Button} from 'react-bootstrap';
 export default class DetailColumn extends React.Component {
 	constructor() {
 		super();
-		this.state = {showModal: false}
+		this.state = {
+					showImgModal: false,
+					showConfirm: false,
+					bounty:8,
+					acceptReject:"",
+					decision:""
+
+		}
 	}
 
 	strip(html)
@@ -16,15 +23,27 @@ export default class DetailColumn extends React.Component {
 
 	decisionClicked(e) {
 		const decision = e.target.value
-		this.props.handleSubmission(decision);
+		this.props.handleSubmission(decision, this.state.bounty);
 	}
 
 	 close() {
-    	this.setState({ showModal: false });
+    	this.setState({ showImgModal: false });
 	 }
 
-	 open() {
-	    this.setState({ showModal: true });
+	 open(e) {
+	    this.setState({ showImgModal: true });
+	  }
+
+	  openConfirm(e) {
+	  	this.setState({showConfirm:true});
+    	this.setState({acceptReject:e.target.name});
+    	this.setState({decision:e.target.value});
+	  }
+
+	  closeConfirm(e) {
+    	this.setState({acceptReject:""});
+    	this.setState({decision:""});
+	  	this.setState({showConfirm:false});
 	  }
 
 
@@ -63,8 +82,12 @@ export default class DetailColumn extends React.Component {
 				{this.strip(this.props.vuln_desc)}
 			</div>
 			
-			<button class="btn btn-primary detail-btn" value="approved" onClick={this.decisionClicked.bind(this)}>Accept</button>
-			<button class="btn btn-danger detail-btn" value="rejected" onClick={this.decisionClicked.bind(this)}>Reject</button>
+			<div class="bounty">
+			<span>Bounty:</span> <span class="float-right">$</span><input name="bounty" placeholder={this.props.payout}></input>
+			</div>
+
+			<button class="btn btn-primary detail-btn" value="approved" name="accept" onClick={this.openConfirm.bind(this)}>Accept</button>
+			<button class="btn btn-danger detail-btn" value="rejected" name="reject" onClick={this.openConfirm.bind(this)}>Reject</button>
 			<hr></hr>
 			<div><strong>Screenshots</strong></div>
 			<div class="text-align-center screenshot-section">
@@ -72,7 +95,7 @@ export default class DetailColumn extends React.Component {
 			<a onClick={this.open.bind(this)}><img src="http://usabilitygeek.com/wp-content/uploads/2013/06/recommended-wordpress-security.jpg" height="150" width="150" class="details-screenshot"></img></a>
 			{this.props.screenshots}
 			</div>
-			<hr></hr>
+			
 			<div><strong>References</strong></div>
 			<br></br>
 
@@ -81,7 +104,24 @@ export default class DetailColumn extends React.Component {
 			<a href="http://owasp.org" target="_blank">OWASP</a>
 			</div>
 
-			<Modal show={this.state.showModal} onHide={this.close}>
+			
+		    <Modal show={this.state.showConfirm} onHide={this.closeConfirm}>
+		      <Modal.Header>
+		        <Modal.Title>Confirm <span class="capitalize">{this.state.acceptReject}</span></Modal.Title>
+		      </Modal.Header>
+
+		      <Modal.Body>
+		       <span class="capitalize">{this.state.acceptReject}</span> bug ID: 
+		       <span class="blue capitalize">{this.props.id.substr(this.props.id.length - 4)}</span> for ${this.state.bounty} ?
+		      </Modal.Body>
+
+		      <Modal.Footer>
+		        <Button onClick={this.closeConfirm.bind(this)}>Cancel</Button>
+		        <Button bsStyle="primary" value={this.state.decision} onClick={this.decisionClicked.bind(this)}><span class="capitalize">{this.state.acceptReject}</span></Button>
+		      </Modal.Footer>
+		    </Modal>
+
+			<Modal show={this.state.showImgModal} onHide={this.close}>
 	          <Modal.Body>
 	            <hr />
 				<img src="http://usabilitygeek.com/wp-content/uploads/2013/06/recommended-wordpress-security.jpg"></img>

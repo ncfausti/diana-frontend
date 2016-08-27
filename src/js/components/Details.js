@@ -2,7 +2,6 @@
 import React from 'react'
 import Router from 'react-router'
 import APIRequest from '../APIRequest'
-import Header from '../APIRequest'
 
 export default class Details extends React.Component{
   constructor() {

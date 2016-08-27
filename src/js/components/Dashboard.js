@@ -1,11 +1,12 @@
 // components/Dashboard.js
 import React from 'react'
-//import {BarChart} from 'react-d3'
+import RefData from '../RefData'
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts'
 import DashboardList from './DashboardList'
 export default class Dashboard extends React.Component{
 	constructor() {
 		super()
+
 		this.state = {
 						data:[
 						{name: 'January', Critical: 4000, High: 2400, Low:1000, amt: 2400},
@@ -30,10 +31,88 @@ export default class Dashboard extends React.Component{
 						colOneData:[],
 						colTwoData:[],
 						colThreeData:[],
-
+            dashboardSums:{         // array of these
+              "date":0,
+              "client":0,
+              "num_critical":0,
+              "num_high":0,
+              "num_medium":0,
+              "num_low":0,
+              "num_info":0,
+              "num_sans_1":0,
+              "num_sans_2":0,
+              "num_sans_3":0,
+              "num_sans_4":0,
+              "num_sans_5":0,
+              "num_sans_6":0,
+              "num_sans_7":0,
+              "num_sans_8":0,
+              "num_sans_9":0,
+              "num_sans_10":0,
+              "num_sans_11":0,
+              "num_sans_12":0,
+              "num_sans_13":0,
+              "num_sans_14":0,
+              "num_sans_15":0,
+              "num_sans_16":0,
+              "num_sans_17":0,
+              "num_sans_18":0,
+              "num_sans_19":0,
+              "num_sans_20":0,
+              "num_sans_21":0,
+              "num_sans_22":0,
+              "num_sans_23":0,
+              "num_sans_24":0,
+              "num_sans_25":0,
+              "num_owasp_1":0,
+              "num_owasp_2":0,
+              "num_owasp_3":0,
+              "num_owasp_4":0,
+              "num_owasp_5":0,
+              "num_owasp_6":0,
+              "num_owasp_7":0,
+              "num_owasp_8":0,
+              "num_owasp_9":0,
+              "num_owasp_10":0,
+              "num_configuration_management":0,
+              "num_data_confidentiality":0,
+              "num_error_handling":0,
+              "num_session_management":0,
+              "num_data_validation":0,
+              "num_authorization":0,
+              "num_authentication":0,
+              "num_input_validation":0,
+              "num_auditing_and_logging":0,
+              "num_architecture":0,
+              "num_other_category":0,
+            },
   		}
-  	}
+      console.log("SUMS")
+      console.log(this.state.dashboardSums);
+      let dataArray = RefData.DASHBOARD;
+      let ignore = new Set(["date",
+              "client",
+              "num_critical",
+              "num_high",
+              "num_medium",
+              "num_low",
+              "num_info"]);
+      
 
+      for (var i in data) {
+        let obj = data[i];
+
+        for(var key in Object.keys(obj)) {
+          if (!ignore.has(key)) { //if not client, num_critical, etc. add sum
+            
+          }
+        }
+      }
+  }
+
+  componenetWillMount() {
+    
+  }
   render() {
     return (
     	<div class="container">

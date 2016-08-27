@@ -5,6 +5,7 @@ import APIRequest from '../APIRequest';
 import ColDefFactory from '../ColDefFactory';
 import FilterColumn from './BugTable/FilterColumn';
 import DetailColumn from './BugTable/DetailColumn';
+import DetailsLink from './BugTable/DetailsLink.js';
 
 import 'ag-grid/dist/styles/ag-grid.css';
 import 'ag-grid/dist/styles/theme-material.css';
@@ -289,7 +290,7 @@ rowSelected(row) {
 	    this.state.api.onFilterChanged();
 	}
 
-  handleSubmission(decision) {
+  handleSubmission(decision, amount) {
     let submissionRowIndex = -1;
 
     for(var i in this.state.rowData){
@@ -305,7 +306,7 @@ rowSelected(row) {
     this.setState({"details":[]})
     this.state.api.setRowData(tempRowData);
 
-    ///////// api call here ///////////////
+    ///////// api call for accept/reject///////////////
 
     var p1 = new Promise(
       function(resolve, reject)
@@ -315,7 +316,6 @@ rowSelected(row) {
                         let detailsResponse = JSON.parse(data);
                         resolve(detailsResponse);
                   });
-            
           }
     )
 
@@ -330,7 +330,39 @@ rowSelected(row) {
     //  console.log(reason)
     });
 
-  }
+  /*
+
+  //////////// api call for how much /////////////////
+  var p2 = new Promise(
+      function(resolve, reject)
+          {
+            console.log("AMOUNT")
+            console.log(amount);
+            new APIRequest().makeCorsRequest({amount:amount, submission:submissionID},'POST','api/submission_payouts/',
+                  function(data) {
+                        let detailsResponse = JSON.parse(data);
+                        resolve(detailsResponse);
+                  });
+          }
+    )
+
+    let me = this;
+
+    p1.then(
+      function(val) {
+
+       console.log(val)
+      }
+    )
+    .catch(function(reason) {
+      console.log(reason)
+    });
+*/
+
+  } 
+
+   // /end handleDecision
+
 
 	render() {
 		return (
@@ -384,6 +416,7 @@ rowSelected(row) {
           comments = {this.state.details.comments}  //array
           requests = {this.state.details.requests}  //array
           screenshots = {this.state.selectedRowScreenShots}  //array
+          payout = {this.state.details.calculated_payout}
           handleSubmission = {this.handleSubmission.bind(this)}
       />
 			</div>

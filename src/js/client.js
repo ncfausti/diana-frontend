@@ -7,7 +7,7 @@ import Dashboard from './components/Dashboard.js';
 import Details from './components/Details.js';
 import Submissions from './components/Submissions.js';
 import BugTable from './components/BugTable.js';
-
+import DetailsLink from './components/BugTable/DetailsLink.js';
 import { Router, Route, Link, withRouter, IndexRoute, browserHistory, hashHistory } from 'react-router';
 
 import withExampleBasename from './withExampleBasename'
@@ -120,42 +120,7 @@ const Login = withRouter(
     }
   })
 )
-/*
 
-        <form onSubmit={this.handleSubmit}>
-
-          <label><input ref="email" placeholder="email" defaultValue="joe@example.com" /></label>
-          <label><input ref="pass" placeholder="password" /></label> (hint: password1)<br />
-          <button type="submit">login</button>
-          {this.state.error && (
-            <p>Bad login information</p>
-          )}
-
-        </form>
-
-<div class="container">
-	    <div class="row login">
-		    <div class="col-md-4">
-		      <form class="form-signin" onSubmit={this.handleSubmit}>
-		        <h2 class="form-signin-heading">Please sign in</h2>
-		        <label for="inputEmail" class="sr-only">Email address</label>
-		        <input type="email" id="inputEmail" ref="email" class="form-control" placeholder="Email" required ></input>
-		        <label for="inputPassword" class="sr-only">Password</label>
-		        <input type="password" id="inputPassword" ref="pass" class="form-control" placeholder="Password" required></input>
-		        <div class="checkbox">
-		          <label>
-		            <input type="checkbox" value="remember-me"></input> Remember me
-		          </label>
-		        </div>
-		        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            {this.state.error && (<p>Incorrect login</p>)}
-		      </form>
-		    </div>
-	    </div>
-    </div>
-
-
-*/
 const Logout = React.createClass({
   componentDidMount() {
     auth.logout()
@@ -184,9 +149,8 @@ ReactDOM.render(
 
 			<Route path="/" component={Layout} onEnter={requireAuth}>
 				<IndexRoute component={Dashboard} onEnter={requireAuth} />
-				<Route path="/dashboard" component={Dashboard} onEnter={requireAuth} />
-				<Route path="/submissions" component={BugTable} onEnter={requireAuth} />
-				<Route path="/submissions/**" component={Details} onEnter={requireAuth} />
-				<Route path="/details" component={Details} onEnter={requireAuth}/>\
+				<Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
+				<Route path="submissions" component={BugTable} onEnter={requireAuth} />
+        <Route path="submissions/:submissionID" component={Details} onEnter={requireAuth} />
 			</Route>
 	</Router>, document.getElementById('app'));
