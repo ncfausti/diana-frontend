@@ -12,9 +12,9 @@ export default class FilterColumn extends React.Component {
 			</div>
 			<div class="filterColumnSection">
 			<strong>Status</strong>
+			<CheckFilter name="open" changeFilter={this.props.changeFilter} />
 			<CheckFilter name="approved" changeFilter={this.props.changeFilter} />
 			<CheckFilter name="rejected" changeFilter={this.props.changeFilter} />
-			<CheckFilter name="open" changeFilter={this.props.changeFilter} />
 			</div>
 			<div class="filterColumnSection">
 			<strong>Risk</strong>

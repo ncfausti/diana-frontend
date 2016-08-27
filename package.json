@@ -1,10 +1,9 @@
 {
   "name": "diana-frontend",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot --port 8000",
+    "dev": "webpack-dev-server --content-base src --inline --hot --port 8000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -23,7 +22,7 @@
     "react-tap-event-plugin": "^1.0.0",
     "recharts": "^0.13.3",
     "reflux": "^0.4.1",
-    "webpack": "^1.13.1",
+    "webpack": "^1.13.2",
     "webpack-dev-server": "^1.14.1"
   },
   "devDependencies": {
@@ -38,5 +37,14 @@
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.23.1",
     "style-loader": "^0.13.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ncfausti/diana-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ncfausti/diana-frontend/issues"
+  },
+  "homepage": "https://github.com/ncfausti/diana-frontend#readme",
+  "description": ""
 }
