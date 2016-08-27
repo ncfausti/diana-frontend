@@ -97,8 +97,8 @@ export default class Dashboard extends React.Component{
               "num_medium",
               "num_low",
               "num_info"]);
-      
 
+      /*
       for (var i in data) {
         let obj = data[i];
 
@@ -108,6 +108,7 @@ export default class Dashboard extends React.Component{
           }
         }
       }
+      */
   }
 
   componenetWillMount() {
