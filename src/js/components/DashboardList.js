@@ -33,10 +33,10 @@ export default class DashboardList extends React.Component {
 			}
            	return React.createElement("li", null, listValue + " " + getFullName(listValue));
 				*/
-           	return React.createElement("li", null, (<span><span class="dash-list-name">{k}</span><span class="dash-list-val">{self.props.list[k]}</span></span>) );
+           	return React.createElement("li", null, (<span><span class="dash-list-name blue">{k}</span><span class="dash-list-val">{self.props.list[k]}</span></span>) );
 
              })
-            )  // /create ul
+            )  
         )
 	}
 }
