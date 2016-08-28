@@ -2,8 +2,12 @@ import React from 'react';
 
 export default class DashboardList extends React.Component {
 	render() {
+		let self = this;
+
       return (
-        React.createElement("ul", null, this.props.list.map(function(listValue){
+        React.createElement("ul", null, Object.keys(self.props.list).map(function(k){
+        		/*
+  
         	let getFullName = function(key) {
         		let fullName = {
 					A1: "Injection",
@@ -19,9 +23,8 @@ export default class DashboardList extends React.Component {
 					S1:"",
 					S12:"",
 					S14:"",
-					
 				}
-
+	
 				if (key in fullName)  {	
 					
 					return fullName[key]; 
@@ -29,9 +32,11 @@ export default class DashboardList extends React.Component {
 				else { return ""; }
 			}
            	return React.createElement("li", null, listValue + " " + getFullName(listValue));
-        //    	return React.createElement("li", null, listValue);
+				*/
+           	return React.createElement("li", null, (<span><span class="dash-list-name">{k}</span><span class="dash-list-val">{self.props.list[k]}</span></span>) );
+
              })
-            )
+            )  // /create ul
         )
 	}
 }

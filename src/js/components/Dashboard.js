@@ -8,6 +8,13 @@ export default class Dashboard extends React.Component{
 		super()
 
 		this.state = {
+            numCritical:0,
+            numHigh:0,
+            numMedium:0,
+            numLow:0,
+            numInfo:0,
+
+
 						data:[
 						{name: 'January', Critical: 4000, High: 2400, Low:1000, amt: 2400},
 						{name: 'February', Critical: 4000, High: 2400, Low:1000, amt: 2400},
@@ -86,34 +93,122 @@ export default class Dashboard extends React.Component{
               "num_architecture":0,
               "num_other_category":0,
             },
-  		}
+            riskCounts:{},
+            typeCounts:{},
+            secCounts:{},
+  		}  // /this.state 
+
       console.log("SUMS")
       console.log(this.state.dashboardSums);
       let dataArray = RefData.DASHBOARD;
       let ignore = new Set(["date",
               "client",
-              "num_critical",
-              "num_high",
-              "num_medium",
-              "num_low",
-              "num_info"]);
+   //           "num_critical",
+   //           "num_high",
+   //           "num_medium",
+   //           "num_low",
+   //           "num_info"
+   ]);
 
-      /*
+      let data = RefData.DASHBOARD;
+      let tempCounts = { "num_critical":0,
+              "num_high":0,
+              "num_medium":0,
+              "num_low":0,
+              "num_info":0,
+              "num_sans_1":0,
+              "num_sans_2":0,
+              "num_sans_3":0,
+              "num_sans_4":0,
+              "num_sans_5":0,
+              "num_sans_6":0,
+              "num_sans_7":0,
+              "num_sans_8":0,
+              "num_sans_9":0,
+              "num_sans_10":0,
+              "num_sans_11":0,
+              "num_sans_12":0,
+              "num_sans_13":0,
+              "num_sans_14":0,
+              "num_sans_15":0,
+              "num_sans_16":0,
+              "num_sans_17":0,
+              "num_sans_18":0,
+              "num_sans_19":0,
+              "num_sans_20":0,
+              "num_sans_21":0,
+              "num_sans_22":0,
+              "num_sans_23":0,
+              "num_sans_24":0,
+              "num_sans_25":0,
+              "num_owasp_1":0,
+              "num_owasp_2":0,
+              "num_owasp_3":0,
+              "num_owasp_4":0,
+              "num_owasp_5":0,
+              "num_owasp_6":0,
+              "num_owasp_7":0,
+              "num_owasp_8":0,
+              "num_owasp_9":0,
+              "num_owasp_10":0,
+              "num_configuration_management":0,
+              "num_data_confidentiality":0,
+              "num_error_handling":0,
+              "num_session_management":0,
+              "num_data_validation":0,
+              "num_authorization":0,
+              "num_authentication":0,
+              "num_input_validation":0,
+              "num_auditing_and_logging":0,
+              "num_architecture":0,
+              "num_other_category":0,
+            };
+
+      // objs in response array
       for (var i in data) {
         let obj = data[i];
+        let keys = Object.keys(obj);
 
-        for(var key in Object.keys(obj)) {
-          if (!ignore.has(key)) { //if not client, num_critical, etc. add sum
-            
+        // item in obj
+        for(var k in keys) {
+          if (!ignore.has(keys[k])) { //if not client, num_critical, etc. add sum
+             tempCounts[keys[k]] += data[i][keys[k]]; 
           }
         }
       }
-      */
+      console.log("TEMPCOUNTS")
+      console.log(tempCounts);
+      tempCounts['date'] = this.state.dashboardSums.date;
+      tempCounts['client'] = this.state.dashboardSums.client;
+
+    // loop through obj array returned from api
+    // if not client or date, sum values and store in temp object for
+    // this.state.dashboardSums and increment each item by amount in current object
+    // at
+
+    // use dashboardSums for values in each section under the grid
+
+    // create seperate timeline for num_critical/high/med etc to show those 
+    // counts over time in bar graph
+    // link to actual api call instead of refData
+    // where hackers num coming from?
+    // use numbers to display in horizontal bar charts?
+      this.state.dashboardSums = tempCounts;
+
+      for (var o in tempCounts) {
+        if (o.indexOf("num_critical") > -1) {this.state.riskCounts[o] = tempCounts[o];}
+        else if (o.indexOf("num_high") > -1) {this.state.riskCounts[o] = tempCounts[o];}
+        else if (o.indexOf("num_medium") > -1) {this.state.riskCounts[o] = tempCounts[o];}
+        else if (o.indexOf("num_low") > -1) {this.state.riskCounts[o] = tempCounts[o];}
+        else if (o.indexOf("num_info") > -1) {this.state.riskCounts[o] = tempCounts[o];}
+        
+        else if (o.indexOf("sans") > -1 || o.indexOf("owasp") > -1) {this.state.secCounts[o] = tempCounts[o];}
+        else {
+            this.state.typeCounts[o] = tempCounts[o];
+        }
+     }
   }
 
-  componenetWillMount() {
-    
-  }
   render() {
     return (
     	<div class="container">
@@ -138,19 +233,19 @@ export default class Dashboard extends React.Component{
        
        <div class="simple-list-div">
        <h5>Risk Levels</h5>
-       	<DashboardList list={this.state.submission_risk_by_month} />
+       	<DashboardList list={this.state.riskCounts} />
        </div>
       </div>
       <div class="col-md-4" >
        <div class="simple-list-div">
        <h5>Categories</h5>
-       	<DashboardList list={this.state.submission_categories_by_month} />
+       	<DashboardList list={this.state.typeCounts} />
        </div>
       </div>
       <div class="col-md-3">
        <div class="simple-list-div">
        <h5>OWASP Top 10</h5>
-       	<DashboardList list={this.state.submission_taxonomies_by_month} />
+       	<DashboardList list={this.state.secCounts} />
        </div>
       </div>
       <div class="col-md-4"></div>

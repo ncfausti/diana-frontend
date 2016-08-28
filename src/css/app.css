@@ -109,7 +109,7 @@ input+label+span {
     color:#ccc;
 }
 .row {margin:0px;}
-
+.dash-list-val {float:right;}
 #accept-icon {
     float:left;
 }
