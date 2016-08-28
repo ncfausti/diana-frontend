@@ -116,7 +116,7 @@ input+label+span {
 
 #detailColumn, #filterColumn {
     min-height: 800px;
-    background-color: rgb(245,245,245);
+    background-color: #ECECEC;
     padding:0px;
     border-left: 1px solid #ddd;
 }
@@ -181,6 +181,8 @@ input+label+span {
 /* Rules for using icons as white on a dark background. */
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+.simple-area { margin-left: 60px; }
 
 .ag-cell {
     padding-top: 18px !important;
@@ -316,7 +318,7 @@ box-shadow:none;
 
 .login { margin-top: 200px; }
 
-.login-box { padding:36px; background-color:#FDFDFD;border:1px solid #BBB; }
+.login-box { padding:36px; background-color:#ECECEC;border:1px solid #BBB; }
 .tag-span { 
     border-radius: 6px;
     margin:3px;

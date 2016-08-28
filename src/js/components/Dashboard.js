@@ -1,7 +1,7 @@
 // components/Dashboard.js
 import React from 'react'
 import RefData from '../RefData'
-import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts'
+import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, AreaChart, Area} from 'recharts'
 import DashboardList from './DashboardList'
 export default class Dashboard extends React.Component{
 	constructor() {
@@ -14,7 +14,6 @@ export default class Dashboard extends React.Component{
             numLow:0,
             numInfo:0,
 
-
 						data:[
 						{name: 'January', Critical: 4000, High: 2400, Low:1000,},
 						{name: 'February', Critical: 4000, High: 2400, Low:1000, amt: 2400},
@@ -25,6 +24,21 @@ export default class Dashboard extends React.Component{
 						{name: 'July', Critical: 2390, High: 3800, Low:1000, amt: 2500},
 						{name: 'August', Critical: 3490, High: 4300, Low:1000, amt: 2100},
 						],
+            hackerData:[
+                  {name: 'January', uv: 4000, pv: 2400, amt: 2400},
+                  {name: 'February', uv: 3000, pv: 1398, amt: 2210},
+                  {name: 'March', uv: 2000, pv: 9800, amt: 2290},
+                  {name: 'April', uv: 2780, pv: 3908, amt: 2000},
+                  {name: 'May', uv: 1890, pv: 4800, amt: 2181},
+                  {name: 'June', uv: 2390, pv: 3800, amt: 2500},
+                  {name: 'July', uv: 3490, pv: 4300, amt: 2100},
+                  {name: 'August', uv: 3490, pv: 4300, amt: 2100},
+                  {name: 'September', uv: 3490, pv: 4300, amt: 2100},
+                  {name: 'October', uv: 2390, pv: 3800, amt: 2500},
+                  {name: 'November', uv: 3490, pv: 4300, amt: 2100},
+                  {name: 'December', uv: 3490, pv: 4300, amt: 2100},
+
+            ],
 						submission_categories_by_month:[{"count":500,"vulnerability__category__name":"authorization","month":"2016-08-01T00:00:00Z"}].map(function(item){ return item.vulnerability__category__name }),
 						submission_risk_by_month:[{"count":316,"risk_level__title":"Critical","month":"2016-08-01T00:00:00Z"},
 													{"count":184,"risk_level__title":"Low","month":"2016-08-01T00:00:00Z"}].map(function(item){ return item.risk_level__title }),
@@ -140,7 +154,7 @@ export default class Dashboard extends React.Component{
     	<div class="container">
     	<div class="row">
     	<div class="col-md-12">
-		<BarChart width={1000} height={300} data={this.state.dateCounts}
+		   <BarChart width={1000} height={300} data={this.state.dateCounts}
             margin={{top: 20, right: 0, left: 0, bottom: 5}}>
        <Legend />
 
@@ -154,8 +168,15 @@ export default class Dashboard extends React.Component{
        <Bar dataKey="num_low" stackId="a" fill="#FEE5D9" />
        <Bar dataKey="num_info" stackId="a" fill="#FEE5D9" />
       </BarChart>
+     <div class="simple-area">
+      <AreaChart width={940} height={60} data={this.state.hackerData}
+            margin={{top: 5, right: 0, left: 0, bottom: 5}}>
+        <Area type='monotone' dataKey='uv' stroke='#ECECEC' fill='#CCC' />
+      </AreaChart>
+    </div>
       </div>
       </div>
+
       <div class="row margin-left-90">
       <div class="col-md-3">
        
