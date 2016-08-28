@@ -256,8 +256,6 @@ label {
     list-style: none;
     text-transform:capitalize; 
     padding: 0px;
-    height:240px;
-    overflow-y:scroll;
 }
 .margin-left-90{margin-left:90px;}
 
@@ -274,6 +272,8 @@ label {
     border: 1px solid #DDD;
     padding:12px 12px 12px 12px;
     border-radius:3px;
+    height:240px;
+    overflow-y:scroll;
  }
 
  .simple-list-div h5 { 

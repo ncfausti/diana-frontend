@@ -8,12 +8,6 @@ export default class Dashboard extends React.Component{
 		super()
 
 		this.state = {
-            numCritical:0,
-            numHigh:0,
-            numMedium:0,
-            numLow:0,
-            numInfo:0,
-
 						data:[
 						{name: 'January', Critical: 4000, High: 2400, Low:1000,},
 						{name: 'February', Critical: 4000, High: 2400, Low:1000, amt: 2400},
@@ -39,6 +33,37 @@ export default class Dashboard extends React.Component{
                   {name: 'December', uv: 3490, pv: 4300, amt: 2100},
 
             ],
+
+            riskChartData:[
+                  {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
+                  {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
+                  {name: 'Page C', uv: 2000, pv: 9800, amt: 2290},
+                  {name: 'Page D', uv: 2780, pv: 3908, amt: 2000},
+                  {name: 'Page E', uv: 1890, pv: 4800, amt: 2181},
+                  {name: 'Page F', uv: 2390, pv: 3800, amt: 2500},
+                  {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
+            ]
+            ,
+            typeChartData:[
+                  {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
+                  {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
+                  {name: 'Page C', uv: 2000, pv: 9800, amt: 2290},
+                  {name: 'Page D', uv: 2780, pv: 3908, amt: 2000},
+                  {name: 'Page E', uv: 1890, pv: 4800, amt: 2181},
+                  {name: 'Page F', uv: 2390, pv: 3800, amt: 2500},
+                  {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
+            ]
+            ,
+            secChartData:[
+                  {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
+                  {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
+                  {name: 'Page C', uv: 2000, pv: 9800, amt: 2290},
+                  {name: 'Page D', uv: 2780, pv: 3908, amt: 2000},
+                  {name: 'Page E', uv: 1890, pv: 4800, amt: 2181},
+                  {name: 'Page F', uv: 2390, pv: 3800, amt: 2500},
+                  {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
+            ]
+            ,
 						submission_categories_by_month:[{"count":500,"vulnerability__category__name":"authorization","month":"2016-08-01T00:00:00Z"}].map(function(item){ return item.vulnerability__category__name }),
 						submission_risk_by_month:[{"count":316,"risk_level__title":"Critical","month":"2016-08-01T00:00:00Z"},
 													{"count":184,"risk_level__title":"Low","month":"2016-08-01T00:00:00Z"}].map(function(item){ return item.risk_level__title }),
@@ -53,13 +78,13 @@ export default class Dashboard extends React.Component{
 						colTwoData:[],
 						colThreeData:[],
             dashboardSums:{         // array of these
-                "date":0,"client":0,"num_critical":0,"num_high":0,"num_medium":0,"num_low":0,"num_info":0,
-                "num_sans_1":0,"num_sans_2":0,"num_sans_3":0,"num_sans_4":0,"num_sans_5":0,"num_sans_6":0,"num_sans_7":0,"num_sans_8":0,"num_sans_9":0,"num_sans_10":0,
-                "num_sans_11":0,"num_sans_12":0,"num_sans_13":0,"num_sans_14":0,"num_sans_15":0,"num_sans_16":0,"num_sans_17":0,"num_sans_18":0,"num_sans_19":0,"num_sans_20":0,
-                "num_sans_21":0,"num_sans_22":0,"num_sans_23":0,"num_sans_24":0,"num_sans_25":0,"num_owasp_1":0,"num_owasp_2":0,"num_owasp_3":0,"num_owasp_4":0,"num_owasp_5":0,
-                "num_owasp_6":0,"num_owasp_7":0,"num_owasp_8":0,"num_owasp_9":0,"num_owasp_10":0,"num_configuration_management":0,"num_data_confidentiality":0,"num_error_handling":0,
-                "num_session_management":0,"num_data_validation":0,"num_authorization":0,"num_authentication":0,"num_input_validation":0,"num_auditing_and_logging":0,
-                "num_architecture":0,"num_other_category":0,
+                "date":0,"client":0,"critical":0,"high":0,"medium":0,"low":0,"info":0,
+                "sans_1":0,"sans_2":0,"sans_3":0,"sans_4":0,"sans_5":0,"sans_6":0,"sans_7":0,"sans_8":0,"sans_9":0,"sans_10":0,
+                "sans_11":0,"sans_12":0,"sans_13":0,"sans_14":0,"sans_15":0,"sans_16":0,"sans_17":0,"sans_18":0,"sans_19":0,"sans_20":0,
+                "sans_21":0,"sans_22":0,"sans_23":0,"sans_24":0,"sans_25":0,"owasp_1":0,"owasp_2":0,"owasp_3":0,"owasp_4":0,"owasp_5":0,
+                "owasp_6":0,"owasp_7":0,"owasp_8":0,"owasp_9":0,"owasp_10":0,"configuration_management":0,"data_confidentiality":0,"error_handling":0,
+                "session_management":0,"data_validation":0,"authorization":0,"authentication":0,"input_validation":0,"auditing_and_logging":0,
+                "architecture":0,"other_category":0,
             },
             riskCounts:{},
             typeCounts:{},
@@ -67,10 +92,10 @@ export default class Dashboard extends React.Component{
             //dateCounts: {jan:0,feb:0,mar:0,apr:0,may:0,jun:0,jul:0,aug:0,sep:0,oct:0,nov:0,dec:0,}
           //  dateCounts: [0,0,0,0,0,0,0,0,0,0,0,0],  // index 0 = jan, index 1 = feb, ... index 11=dec
             // index 0 = jan, index 1 = feb, ... index 11=dec, --> objects of num_critical, num_high, etc for each month
-            dateCounts: [{name:"January","num_critical":0,"num_high":0,"num_medium":0,"num_low":0,"num_info":0},{name:"February","num_critical":0,"num_high":0,"num_medium":0,"num_low":0,"num_info":0},{name:"March","num_critical":0,"num_high":0,"num_medium":0,"num_low":0,"num_info":0},
-              {name:"April","num_critical":0,"num_high":0,"num_medium":0,"num_low":0,"num_info":0},{name:"May","num_critical":0,"num_high":0,"num_medium":0,"num_low":0,"num_info":0},{name:"June","num_critical":0,"num_high":0,"num_medium":0,"num_low":0,"num_info":0},
-              {name:"July","num_critical":0,"num_high":0,"num_medium":0,"num_low":0,"num_info":0},{name:"August","num_critical":0,"num_high":0,"num_medium":0,"num_low":0,"num_info":0},{name:"September","num_critical":0,"num_high":0,"num_medium":0,"num_low":0,"num_info":0},
-              {name:"October","num_critical":0,"num_high":0,"num_medium":0,"num_low":0,"num_info":0},{name:"November","num_critical":0,"num_high":0,"num_medium":0,"num_low":0,"num_info":0},{name:"December","num_critical":0,"num_high":0,"num_medium":0,"num_low":0,"num_info":0},],  
+            dateCounts: [{name:"January","critical":0,"high":0,"medium":0,"low":0,"info":0},{name:"February","critical":0,"high":0,"medium":0,"low":0,"info":0},{name:"March","critical":0,"high":0,"medium":0,"low":0,"info":0},
+              {name:"April","critical":0,"high":0,"medium":0,"low":0,"info":0},{name:"May","critical":0,"high":0,"medium":0,"low":0,"info":0},{name:"June","critical":0,"high":0,"medium":0,"low":0,"info":0},
+              {name:"July","critical":0,"high":0,"medium":0,"low":0,"info":0},{name:"August","critical":0,"high":0,"medium":0,"low":0,"info":0},{name:"September","critical":0,"high":0,"medium":0,"low":0,"info":0},
+              {name:"October","critical":0,"high":0,"medium":0,"low":0,"info":0},{name:"November","critical":0,"high":0,"medium":0,"low":0,"info":0},{name:"December","critical":0,"high":0,"medium":0,"low":0,"info":0},],  
 
   		}  // /this.state 
 
@@ -87,12 +112,12 @@ export default class Dashboard extends React.Component{
    ]);
 
       let data = RefData.DASHBOARD;
-      let tempCounts = { "num_critical":0,
-          "num_high":0,"num_medium":0,"num_low":0,"num_info":0,"num_sans_1":0,"num_sans_2":0,"num_sans_3":0,"num_sans_4":0,"num_sans_5":0,"num_sans_6":0,"num_sans_7":0,"num_sans_8":0,"num_sans_9":0,
-          "num_sans_10":0,"num_sans_11":0,"num_sans_12":0,"num_sans_13":0,"num_sans_14":0,"num_sans_15":0,"num_sans_16":0,"num_sans_17":0,"num_sans_18":0,"num_sans_19":0,"num_sans_20":0,"num_sans_21":0,
-          "num_sans_22":0,"num_sans_23":0,"num_sans_24":0,"num_sans_25":0,"num_owasp_1":0,"num_owasp_2":0,"num_owasp_3":0,"num_owasp_4":0,"num_owasp_5":0,"num_owasp_6":0,
-          "num_owasp_7":0,"num_owasp_8":0,"num_owasp_9":0,"num_owasp_10":0,"num_configuration_management":0,"num_data_confidentiality":0,"num_error_handling":0,"num_session_management":0,
-          "num_data_validation":0,"num_authorization":0,"num_authentication":0,"num_input_validation":0,"num_auditing_and_logging":0,"num_architecture":0,"num_other_category":0,
+      let tempCounts = { "critical":0,
+          "high":0,"medium":0,"low":0,"info":0,"sans_1":0,"sans_2":0,"sans_3":0,"sans_4":0,"sans_5":0,"sans_6":0,"sans_7":0,"sans_8":0,"sans_9":0,
+          "sans_10":0,"sans_11":0,"sans_12":0,"sans_13":0,"sans_14":0,"sans_15":0,"sans_16":0,"sans_17":0,"sans_18":0,"sans_19":0,"sans_20":0,"sans_21":0,
+          "sans_22":0,"sans_23":0,"sans_24":0,"sans_25":0,"owasp_1":0,"owasp_2":0,"owasp_3":0,"owasp_4":0,"owasp_5":0,"owasp_6":0,
+          "owasp_7":0,"owasp_8":0,"owasp_9":0,"owasp_10":0,"configuration_management":0,"data_confidentiality":0,"error_handling":0,"session_management":0,
+          "data_validation":0,"authorization":0,"authentication":0,"input_validation":0,"auditing_and_logging":0,"architecture":0,"other_category":0,
       };
 
       let dateMap = {}
@@ -107,11 +132,11 @@ export default class Dashboard extends React.Component{
           }
           else if (k === "date") {
             // increment that months critical, high, medium, low, info counts 
-            this.state.dateCounts[ new Date( data[i][k] ).getMonth() ]["num_critical"] += data[i]["num_critical"];
-            this.state.dateCounts[ new Date( data[i][k] ).getMonth() ]["num_high"] += data[i]["num_high"];
-            this.state.dateCounts[ new Date( data[i][k] ).getMonth() ]["num_medium"] += data[i]["num_medium"];
-            this.state.dateCounts[ new Date( data[i][k] ).getMonth() ]["num_low"] += data[i]["num_low"];
-            this.state.dateCounts[ new Date( data[i][k] ).getMonth() ]["num_info"] += data[i]["num_info"];
+            this.state.dateCounts[ new Date( data[i][k] ).getMonth() ]["critical"] += data[i]["num_critical"];
+            this.state.dateCounts[ new Date( data[i][k] ).getMonth() ]["high"] += data[i]["num_high"];
+            this.state.dateCounts[ new Date( data[i][k] ).getMonth() ]["medium"] += data[i]["num_medium"];
+            this.state.dateCounts[ new Date( data[i][k] ).getMonth() ]["low"] += data[i]["num_low"];
+            this.state.dateCounts[ new Date( data[i][k] ).getMonth() ]["info"] += data[i]["num_info"];
           }
 
         }
@@ -136,17 +161,23 @@ export default class Dashboard extends React.Component{
       this.state.dashboardSums = tempCounts;
 
       for (var o in tempCounts) {
-        if (o.indexOf("num_critical") > -1) {this.state.riskCounts[o] = tempCounts[o];}
-        else if (o.indexOf("num_high") > -1) {this.state.riskCounts[o] = tempCounts[o];}
-        else if (o.indexOf("num_medium") > -1) {this.state.riskCounts[o] = tempCounts[o];}
-        else if (o.indexOf("num_low") > -1) {this.state.riskCounts[o] = tempCounts[o];}
-        else if (o.indexOf("num_info") > -1) {this.state.riskCounts[o] = tempCounts[o];}
+        if (o.indexOf("critical") > -1) {this.state.riskCounts[o] = tempCounts[o];}
+        else if (o.indexOf("high") > -1) {this.state.riskCounts[o] = tempCounts[o];}
+        else if (o.indexOf("medium") > -1) {this.state.riskCounts[o] = tempCounts[o];}
+        else if (o.indexOf("low") > -1) {this.state.riskCounts[o] = tempCounts[o];}
+        else if (o.indexOf("info") > -1) {this.state.riskCounts[o] = tempCounts[o];}
         
-        else if (o.indexOf("sans") > -1 || o.indexOf("owasp") > -1) {this.state.secCounts[o] = tempCounts[o];}
+        else if (o.indexOf("sans") > -1 || o.indexOf("owasp") > -1) {
+          // convert from 
+            this.state.secCounts[o] = tempCounts[o];
+        }
         else {
             this.state.typeCounts[o] = tempCounts[o];
         }
      }
+     console.log("RISK COUNTS")
+      console.log(this.state.riskCounts);
+
   }
 
   render() {
@@ -162,17 +193,18 @@ export default class Dashboard extends React.Component{
        <YAxis tickLine={false} padding={{ left: 10 }}/>
        <CartesianGrid strokeDasharray="1  1"/>
        <Tooltip/>
-       <Bar dataKey="num_critical" stackId="a" fill="#CB181D" />
-       <Bar dataKey="num_high" stackId="a" fill="#FCAE91" />
-       <Bar dataKey="num_medium" stackId="a" fill="#FEE5D9" />
-       <Bar dataKey="num_low" stackId="a" fill="#FEE5D9" />
-       <Bar dataKey="num_info" stackId="a" fill="#FEE5D9" />
+       <Bar dataKey="critical" stackId="a" fill="#FEE5D9" />
+       <Bar dataKey="high" stackId="a" fill="#FEE5D9" />
+       <Bar dataKey="medium" stackId="a" fill="#FEE5D9" />
+       <Bar dataKey="low" stackId="a" fill="#FCAE91" />
+       <Bar dataKey="info" stackId="a" fill="#CB181D" />
       </BarChart>
      <div class="simple-area">
       <AreaChart width={940} height={60} data={this.state.hackerData}
             margin={{top: 5, right: 0, left: 0, bottom: 5}}>
         <Area type='monotone' dataKey='uv' stroke='#ECECEC' fill='#CCC' />
       </AreaChart>
+      
     </div>
       </div>
       </div>
