@@ -15,11 +15,15 @@ export default class DashboardList extends React.Component {
                   {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
             ],
 		  chartData:Object.keys(props.list).map(
-        function(k) {
-
-          return { name:k,count:props.list[k] }
-        }
-      ),
+        	function(k) { return { name:k,count:props.list[k] } }),
+		  cssCount: (function(){
+		  	let high = 0;
+		  	for (var i in props.list) { 
+		  		if (props.list[i] > high)
+		  			high = props.list[i] 
+		  	}
+		  	return high;
+		  })(),
     }
     console.log('chartdata')
 	  console.log(this.state.chartData)
@@ -29,19 +33,27 @@ export default class DashboardList extends React.Component {
     // height should be based off of number of items
       return (
       	<div>
-        {React.createElement("ul", null, Object.keys(self.props.list).map(function(k){
-           	return React.createElement("li", null, (<span><span class="dash-list-name blue">{k}</span><span class="dash-list-val">{self.props.list[k]}</span></span>) );
-
+        {
+        	React.createElement("ul", null, Object.keys(self.props.list).map(function(k){
+           	return React.createElement("li", null, (
+           		<span><span class="dash-list-name" style={self.divStyle}>{k}</span><span class="dash-list-val">{self.props.list[k]}</span></span>
+           		));
+             
              }))}
-        <div class="recharts-list-container">
+        </div>
+
+        )
+	}
+}
+
+/*
+
+<div class="recharts-list-container">
         <BarChart width={300} height={300} data={this.state.chartData} barGap={0} barSize={30} layout="vertical">
 	       <YAxis type="category" dataKey="name" interval={0} tickLine={false} axisLine={false} />
 	       <XAxis dataKey="count" type="number" hide= {true} />
          <Bar dataKey='count' fill='#dedede'/>
         </BarChart>
         </div>
-        </div>
-
-        )
-	}
-}
+        
+ */

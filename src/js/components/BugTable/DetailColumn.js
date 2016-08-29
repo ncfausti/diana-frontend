@@ -7,7 +7,7 @@ export default class DetailColumn extends React.Component {
 		this.state = {
 					showImgModal: false,
 					showConfirm: false,
-					bounty:8,
+					bounty:0,
 					acceptReject:"",
 					decision:""
 
@@ -41,9 +41,19 @@ export default class DetailColumn extends React.Component {
 	  }
 
 	  closeConfirm(e) {
-    	this.setState({acceptReject:""});
     	this.setState({decision:""});
 	  	this.setState({showConfirm:false});
+    	this.setState({acceptReject:""});
+	  }
+
+	  bountyChanged(e) {
+	  	console.log(e.target.value);
+	  	this.setState({bounty:e.target.value})
+	  }
+
+	  modalDecisionClicked(){
+	 // 	let self = this;
+
 	  }
 
 
@@ -83,7 +93,7 @@ export default class DetailColumn extends React.Component {
 			</div>
 			
 			<div class="bounty">
-			<span>Bounty:</span> <span class="float-right">$</span><input name="bounty" placeholder={this.props.payout}></input>
+			<span>Bounty:</span> <input type="number" min="0" step="10" data-number-to-fixed="2" data-number-stepfactor="100" name="bounty" onChange={this.bountyChanged.bind(this)} placeholder={this.props.payout}></input><span class="float-right">$</span>
 			</div>
 
 			<button class="btn btn-primary detail-btn" value="approved" name="accept" onClick={this.openConfirm.bind(this)}>Accept</button>
@@ -112,7 +122,7 @@ export default class DetailColumn extends React.Component {
 
 		      <Modal.Body>
 		       <span class="capitalize">{this.state.acceptReject}</span> bug ID: 
-		       <span class="blue capitalize">{this.props.id.substr(this.props.id.length - 4)}</span> for ${this.state.bounty} ?
+		       <span class="blue capitalize">{this.props.id.substr(this.props.id.length - 4)}</span> <span class={'is-'+this.state.acceptReject }>for ${this.state.bounty} </span>?
 		      </Modal.Body>
 
 		      <Modal.Footer>

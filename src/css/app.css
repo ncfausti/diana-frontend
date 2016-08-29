@@ -133,10 +133,13 @@ input+label+span {
     border-left: 1px solid #ddd;
 }
 
+.is-reject {display:none;}
 .bounty span { 
   float:left;
   font-size:1.2em;
   margin-bottom: 24px;
+  margin-right: 6px;
+  margin-top: 1px;
    }
 .bounty input {
   width: 60px;

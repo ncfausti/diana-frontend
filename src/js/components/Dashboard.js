@@ -190,7 +190,7 @@ export default class Dashboard extends React.Component{
     	<div class="container">
     	<div class="row">
     	<div class="col-md-12">
-		   <BarChart width={1000} height={300} data={this.state.dateCounts}
+		   <BarChart width={1000} height={300} data={this.state.dateCounts} barCategoryGap={0}
             margin={{top: 20, right: 0, left: 0, bottom: 5}}>
        <Legend />
 

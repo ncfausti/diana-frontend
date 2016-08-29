@@ -57,6 +57,13 @@ export default class BugTable extends React.Component {
       rowDetailCache: {},
       api:{},
 			filters:new Set([]),
+      details:{
+            "id":"","status": "","creator": "",
+            "client": "","risk_level": {},"created": "","modified": "","payout": "","comment":"","confidence_score":"","payload": "","calculated_payout": "0.00","client_decision": "open","triage_decision": "open","tags": [],"comments": [],"requests": [],"screenshots": [],"vulnerability": {
+            "impact": "","category": "","risk_level": "","description": "","title": "","references": [],"recommendation": "","taxonomies": "",
+            }
+    }
+
   }
 
 }
@@ -66,91 +73,9 @@ componentWillUpdate() {
 componentDidUpdate() {
 }
 
-componentWillMount() {
-      this.setState({details:{
-            "id":"",
-            "status": "",
-            "creator": "",
-            "client": "",
-            "risk_level": {
-              /*
-              "title": "Low",
-              "number_level": 12
-              */
-            },
-            "created": "",
-            "modified": "",
-            "payout": "",
-            "comment":"",
-            "confidence_score":"",
-            "payload": "",
-            "calculated_payout": "0.00",
-            "client_decision": "open",
-            "triage_decision": "open",
-            "tags": [
-              /*
-              {
-                "id": 319,
-                "name": "critical"
-              },
-              */
-            ],
-            "comments": [
-              /*
-              {
-                "id": "796f34d6-deb4-4b35-b408-551682cdd5b0",
-                "author": "jacob.kyle+bughunter@gmail.com",
-                "text": "sample comment 0",
-                "created": "2016-08-26T00:27:26.192000Z",
-                "modified": "2016-08-26T00:27:26.192000Z"
-              } 
-              */
-            ],
-            "requests": [],
-            "screenshots": [],
-            "vulnerability": {
-              "impact": "",
-              "category": "",
-              "risk_level": "",
-              "description": "",
-              "title": "",
-              "references": [],
-              "recommendation": "",
-              "taxonomies": "",
-            }
-}});
-}
-
 setDetails(val) {
   this.setState({details:val});
 }
-
-/*
-dive(currentKey, into, target) {
-      for (var i in into) {
-          if (into.hasOwnProperty(i)) {
-              var newKey = i;
-              var newVal = into[i];
-              
-              if (currentKey.length > 0) {
-                  newKey = currentKey + '.' + i;
-              }
-              
-              if (typeof newVal === "object") {
-                  this.dive(newKey, newVal, target);
-              } else {
-                  target[newKey] = newVal;
-              }
-          }
-      }
-  }
-
-flatten(arr) {
-      var newObj = {};
-      this.dive("", arr, newObj);
-      return newObj;
-  }
-*/
 
 rowSelected(row) {
     this.setState({selectedRows:row});
@@ -303,7 +228,36 @@ rowSelected(row) {
 
     if (submissionRowIndex > -1) { tempRowData.splice(submissionRowIndex, 1); }
 
-    this.setState({"details":[]})
+    this.setState({"details":{
+            "id":"",
+            "status": "",
+            "creator": "",
+            "client": "",
+            "risk_level": {},
+            "created": "",
+            "modified": "",
+            "payout": "",
+            "comment":"",
+            "confidence_score":"",
+            "payload": "",
+            "calculated_payout": "0.00",
+            "client_decision": "open",
+            "triage_decision": "open",
+            "tags": [],
+            "comments": [],
+            "requests": [],
+            "screenshots": [],
+            "vulnerability": {
+              "impact": "",
+              "category": "",
+              "risk_level": "",
+              "description": "",
+              "title": "",
+              "references": [],
+              "recommendation": "",
+              "taxonomies": "",
+            }}})
+    
     this.state.api.setRowData(tempRowData);
 
     ///////// api call for accept/reject///////////////
