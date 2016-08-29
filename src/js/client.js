@@ -81,7 +81,7 @@ const Login = withRouter(
         if (location.state && location.state.nextPathname) {
           this.props.router.replace(location.state.nextPathname)
         } else {
-          this.props.router.replace('/#/dashboard')
+          this.props.router.replace('/dashboard')
         }
       })
     },
@@ -95,18 +95,19 @@ const Login = withRouter(
 	    <div class="row login">
 	    <div class="col-md-4"></div>
 		    <div class="col-md-4 login-box">
+        <span class="praetorian-login">PRAETORIAN</span>
 		      <form class="form-signin" onSubmit={this.handleSubmit}>
-		        <h2 class="form-signin-heading">Please sign in</h2>
 		        <label for="inputEmail" class="sr-only">Email address</label>
-		        <input type="email" id="inputEmail" ref="email" class="form-control" placeholder="Email" required ></input>
+		       <span class="form-signin-span"><input type="email" id="inputEmail" ref="email" class="form-control" placeholder="Email" required ></input></span>
 		        <label for="inputPassword" class="sr-only">Password</label>
-		        <input type="password" id="inputPassword" ref="pass" class="form-control" placeholder="Password" required></input>
+		        <span class="form-signin-span"><input type="password" id="inputPassword" ref="pass" class="form-control" placeholder="Password" required></input></span>
 		        <div class="checkbox">
 		          <label>
-		            <input type="checkbox" value="remember-me"></input> Remember me
-		          </label>
+              <input type="checkbox" name="remember-me"></input><span class="checkbox-material"><span class="check"></span></span> <span class="remember-login-label"> Stay logged in</span>
+              </label>
 		        </div>
-		        <button class="btn btn-lg btn-primary btn-block btn-sign-in" type="submit">Sign in</button>
+            <button class="btn-sign-in" type="submit">Sign in</button>
+		        <button class="btn-sign-in-white">Request Access</button>
             {this.state.error && (<p>Incorrect login</p>)}
 		      </form>
 		    </div>

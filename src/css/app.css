@@ -139,7 +139,7 @@ input+label+span {
   font-size:1.2em;
   margin-bottom: 24px;
   margin-right: 6px;
-  margin-top: 1px;
+  margin-top: 2px;
    }
 .bounty input {
   width: 60px;
@@ -298,42 +298,95 @@ label {
 
 header a:focus { text-decoration: none; color:#FFF; }
 
-.btn-sign-in { background-color: #00BCD4;
-    border-radius: 0;
-    border: none; }
 
-.btn-sign-in:hover { background-color: #00CCD4;
+.btn-sign-in-white {
+    background-color: #FDFDFD;
+    display:inline;
+    color: #cbcbcb;
+    border:none;
+    width: 45%;
     border-radius: 0;
-    border: none; }
+    font-size: .9em;
+    border: 1px solid #dedede;
+
+}
+.remember-login-label {
+    font-weight:300;
+    position: absolute;
+    top: 3px;
+    left: 24px;
+}
+
+.btn-sign-in { 
+    background-color:#66b4f7;
+    color:#FDFDFD;
+    border-radius: 0;
+    border: none;
+    display:inline;
+    font-size:.9em;
+    width:45%;
+    border:1px solid #66b4f7;
+    margin-right: 30px;
+  }
+
+.btn-sign-in:focus { 
+   outline:none;
+   color:#363636;
+ }
+.btn-sign-in-white:focus {
+   outline:none;
+   color:#363636;
+}
+
 .form-signin { font-weight: 300; }
+.form-signin input { padding:0px !important;  }
 #inputEmail {
     box-shadow:none;
     border-radius: 0;
-    border-top:none;
-    border-right:none;
-    border-left:none;
-    border-bottom:1px solid #ddd;
-    
+    border:none;
+   
 }
+#inputEmail:focus {    border-bottom: 1px solid #999;}
 #inputPassword{
-box-shadow:none;
+    box-shadow:none;
     border-radius: 0;
-    border-top:none;
-    border-right:none;
-    border-left:none;
-    border-bottom:1px solid #ddd;
-    
+    border:none;
+}
+#inputPassword:focus {
+      border-bottom: 1px solid #999;
+}
+.form-signin-span {    
+    height: 100%;
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid #EDEDED;
+}
+.form-signin-span:active {
+    border-bottom: 1px solid #999;
+    outline: none;
+}
+.praetorian-login {
+
+    position: absolute;
+    top: -48px;
+    left: 126px;
+    font-size: 1.5em;
+    font-weight: 300;
 
 }
-
-#inputEmail:focus { border-bottom: 2px solid #777 }
-#inputPassword:focus { border-bottom: 2px solid #777 }
-
+.form-signin-span:focus {
+    border-bottom: 1px solid #999;
+    outline: none;
+}
 .form-signin h2 { font-weight:300 !important; }
 
 .login { margin-top: 200px; }
 
-.login-box { padding:36px; background-color:#ECECEC;border:1px solid #BBB; }
+.login-box { 
+      padding: 36px;
+    background-color: #FEFEFE;
+    border: 1px solid #DDD;
+  }
 .tag-span { 
     border-radius: 6px;
     margin:3px;
@@ -441,7 +494,7 @@ box-shadow:none;
   display: inline-block;
   width: 18px;
   height: 18px;
-  border: 1px solid #333;
+  border: 1px solid #dedede;
   border-radius: 1px;
   overflow: hidden;
   z-index: 1;
