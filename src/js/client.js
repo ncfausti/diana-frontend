@@ -81,7 +81,7 @@ const Login = withRouter(
         if (location.state && location.state.nextPathname) {
           this.props.router.replace(location.state.nextPathname)
         } else {
-          this.props.router.replace('/')
+          this.props.router.replace('/#/dashboard')
         }
       })
     },
@@ -148,7 +148,7 @@ ReactDOM.render(
 			<Route path="/logout" component={Logout} />
 
 			<Route path="/" component={Layout} onEnter={requireAuth}>
-				<IndexRoute component={Dashboard} onEnter={requireAuth} />
+				<IndexRoute path="dashboard" component={Dashboard} onEnter={requireAuth} />
 				<Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
 				<Route path="submissions" component={BugTable} onEnter={requireAuth} />
         <Route path="submissions/:submissionID" component={Details} onEnter={requireAuth} />
