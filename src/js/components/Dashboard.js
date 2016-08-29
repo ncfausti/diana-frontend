@@ -198,11 +198,11 @@ export default class Dashboard extends React.Component{
        <YAxis tickLine={false} padding={{ left: 10 }}/>
        <CartesianGrid strokeDasharray="1  1"/>
        <Tooltip/>
-       <Bar dataKey="critical" stackId="a" fill="#FEE5D9" />
-       <Bar dataKey="high" stackId="a" fill="#FEE5D9" />
-       <Bar dataKey="medium" stackId="a" fill="#FEE5D9" />
-       <Bar dataKey="low" stackId="a" fill="#FCAE91" />
-       <Bar dataKey="info" stackId="a" fill="#CB181D" />
+       <Bar dataKey="info" stackId="a" fill="#BCDEFB" />
+       <Bar dataKey="low" stackId="a" fill="#FEE5D9" />
+       <Bar dataKey="medium" stackId="a" fill="#FCAE91" />
+       <Bar dataKey="high" stackId="a" fill="#FB6545" />
+       <Bar dataKey="critical" stackId="a" fill="#CB181D" />
       </BarChart>
      <div class="simple-area">
       <AreaChart width={940} height={60} data={this.state.hackerData}
