@@ -127,8 +127,8 @@ export default class Dashboard extends React.Component{
         let obj = data[i];
         // item in obj
         for(var k in obj) {
-          if (!ignore.has(k)) { //if not client, num_critical, etc. add sum
-             tempCounts[k] += data[i][k];
+          if (!ignore.has(k)) { //if not client or date etc. add sum
+             tempCounts[k.substr(4)] += data[i][k];
           }
           else if (k === "date") {
             // increment that months critical, high, medium, low, info counts 
@@ -176,7 +176,7 @@ export default class Dashboard extends React.Component{
         }
      }
      console.log("RISK COUNTS")
-      console.log(this.state.riskCounts);
+     console.log(this.state.riskCounts);
 
   }
 

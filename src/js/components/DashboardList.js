@@ -2,8 +2,8 @@ import React from 'react';
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, AreaChart, Area} from 'recharts'
 
 export default class DashboardList extends React.Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
 			riskChartData:[
                   {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
@@ -14,10 +14,16 @@ export default class DashboardList extends React.Component {
                   {name: 'Page F', uv: 2390, pv: 3800, amt: 2500},
                   {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
             ],
-		}
+		  chartData:Object.keys(props.list).map(
+        function(k) {
 
-
-	}
+          return { name:k,count:props.list[k] }
+        }
+      ),
+    }
+    console.log('chartdata')
+	  console.log(this.state.chartData)
+  }
 	render() {
 		let self = this;
 
@@ -27,12 +33,13 @@ export default class DashboardList extends React.Component {
            	return React.createElement("li", null, (<span><span class="dash-list-name blue">{k}</span><span class="dash-list-val">{self.props.list[k]}</span></span>) );
 
              }))}
-            
-        <BarChart width={400} height={200} data={this.state.riskChartData} layout="vertical">
-	     <YAxis type="category" dataKey="name" />
-	     <XAxis dataKey="uv" />
-         <Bar dataKey='uv' fill='red'/>
-        </BarChart> 
+        <div class="recharts-list-container">
+        <BarChart width={300} height={150} data={this.state.chartData} layout="vertical">
+	       <YAxis type="category" dataKey="name" interval={0} tickLine={false} axisLine={false} />
+	       <XAxis dataKey="count" type="number" hide= {true} />
+         <Bar dataKey='count' fill='#ccc'/>
+        </BarChart>
+        </div>
         </div>
 
         )
