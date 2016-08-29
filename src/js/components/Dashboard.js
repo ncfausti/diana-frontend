@@ -87,7 +87,9 @@ export default class Dashboard extends React.Component{
                 "architecture":0,"other_category":0,
             },
             riskCounts:{},
+            sansCounts:{},
             typeCounts:{},
+            owaspCounts:{},
             secCounts:{},
             //dateCounts: {jan:0,feb:0,mar:0,apr:0,may:0,jun:0,jul:0,aug:0,sep:0,oct:0,nov:0,dec:0,}
           //  dateCounts: [0,0,0,0,0,0,0,0,0,0,0,0],  // index 0 = jan, index 1 = feb, ... index 11=dec
@@ -167,9 +169,12 @@ export default class Dashboard extends React.Component{
         else if (o.indexOf("low") > -1) {this.state.riskCounts[o] = tempCounts[o];}
         else if (o.indexOf("info") > -1) {this.state.riskCounts[o] = tempCounts[o];}
         
-        else if (o.indexOf("sans") > -1 || o.indexOf("owasp") > -1) {
+        else if (o.indexOf("sans") > -1) {
           // convert from 
-            this.state.secCounts[o] = tempCounts[o];
+            this.state.sansCounts[o] = tempCounts[o];
+        }
+        else if (o.indexOf("owasp") > -1) {
+            this.state.owaspCounts[o] = tempCounts[o];
         }
         else {
             this.state.typeCounts[o] = tempCounts[o];
@@ -214,7 +219,7 @@ export default class Dashboard extends React.Component{
        
        <div class="simple-list-div">
        <h5>Risk Levels</h5>
-       	<DashboardList list={this.state.riskCounts} />
+       	<DashboardList list={this.state.sansCounts} />
        </div>
       </div>
       <div class="col-md-4" >
@@ -226,7 +231,7 @@ export default class Dashboard extends React.Component{
       <div class="col-md-3">
        <div class="simple-list-div">
        <h5>OWASP Top 10</h5>
-       	<DashboardList list={this.state.secCounts} />
+       	<DashboardList list={this.state.owaspCounts} />
        </div>
       </div>
       <div class="col-md-4"></div>

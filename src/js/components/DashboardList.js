@@ -26,7 +26,7 @@ export default class DashboardList extends React.Component {
   }
 	render() {
 		let self = this;
-
+    // height should be based off of number of items
       return (
       	<div>
         {React.createElement("ul", null, Object.keys(self.props.list).map(function(k){
@@ -34,10 +34,10 @@ export default class DashboardList extends React.Component {
 
              }))}
         <div class="recharts-list-container">
-        <BarChart width={300} height={150} data={this.state.chartData} layout="vertical">
+        <BarChart width={300} height={300} data={this.state.chartData} barGap={0} barSize={30} layout="vertical">
 	       <YAxis type="category" dataKey="name" interval={0} tickLine={false} axisLine={false} />
 	       <XAxis dataKey="count" type="number" hide= {true} />
-         <Bar dataKey='count' fill='#ccc'/>
+         <Bar dataKey='count' fill='#dedede'/>
         </BarChart>
         </div>
         </div>
