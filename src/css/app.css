@@ -548,6 +548,21 @@ header a:focus { text-decoration: none; color:#FFF; }
           transform: rotate(-45deg);
 }
 
+.logout-span{
+    margin-right: 10%;
+}
+ul.dropdown-menu {min-width:108px;}
+#logout-link {display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    margin: 0px;
+    padding-left: 0px;
+  }
+
 .coloured .checkbox-material .check {
   color: #2FAEF8;
 }

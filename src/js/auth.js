@@ -38,15 +38,21 @@ module.exports = {
 }
 
 function loginRequest(email, pass, cb) {
+  localStorage['email'] = email
  new APIRequest().makeCorsRequest({email:email, pass:pass},'POST','api/auth/obtaintoken/', function(response){
 //    if (email === 'joe@example.com' && pass === 'password1') {
 
   let token = JSON.parse(response)["token"]
+  let name = JSON.parse(response)["name"]
+  let email = JSON.parse(response)["email"]
+  
   if(token){
       console.log(response.token);
         cb({
           authenticated: true,
-          token: token
+          token: token,
+          email: email,
+          name: name
         })
       } else {
         cb({ authenticated: false })

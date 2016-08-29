@@ -149,7 +149,7 @@ ReactDOM.render(
 			<Route path="/logout" component={Logout} />
 
 			<Route path="/" component={Layout} onEnter={requireAuth}>
-				<IndexRoute path="dashboard" component={Dashboard} onEnter={requireAuth} />
+				<IndexRoute component={Dashboard} onEnter={requireAuth} />
 				<Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
 				<Route path="submissions" component={BugTable} onEnter={requireAuth} />
         <Route path="submissions/:submissionID" component={Details} onEnter={requireAuth} />
