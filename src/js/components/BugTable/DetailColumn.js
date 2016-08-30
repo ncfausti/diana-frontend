@@ -23,6 +23,7 @@ export default class DetailColumn extends React.Component {
 	decisionClicked(e) {
 		const decision = e.target.value
 		this.props.handleSubmission(decision, this.state.bounty);
+		this.setState({showConfirm:false});
 	}
 
 	 close() {
