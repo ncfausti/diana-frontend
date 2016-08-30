@@ -83,7 +83,23 @@ header h2 {
     text-transform: capitalize;
 }
 #centerColumn { margin:0px;padding:0px;  }
-
+.summary-text {    
+    margin-right: 6%;
+    margin-top: 1%;
+    text-align:center;
+}
+.summary-col { 
+  margin-right:24px; 
+}
+.summary-col strong {    f
+    font-size: 1.1em;
+    text-transform: Uppercase;
+    color: #333;
+}
+.summary-col span {
+  font-weight: 300;
+  color: #999;
+}
 .sidebar-header strong  { 
     font-size: .9em;
     padding: 11px 0px;

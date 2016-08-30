@@ -180,8 +180,6 @@ export default class Dashboard extends React.Component{
             this.state.typeCounts[o] = tempCounts[o];
         }
      }
-     console.log("RISK COUNTS")
-     console.log(this.state.riskCounts);
 
   }
 
