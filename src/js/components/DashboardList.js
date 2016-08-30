@@ -36,7 +36,7 @@ export default class DashboardList extends React.Component {
         {
         	React.createElement("ul", null, Object.keys(self.props.list).map(function(k){
            	return React.createElement("li", null, (
-           		<span><span class="dash-list-name" style={self.divStyle}>{k}</span><span class="dash-list-val">{self.props.list[k]}</span></span>
+           		<span><span class="dash-list-name" style={self.divStyle}>{k.replace('_',' ')}</span><span class="dash-list-val">{self.props.list[k]}</span></span>
            		));
              
              }))}

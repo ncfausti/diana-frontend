@@ -299,12 +299,14 @@ label {
 .text-align-center { text-align:center; }
 .simple-list-div { 
     color:#999;
+    background-color: #FEFEFE;
     font-weight:500;
     border: 1px solid #DDD;
     padding:12px 12px 12px 12px;
     border-radius:3px;
     height:240px;
     overflow-y:scroll;
+    margin-top:30px;
  }
 
  .simple-list-div h5 { 
