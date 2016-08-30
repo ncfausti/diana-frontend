@@ -228,6 +228,7 @@ rowSelected(row) {
 
     if (submissionRowIndex > -1) { tempRowData.splice(submissionRowIndex, 1); }
 
+
     this.setState({"details":{
             "id":"",
             "status": "",
@@ -258,7 +259,7 @@ rowSelected(row) {
               "taxonomies": "",
             }}})
     
-    this.state.api.setRowData(tempRowData);
+//    this.state.api.setRowData(tempRowData);
 
     ///////// api call for accept/reject///////////////
 

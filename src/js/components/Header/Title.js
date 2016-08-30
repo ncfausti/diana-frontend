@@ -14,7 +14,10 @@ export default class Title extends React.Component {
 		//console.log(this.props.location)
 		return (
 			<span>
-			<h3 style={h3Style}>Project Diana</h3><i class="material-icons md-18 md-light">expand_more</i>
+			<h3 style={h3Style}>Project Diana</h3>
+			{
+			//	<i class="material-icons md-18 md-light">expand_more</i>
+			}
 			</span>
 		);
 	}

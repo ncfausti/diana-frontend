@@ -10,7 +10,6 @@ export default class DetailColumn extends React.Component {
 					bounty:0,
 					acceptReject:"",
 					decision:""
-
 		}
 	}
 
@@ -49,11 +48,6 @@ export default class DetailColumn extends React.Component {
 	  bountyChanged(e) {
 	  	console.log(e.target.value);
 	  	this.setState({bounty:e.target.value})
-	  }
-
-	  modalDecisionClicked(){
-	 // 	let self = this;
-
 	  }
 
 
