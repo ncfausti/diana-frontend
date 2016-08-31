@@ -21,7 +21,11 @@ export default class DetailColumn extends React.Component {
 	}
 
 	decisionClicked(e) {
-		const decision = e.target.value
+		const decision =  this.state.decision//e.target.value
+		console.log("DECISION CLICKED")
+		console.log(this.state)
+		console.log(decision)
+		// set self to this in render
 		this.props.handleSubmission(decision, this.state.bounty);
 		this.setState({showConfirm:false});
 	}
@@ -37,6 +41,9 @@ export default class DetailColumn extends React.Component {
 	  openConfirm(e) {
 	  	this.setState({showConfirm:true});
     	this.setState({acceptReject:e.target.name});
+    	console.log("OPEN CONFIRM")
+    	console.log(e.target.value)
+
     	this.setState({decision:e.target.value});
 	  }
 
@@ -53,21 +60,11 @@ export default class DetailColumn extends React.Component {
 
 
 	render() {
-		const popover = (
-      <Popover id="modal-popover" title="popover">
-        very popover. such engagement
-      </Popover>
-    );
-    const tooltip = (
-      <Tooltip id="modal-tooltip">
-        wow.
-      </Tooltip>
-    );
 		let displayNone = {display:'none'};
 		// if no details set, display some message
 		if (!this.props.id)
 			return(<div class="null-detail">No Details</div>);
-
+		let self = this;
 		return (
 			<div>
 			<div class="detail-header sidebar-header">
@@ -122,7 +119,7 @@ export default class DetailColumn extends React.Component {
 
 		      <Modal.Footer>
 		        <Button onClick={this.closeConfirm.bind(this)}>Cancel</Button>
-		        <Button bsStyle="primary" value={this.state.decision} onClick={this.decisionClicked.bind(this)}><span class="capitalize">{this.state.acceptReject}</span></Button>
+		        <Button bsStyle="primary" value={this.state.decision} onClick={self.decisionClicked.bind(self)}><span class="capitalize">{this.state.acceptReject}</span></Button>
 		      </Modal.Footer>
 		    </Modal>
 
