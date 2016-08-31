@@ -226,7 +226,10 @@ rowSelected(row) {
     let tempRowData  = this.state.rowData;
     let submissionID = this.state.selectedRows.id;
 
-    if (submissionRowIndex > -1) { tempRowData.splice(submissionRowIndex, 1); }
+    if (submissionRowIndex > -1) { 
+      //tempRowData.splice(submissionRowIndex, 1); 
+      tempRowData[submissionRowIndex].status = decision;
+    }
 
     this.setState({"details":{
             "id":"",
@@ -258,7 +261,7 @@ rowSelected(row) {
               "taxonomies": "",
             }}})
     
-    //this.state.api.setRowData(tempRowData);
+    this.state.api.setRowData(tempRowData);
 
     ///////// api call for accept/reject///////////////
 
