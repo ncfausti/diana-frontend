@@ -26,17 +26,30 @@ export default class DashboardList extends React.Component {
 		  })(),
     }
     console.log('chartdata')
-	  console.log(this.state.chartData)
+	  //console.log(this.state.chartData)
+    for(var i in this.state.chartData)
+      console.log(this.state.chartData[i].count)
+    console.log('max'+this.state.cssCount)
   }
 	render() {
 		let self = this;
-    // height should be based off of number of items
+
       return (
       	<div>
         {
         	React.createElement("ul", null, Object.keys(self.props.list).map(function(k){
+            let high = 0;
+            let current = self.props.list[k];
+            if (current > high)
+              high = current
+
+            let cssWidth = (current / self.state.cssCount) * 90
+
+            if(isNaN(cssWidth))
+              cssWidth = 0
+
            	return React.createElement("li", null, (
-           		<span><span class="dash-list-name" style={self.divStyle}>{k.replace('_',' ')}</span><span class="dash-list-val">{self.props.list[k]}</span></span>
+           		<span><span class="dash-list-name" style={{backgroundColor:'#FCFCFC',whiteSpace:'nowrap',display:'inline-block',width:cssWidth + '%' }}>{k.replace('_',' ')}</span><span class="dash-list-val">{current}</span></span>
            		));
              
              }))}

@@ -138,6 +138,8 @@ input+label+span {
 }
 .row {margin:0px;}
 .dash-list-val {float:right;}
+.dash-list-name {min-width:42px;}
+.dash-list-name:hover { background-color: rgb(188, 222, 251) !important; cursor:pointer;}
 #accept-icon {
     float:left;
 }
