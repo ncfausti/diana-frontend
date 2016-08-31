@@ -49,7 +49,7 @@ export default class DashboardList extends React.Component {
               cssWidth = 0
 
            	return React.createElement("li", null, (
-           		<span><span class="dash-list-name" style={{backgroundColor:'#FCFCFC',whiteSpace:'nowrap',display:'inline-block',width:cssWidth + '%' }}>{k.replace('_',' ')}</span><span class="dash-list-val">{current}</span></span>
+           		<span><span class="dash-list-name" style={{backgroundColor:'#F3F3f3',whiteSpace:'nowrap',display:'inline-block',width:cssWidth + '%' }}>{k.replace('_',' ')}</span><span class="dash-list-val">{current}</span></span>
            		));
              
              }))}
