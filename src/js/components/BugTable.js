@@ -63,7 +63,9 @@ export default class BugTable extends React.Component {
             "impact": "","category": "","risk_level": "","description": "","title": "","references": [],"recommendation": "","taxonomies": "",
             }
     },
-    largeRowData:[]
+    largeRowData:[],
+    pageSize:10,
+    currentPaginationPage:0,
 
   }
 
@@ -141,10 +143,44 @@ rowSelected(row) {
 	onCellClicked(){  }
 
   getPrevResults(e) {
+    
+    if(this.state.currentPaginationPage == 0)
+      return
+
     console.log('getting prev results')
+
+    const start = (--this.state.currentPaginationPage * this.state.pageSize);
+    const end = start + this.state.pageSize;
+
+    console.log(start+' '+end);
+
+    // return current row...current row + page size
+    let page = this.state.largeRowData.slice(start, end);
+    
+    console.log(page)
+
+    this.state.api.setRowData(page);
+    this.state.rowData = page;
   }
+
   getNextResults(e) {
+
+    // TODO:add bounds checking
+
     console.log('getting next results')
+
+    const start = (++this.state.currentPaginationPage * this.state.pageSize);
+    const end = start + this.state.pageSize;
+
+    console.log(start+' '+end);
+
+    // return current row...current row + page size
+    let page = this.state.largeRowData.slice(start, end);
+    
+    console.log(page)
+
+    this.state.api.setRowData(page);
+    this.state.rowData = page;
   }
   getRowResultsAtN(e) {
     console.log(e)
@@ -186,6 +222,10 @@ rowSelected(row) {
                   }
                   gridApi.setRowData(rowData);
                   self.setState({rowData:rowData});
+
+                  // push initial items pulled from api to largeRowData
+                  // this will then get added to in the background to allow for quick paging
+                  self.setState({largeRowData:rowData});
     		    }
         )
 
@@ -208,7 +248,7 @@ rowSelected(row) {
 
                               for (let i = 0; i < items.length; i++) {
                                   let item = items[i];
-                                  largeRowData.push({
+                                  self.state.largeRowData.push({
                                       id:item.id,
                                       status:item.client_decision,
                                       vulnerability:item.vulnerability,
@@ -223,14 +263,13 @@ rowSelected(row) {
                                       tags:item.tags
                                   });
                               }
-                            resolve(largeRowData.length);
+                            resolve(largeRowData);
                         });
                 }
             )
 
           loadAllRowsPromise.then(
             function(val) {
-             self.state.largeRowData = val;
              console.log(val)
             }
           )
@@ -238,7 +277,7 @@ rowSelected(row) {
             console.log(reason)
           });
 
-              this.state.api.sizeColumnsToFit();
+      this.state.api.sizeColumnsToFit();
 
     }  // end onGridReady
 
@@ -322,60 +361,31 @@ rowSelected(row) {
               "taxonomies": "",
             }}})
     
-    this.state.api.setRowData(tempRowData);
+          this.state.api.setRowData(tempRowData);
 
-    ///////// api call for accept/reject///////////////
+          ///////// api call for accept/reject///////////////
 
-    var p1 = new Promise(
-      function(resolve, reject)
-          {
-            new APIRequest().makeCorsRequest({decision:decision, submission:submissionID},'POST','api/user_submission_decisions/',
-                  function(data) {
-                        let detailsResponse = JSON.parse(data);
-                        resolve(detailsResponse);
-                  });
-          }
-    )
+          var p1 = new Promise(
+            function(resolve, reject)
+                {
+                  new APIRequest().makeCorsRequest({decision:decision, submission:submissionID},'POST','api/user_submission_decisions/',
+                        function(data) {
+                              let detailsResponse = JSON.parse(data);
+                              resolve(detailsResponse);
+                        });
+                }
+          )
 
-    let self = this;
+          let self = this;
 
-    p1.then(
-      function(val) {
-       console.log(val)
-      }
-    )
-    .catch(function(reason) {
-    //  console.log(reason)
-    });
-
-  /*
-
-  //////////// api call for how much /////////////////
-  var p2 = new Promise(
-      function(resolve, reject)
-          {
-            console.log("AMOUNT")
-            console.log(amount);
-            new APIRequest().makeCorsRequest({amount:amount, submission:submissionID},'POST','api/submission_payouts/',
-                  function(data) {
-                        let detailsResponse = JSON.parse(data);
-                        resolve(detailsResponse);
-                  });
-          }
-    )
-
-    let me = this;
-
-    p1.then(
-      function(val) {
-
-       console.log(val)
-      }
-    )
-    .catch(function(reason) {
-      console.log(reason)
-    });
-*/
+          p1.then(
+            function(val) {
+             console.log(val)
+            }
+          )
+          .catch(function(reason) {
+          //  console.log(reason)
+          });
 
   } 
 
@@ -426,12 +436,13 @@ rowSelected(row) {
                   <span aria-hidden="true">&laquo;</span>
                 </a>
               </li>
-
+              {/*
               <li><a>1</a></li>
               <li><a>2</a></li>
               <li><a>3</a></li>
               <li><a>4</a></li>
               <li><a>5</a></li>
+              */}
               <li>
                 <a onClick={this.getNextResults.bind(this)} value="next" aria-label="Next">
                   <span aria-hidden="true" value="next">&raquo;</span>
