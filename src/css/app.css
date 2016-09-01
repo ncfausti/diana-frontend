@@ -244,6 +244,11 @@ input+label+span {
     font-weight:500 !important;
 }
 
+.ag-material nav {
+  text-align:right;
+  margin-right:6px;
+}
+
 -moz-user-focus: ignore;
 -webkit-user-select: none;
 -moz-user-select:none;
@@ -310,9 +315,12 @@ label {
     overflow-y:scroll;
     margin-top:30px;
  }
+.pagination li a {cursor:pointer;}
 
  .simple-list-div h5 { 
-    color:#333; }
+    color:#333; 
+}
+
 
 .row .login {text-align:center;}
 

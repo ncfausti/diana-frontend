@@ -28,10 +28,15 @@ export default class APIRequest {
         makeCorsRequest(formData={},method="GET", path, callback) {
           // This is a sample server that supports CORS.
           let jsonFormat = '?format=json';
-          if (formData.name && formData.submission)
+          let limit = '';
+
+          if (formData.limit)
+            limit = "&limit=" + formData.limit;
+
+          if (formData.name && formData.submission) 
             jsonFormat = '';
 
-          var url = 'http://104.197.191.63/' + path + jsonFormat;
+          var url = 'http://104.197.191.63/' + path + jsonFormat + limit;
 
           var xhr = this.createCORSRequest(method, url);
 

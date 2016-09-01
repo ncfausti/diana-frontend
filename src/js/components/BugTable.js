@@ -62,7 +62,8 @@ export default class BugTable extends React.Component {
             "client": "","risk_level": {},"created": "","modified": "","payout": "","comment":"","confidence_score":"","payload": "","calculated_payout": "0.00","client_decision": "open","triage_decision": "open","tags": [],"comments": [],"requests": [],"screenshots": [],"vulnerability": {
             "impact": "","category": "","risk_level": "","description": "","title": "","references": [],"recommendation": "","taxonomies": "",
             }
-    }
+    },
+    largeRowData:[]
 
   }
 
@@ -139,6 +140,16 @@ rowSelected(row) {
 
 	onCellClicked(){  }
 
+  getPrevResults(e) {
+    console.log('getting prev results')
+  }
+  getNextResults(e) {
+    console.log('getting next results')
+  }
+  getRowResultsAtN(e) {
+    console.log(e)
+  }
+
 
 	onGridReady(params) {
         this.state.api = params.api;
@@ -146,6 +157,7 @@ rowSelected(row) {
    //     console.log("API");
         let gridApi = this.state.api;
         let self = this;
+
         new APIRequest().makeCorsRequest({},'GET','api/submission/table/',
         	function(data) {
     			let rowData = [];
@@ -174,12 +186,61 @@ rowSelected(row) {
                   }
                   gridApi.setRowData(rowData);
                   self.setState({rowData:rowData});
-
-    		}
+    		    }
         )
-        this.state.api.sizeColumnsToFit();
 
-    }
+
+        // After grid loads initial 10 rows, make additional call in background
+        // to grab 1000+ rows and store localy in this.state.largeRowData[]
+
+          var loadAllRowsPromise = new Promise(
+            function(resolve, reject)
+                {
+                  new APIRequest().makeCorsRequest({limit:1000},'GET','api/submission/table/',
+                        function(data) {
+                            let largeRowData = [];
+                            
+                            let items = JSON.parse(data);
+                              if (items[0].detail == "Invalid token.") {
+                                // TODO
+                                // Get new token and resend request
+                              }
+
+                              for (let i = 0; i < items.length; i++) {
+                                  let item = items[i];
+                                  largeRowData.push({
+                                      id:item.id,
+                                      status:item.client_decision,
+                                      vulnerability:item.vulnerability,
+                                      risk_level:item.risk_level,
+                                      age: (function() {
+                                              let created = item.created;
+                                              let time_created = new Date(created);
+                                              let now = new Date();
+                                              return Math.floor( (now - time_created) / 1000 / 60 / 60 / 24);})(),
+                                      confidence:item.confidence_score,
+                                      payout:item.calculated_payout,
+                                      tags:item.tags
+                                  });
+                              }
+                            resolve(largeRowData.length);
+                        });
+                }
+            )
+
+          loadAllRowsPromise.then(
+            function(val) {
+             self.state.largeRowData = val;
+             console.log(val)
+            }
+          )
+          .catch(function(reason) {
+            console.log(reason)
+          });
+
+              this.state.api.sizeColumnsToFit();
+
+    }  // end onGridReady
 
 
     isExternalFilterPresent() {
@@ -358,6 +419,26 @@ rowSelected(row) {
 			    sizeColumnsToFit="true"
 
 			    />
+          <nav aria-label="Page navigation">
+            <ul class="pagination">
+              <li>
+                <a onClick={this.getPrevResults.bind(this)} aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+
+              <li><a>1</a></li>
+              <li><a>2</a></li>
+              <li><a>3</a></li>
+              <li><a>4</a></li>
+              <li><a>5</a></li>
+              <li>
+                <a onClick={this.getNextResults.bind(this)} value="next" aria-label="Next">
+                  <span aria-hidden="true" value="next">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
 			</div>
 			</div>
 			
