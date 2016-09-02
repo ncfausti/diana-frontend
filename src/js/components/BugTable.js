@@ -164,8 +164,11 @@ rowSelected(row) {
   }
 
   getNextResults(e) {
+    console.log(this.state.currentPaginationPage);
+    console.log(Math.floor(this.state.largeRowData.length / this.state.pageSize))
 
-    // TODO:add bounds checking
+    if(this.state.currentPaginationPage == Math.floor(this.state.largeRowData.length / this.state.pageSize))
+      return
 
     console.log('getting next results')
 
@@ -336,7 +339,7 @@ rowSelected(row) {
 
   handleSubmission(decision, amount) {
     let submissionRowIndex = -1;
-    
+
     for(var i in this.state.rowData){
       if (this.state.rowData[i].id === this.state.selectedRows.id)
         submissionRowIndex = i;
