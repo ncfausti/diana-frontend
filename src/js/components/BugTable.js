@@ -219,13 +219,16 @@ rowSelected(row) {
                           payout:item.calculated_payout,
                           tags:item.tags
                       });
+                      console.log('pushing ' + i)
                   }
+
                   gridApi.setRowData(rowData);
                   self.setState({rowData:rowData});
 
                   // push initial items pulled from api to largeRowData
                   // this will then get added to in the background to allow for quick paging
                   self.setState({largeRowData:rowData});
+
     		    }
         )
 
@@ -239,7 +242,10 @@ rowSelected(row) {
                   new APIRequest().makeCorsRequest({limit:1000},'GET','api/submission/table/',
                         function(data) {
                             let largeRowData = [];
-                            
+
+                                    console.log("in 1000 call")
+                                    console.log(self.state.rowData);
+
                             let items = JSON.parse(data);
                               if (items[0].detail == "Invalid token.") {
                                 // TODO
@@ -248,7 +254,7 @@ rowSelected(row) {
 
                               for (let i = 0; i < items.length; i++) {
                                   let item = items[i];
-                                  self.state.largeRowData.push({
+                                      largeRowData.push({
                                       id:item.id,
                                       status:item.client_decision,
                                       vulnerability:item.vulnerability,
@@ -263,17 +269,30 @@ rowSelected(row) {
                                       tags:item.tags
                                   });
                               }
+
+                              console.log("in load all rows promise")
+                              console.log(self.state.rowData);
+                              console.log(largeRowData);
+
+
+                              self.state.largeRowData = largeRowData;
+
+                              console.log("LARGE ROW DATA")
+                              console.log(self.state.largeRowData);
+
+                              console.log("ROW DATA")
+
+                              console.log(self.state.rowData);
+
                             resolve(largeRowData);
                         });
-                }
-            )
+                })
 
           loadAllRowsPromise.then(
             function(val) {
-             console.log(val)
+
             }
-          )
-          .catch(function(reason) {
+          ).catch(function(reason) {
             console.log(reason)
           });
 
@@ -312,17 +331,17 @@ rowSelected(row) {
 		else tempFilters.add(filterName);
 		
 		this.setState({filters:tempFilters});	    
-	    this.state.api.onFilterChanged();
+	  this.state.api.onFilterChanged();
 	}
 
   handleSubmission(decision, amount) {
     let submissionRowIndex = -1;
-
+    
     for(var i in this.state.rowData){
       if (this.state.rowData[i].id === this.state.selectedRows.id)
         submissionRowIndex = i;
       }
-
+      // this.state.rowData already long here
     let tempRowData  = this.state.rowData;
     let submissionID = this.state.selectedRows.id;
 
@@ -360,7 +379,7 @@ rowSelected(row) {
               "recommendation": "",
               "taxonomies": "",
             }}})
-    
+
           this.state.api.setRowData(tempRowData);
 
           ///////// api call for accept/reject///////////////
